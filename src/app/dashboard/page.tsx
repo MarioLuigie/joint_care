@@ -3,10 +3,10 @@ import { Button } from '@/components/ui/button'
 
 export default function Dashboard() {
 	return (
-		<div className="flex-center flex-col p-2">
+		<div className="flex-center w-full flex-col p-2 bg-black">
 			<h1>DASHBOARD</h1>
-			<Link href="/">
-				<Button variant="secondary">Back</Button>
+			<Link href="/" className='w-full'>
+				<Button variant="outline">Back</Button>
 			</Link>
 		</div>
 	)

@@ -28,6 +28,9 @@ const config = {
 				orange: {
 					DEFAULT: colors.orange[500],
 				},
+				red: {
+					DEFAULT: colors.red[500],
+				},
 			},
 			fontFamily: {
 				sans: ['Verdana', 'sans-serif'],
