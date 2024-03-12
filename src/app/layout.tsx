@@ -18,7 +18,7 @@ const roboto = Roboto({
 
 // metadata
 export const metadata: Metadata = {
-	title: 'ARW Next App Template',
+	title: 'Join Care',
 	description: 'Items list with CRUD',
 }
 
@@ -28,10 +28,16 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-    <html lang="en">
-      <body>
-        {children}
-      </body>
-    </html>
+		<html lang="en">
+			<body
+				className={cn(
+					'font-poppins antialiased bg-gray-900 text-white',
+					poppins.variable,
+					roboto.variable
+				)}
+			>
+				{children}
+			</body>
+		</html>
 	)
 }
