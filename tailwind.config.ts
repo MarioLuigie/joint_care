@@ -22,6 +22,12 @@ const config = {
 
 		extend: {
 			colors: {
+				jc: {
+					bg: "#F5F8FC"
+				},
+				gray: {
+					DEFAULT: colors.gray[500]
+				},
 				blue: {
 					DEFAULT: colors.blue[500],
 				},
