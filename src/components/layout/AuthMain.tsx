@@ -1,7 +1,7 @@
 export default function AuthMain({ children }: { children: React.ReactNode }) {
 
   return (
-    <main className="flex justify-center items-center grow bg-jc-bg">
+    <main className="flex-center grow p-10 bg-jc-bg">
       { children }
     </main>
   )

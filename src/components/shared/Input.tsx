@@ -22,7 +22,7 @@ export default function Input ({
       type={type}
       value={value}
       placeholder={placeholder}
-      className='rounded-[8px] border border-slate-300 p-2 focus:border-slate-200 focus:outline-none' 
+      className='rounded-[8px] border border-slate-300 h-[60px] p-3 focus:border-slate-200 focus:outline-none' 
       onChange={handleChange}
     />
   );
