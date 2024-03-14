@@ -31,7 +31,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body
 				className={cn(
-					'font-poppins antialiased bg-gray-900 text-white',
+					'font-poppins antialiased',
 					poppins.variable,
 					roboto.variable
 				)}

@@ -1,25 +1,11 @@
-interface Social {
-  alt: string
-  src: string
-  href: string
-}
+import { Social, Language } from "@/lib/types"
 
 export const socials: Social[] = [
-  { alt: "Facebook", src: "/assets/icons/facebook.svg", href: "https://facebook.pl" },
-  { alt: "Instagram", src: "/assets/icons/instagram.svg", href: "https://instagram.pl" },
-  { alt: "LinkedIn", src: "/assets/icons/linkedin.svg", href: "https://linkedin.pl" },
+  { src: "/assets/icons/facebook.svg", href: "https://facebook.pl", width: 27, height: 27, alt: "Facebook", ariaLabel: "Link do Facebook" },
+  { src: "/assets/icons/linkedin.svg", href: "https://linkedin.pl", width: 27, height: 27, alt: "LinkedIn", ariaLabel: "Link do Linkedin" },
+  { src: "/assets/icons/instagram.svg", href: "https://instagram.pl", width: 27, height: 27, alt: "Instagram", ariaLabel: "Link do Instagram" }
 ];
 
-interface Languages {
-  width: number
-  height: number
-  alt: string
-  src: string
-  href: string
-  value: string
-}
-
-export const languages: Languages[] = [
-  { width: 20, height: 20, alt: "Polish", src: "/assets/icons/poland (11).svg", href: "#", value: "poland"},
-  { width: 20, height: 20, alt: "Polish", src: "/assets/icons/poland (11).svg", href: "#", value: "german"},
+export const languages: Language[] = [
+  { value: "poland", src: "/assets/icons/poland.svg", width: 20, height: 20, alt: "Polish", ariaLabel: "Polish Language" }
 ];
