@@ -11,7 +11,7 @@
 /* REGULAR */
 @font-face {
 	font-family: 'TitilliumWeb-Regular';
-	src: url('/public/assets/fonts/TitilliumWeb-Regular.ttf') format('ttf')
+	src: url('/public/assets/fonts/TitilliumWeb-Regular.ttf') format('ttf');
 }
 
 /* LIGHT */
@@ -67,3 +67,6 @@
 	src: url('/public/assets/fonts/TitilliumWeb-SemiBoldItalic.ttf') format('ttf')
 }
 
+.font-titillium {
+	font-family: 'TitilliumWeb-Regular', sans-serif;
+}
