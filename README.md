@@ -4,7 +4,7 @@
 
 This project is a Next.js application utilizing Tailwind CSS for styling and Shadcn Components for dynamic UI interactions, serving as the front-end interface. It communicates with the backend services through REST API.
 
-You can try it out here: **[https://next-fikasp.vercel.app](https://next-fikasp.vercel.app)**
+You can try it out here: **[https://joint-care.vercel.app/](https://joint-care.vercel.app/)**
 
 ## Technologies
 
