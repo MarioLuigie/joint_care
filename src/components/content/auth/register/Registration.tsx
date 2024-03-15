@@ -15,6 +15,7 @@ import Link from "next/link"
 import Input from "@/components/shared/Input"
 import PasswordReqs from "./PasswordReqs"
 import CheckboxDemo from "@/components/shared/CheckboxDemo"
+import { Label } from "@/components/ui/label"
 
 interface FormData {
 	email: string
@@ -61,8 +62,10 @@ export default function Login() {
 					/>
 					<PasswordReqs />
 					<div className='flex'>
-						<CheckboxDemo id="statute" label="Akceptuję" />
-						<Link href="#" className='underline text-sm font-medium text-[#030303]'>&nbsp;Regulamin serwisu</Link>
+						<CheckboxDemo id="statute">
+							<Label htmlFor="statute">Akceptuję</Label>
+							<Link href="#" className='underline text-sm font-medium text-[#030303]'>Regulamin serwisu</Link>
+						</CheckboxDemo>
 					</div>
 				</div>
 			</CardContent>
