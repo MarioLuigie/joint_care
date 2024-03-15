@@ -17,7 +17,7 @@ export default function Languages() {
       <SelectTrigger className="bg-white w-[65px] rounded-full border-none focus:border-none">
         <SelectValue placeholder={languages.length > 0 && languages.map((language: Language) => (
           language.value === "poland" && (
-            <LangImage language={language} />
+            <LangImage language={language} key={language.value}/>
           )))} 
         />
       </SelectTrigger>
