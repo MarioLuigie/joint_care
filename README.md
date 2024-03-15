@@ -25,9 +25,9 @@ You can try it out here: **[https://joint-care.vercel.app/](https://joint-care.v
   - `/app` - Application routing
     - `/(fonts)` - Custom fonts ttf
     - `/auth` - Routes for authentication
-     - `/forgot-password` - Forgot password page
-     - `/login` - Login page
-     - `/register` - Register page
+      - `/forgot-password` - Forgot password page
+      - `/login` - Login page
+      - `/register` - Register page
     - `/dashboard` - Dashboard page
     - `favicon.ico` - Icon displayed in the browser
     - `globals.css` - Global CSS and Tailwind styles
@@ -36,7 +36,7 @@ You can try it out here: **[https://joint-care.vercel.app/](https://joint-care.v
   - `/components` - Reusable UI components
     - `/content` - Components for pages content
       - `/auth` - Components for auth pages
-       - `/partials` - Subcomponents for auth components
+        - `/partials` - Subcomponents for auth components
       - `/dashboard` - Components for dashboard page
     - `/layout` - Layout components
     - `/shared` - Components used across multiple parts of the app
