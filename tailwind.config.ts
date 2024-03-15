@@ -71,7 +71,7 @@ const config = {
 			addUtilities({
 				'.flex-start': {
 					display: 'flex',
-					justifyContent: 'start',
+					justifyContent: 'flex-start',
 					alignItems: 'center',
 				},
 				'.flex-center': {

@@ -1,9 +1,12 @@
-import Link from 'next/link'
+'use client'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function HomePage() {
-	return (
-		<div className="flex-center p-2">
-			<Link href={'/dashboard'}>Go to Dashboard</Link>
-		</div>
-	)
+	const router = useRouter()
+	useEffect(() => {
+		router.push('/auth/login')
+	}, [])
+
+	return <div className="flex-center p-2">HOME PAGE</div>
 }

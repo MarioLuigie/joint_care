@@ -5,24 +5,24 @@ import './globals.css'
 
 // fonts
 const titillium = localFont({
-  src: [
-    {
-      path: './(fonts)/TitilliumWeb-Regular.ttf',
-      weight: '400',
-      style: 'normal',
-    },
+	src: [
 		{
-      path: './(fonts)/TitilliumWeb-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    }
-  ],
+			path: './(fonts)/TitilliumWeb-Regular.ttf',
+			weight: '400',
+			style: 'normal',
+		},
+		{
+			path: './(fonts)/TitilliumWeb-Bold.ttf',
+			weight: '700',
+			style: 'normal',
+		},
+	],
 })
 
 // metadata
 export const metadata: Metadata = {
-	title: 'Join Care',
-	description: 'Items list with CRUD',
+	title: 'Joint Care',
+	description: 'Joint Care Front-end',
 }
 
 export default function RootLayout({
@@ -32,13 +32,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={cn(
-					titillium.className
-				)}
-			>
-				{children}
-			</body>
+			<body className={cn(titillium.className)}>{children}</body>
 		</html>
 	)
 }
