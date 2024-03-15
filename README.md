@@ -1,4 +1,4 @@
-# JointCare Font-end
+# JointCare Front-end
 
 ## Introduction
 
