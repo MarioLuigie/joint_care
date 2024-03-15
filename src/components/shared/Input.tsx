@@ -1,4 +1,5 @@
 import React from 'react';
+import VisibilityIcon from "/public/assets/icons/visibility 1.svg"
 
 interface InputProps {
   value: string
@@ -27,4 +28,15 @@ export default function Input ({
     />
   );
 }
+
+      //  InputProps={name === 'password' ? {
+      //     endAdornment: (
+      //       <InputAdornment position="end">
+      //         <IconButton onClick={handleShowPassword}>
+      //           {type === 'password' ? <VisibilityIcon /> : <VisibilityOffIcon />}
+      //         </IconButton>
+      //       </InputAdornment>
+      //     ),
+      //   } : null}
+      // />
 

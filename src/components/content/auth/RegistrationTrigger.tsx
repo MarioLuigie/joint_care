@@ -10,13 +10,13 @@ import {
 export default function RegistrationTrigger() {
 
 	return (
-		<Card className='p-[40px] w-[480px] min-w-[350px]'>
+		<Card className='p-[40px] w-[450px] min-w-[350px]'>
 			<CardHeader>
 				<CardTitle>Nie mam konta</CardTitle>
 				<CardDescription>Utwórz konto i zacznij korzystać z serwisu</CardDescription>
 			</CardHeader>
 			<CardFooter className='flex flex-col gap-3'>
-				<Button className='w-full'>
+				<Button variant="outline" className='w-full'>
 					Załóż konto
 				</Button>
 			</CardFooter>

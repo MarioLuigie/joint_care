@@ -13,6 +13,8 @@ import {
 import { useState } from "react"
 
 import Input from "@/components/shared/Input"
+import PasswordReqs from "./PasswordReqs"
+import CheckboxDemo from "@/components/shared/CheckboxDemo"
 
 interface FormData {
 	email: string
@@ -37,7 +39,7 @@ export default function Login() {
 	}
 
 	return (
-		<Card className='p-[40px] w-[480px] min-w-[350px]'>
+		<Card className='p-[40px] w-[450px] min-w-[350px]'>
 			<CardHeader>
 				<CardTitle>Nie mam konta</CardTitle>
 				<CardDescription>Utwórz konto i zacznij korzystać z serwisu</CardDescription>
@@ -57,6 +59,8 @@ export default function Login() {
 					placeholder="Hasło" 
 					handleChange={handleChange}  
 				/>
+				<PasswordReqs />
+				<CheckboxDemo id="statute" label="Akceptuję Regulamin serwisu" />
 			</CardContent>
 			<CardFooter className='flex flex-col gap-3'>
 				<Button className='w-full'>

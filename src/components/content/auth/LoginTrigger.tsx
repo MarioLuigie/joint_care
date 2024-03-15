@@ -10,13 +10,13 @@ import {
 export default function LoginTrigger() {
 
 	return (
-		<Card className='p-[40px] w-[480px] min-w-[350px]'>
+		<Card className='p-[40px] w-[450px] min-w-[350px]'>
 			<CardHeader>
 				<CardTitle>Mam konto</CardTitle>
 				<CardDescription>Chcę się zalogować</CardDescription>
 			</CardHeader>
 			<CardFooter className='flex flex-col gap-3'>
-				<Button className='w-full'>
+				<Button variant="outline" className='w-full'>
 					Zaloguj się
 				</Button>
 			</CardFooter>

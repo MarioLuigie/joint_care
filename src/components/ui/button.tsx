@@ -14,7 +14,7 @@ const buttonVariants = cva(
 				destructive:
 					'bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90',
 				outline:
-					'border border-slate-200 hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50',
+					'border border-2 border-[#030303] hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50',
 				secondary:
 					'bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-50 ',
 				ghost:
