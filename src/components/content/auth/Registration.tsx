@@ -75,7 +75,7 @@ export default function Login() {
 					</div>
 				</div>
 			</CardContent>
-			<CardFooter className="flex pt-5">
+			<CardFooter className="flex flex-col pt-5">
 				<Link href="/auth/register">
 					<Button className="w-full">Załóż konto</Button>
 				</Link>

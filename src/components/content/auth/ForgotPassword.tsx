@@ -54,7 +54,7 @@ export default function Login() {
 				<Button className="w-full">Wyślij</Button>
 				<Link
 					href="/auth/login"
-					className="flex-center underline text-jc-text4"
+					className="flex-center underline text-sm text-jc-text4"
 				>
 					<p>Wróć do logowania</p>
 				</Link>
