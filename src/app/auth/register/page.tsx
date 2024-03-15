@@ -1,5 +1,5 @@
-import LoginTrigger from "@/components/content/auth/LoginTrigger"
-import Registration from "@/components/content/auth/Registration"
+import LoginTrigger from "@/components/content/auth/login/LoginTrigger"
+import Registration from "@/components/content/auth/register/Registration"
 
 
 

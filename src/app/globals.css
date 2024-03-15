@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer utilities {
-	.card {
-		@apply bg-white rounded p-10;
+	.auth-card {
+		@apply min-w-[370px] w-full sm:w-[390px] lg:w-[460px] p-[50px];
 	}
 }
 

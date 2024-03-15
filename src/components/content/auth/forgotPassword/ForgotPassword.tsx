@@ -36,10 +36,10 @@ export default function Login() {
 	}
 
 	return (
-		<Card className='p-[40px] w-[510px] min-w-[350px]'>
+		<Card className='auth-card'>
 			<CardHeader>
 				<CardTitle>Zapomniałeś hasła?</CardTitle>
-				<CardDescription>Wprowadż swój adres email wyslemy Ci link z instrukcją do odzyskania dostępu do serwisu.</CardDescription>
+				<CardDescription>Wprowadż swój adres email wyślemy Ci link z instrukcją do odzyskania dostępu do serwisu.</CardDescription>
 			</CardHeader>
 			<CardContent className='flex flex-col gap-3'>
 				<Input 
@@ -50,7 +50,7 @@ export default function Login() {
 					handleChange={handleChange} 
 				/>
 			</CardContent>
-			<CardFooter className='flex flex-col gap-3'>
+			<CardFooter className='flex flex-col gap-3 pt-7'>
 				<Button className='w-full'>
 					Wyślij
 				</Button>

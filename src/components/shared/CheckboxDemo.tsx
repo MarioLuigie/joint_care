@@ -9,7 +9,7 @@ interface CheckboxDemoProps {
 export default function CheckboxDemo({ id, label }: CheckboxDemoProps ) {
 
   return (
-    <div className="flex items-center space-x-2 pb-5 pt-5">
+    <div className="flex items-center space-x-2">
       <Checkbox id={id} />
       <Label htmlFor={id}>{label}</Label>
     </div>
