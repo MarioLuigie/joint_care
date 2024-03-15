@@ -1,4 +1,4 @@
-import ForgotPassword from '@/components/content/auth/forgotPassword/ForgotPassword'
+import ForgotPassword from '@/components/content/auth/ForgotPassword'
 
 export default function RegistrationPage() {
 	return (
