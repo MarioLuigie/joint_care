@@ -1,6 +1,6 @@
-import Languages from './footer/Languages'
-import Copyrights from './footer/Copyrights'
-import Socials from './footer/Socials'
+import Languages from './partials/Languages'
+import Copyrights from './partials/Copyrights'
+import Socials from './partials/Socials'
 
 export default function Footer() {
 	return (

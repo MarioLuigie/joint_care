@@ -18,31 +18,36 @@ You can try it out here: **[https://next-fikasp.vercel.app](https://next-fikasp.
 ## Structure
 
 - `/public` - Static files
-  - `/assets` - Images, fonts etc.
+  - `/assets` - Images etc.
+    - `/icons` - Icons svg
+    - `/logo` - Brand`s Logo
 - `/src` - Source files of the application
   - `/app` - Application routing
-    - `/(auth)` - Routes for authentication
-    - `/(root)` - Routes for core application
-    - `/api` - API routes
+    - `/(fonts)` - Custom fonts ttf
+    - `/auth` - Routes for authentication
+     - `/forgot-password` - Forgot password page
+     - `/login` - Login page
+     - `/register` - Register page
+    - `/dashboard` - Dashboard page
     - `favicon.ico` - Icon displayed in the browser
     - `globals.css` - Global CSS and Tailwind styles
     - `layout.tsx` - Root application layout
+    - `page.tsx` - Home page
   - `/components` - Reusable UI components
-    - `/layout` - Layout-related UI components
+    - `/content` - Components for pages content
+      - `/auth` - Components for auth pages
+       - `/partials` - Subcomponents for auth components
+      - `/dashboard` - Components for dashboard page
+    - `/layout` - Layout components
     - `/shared` - Components used across multiple parts of the app
     - `/ui` - Components specific to the Shadcn library
-  - `/database` - Database-related files for MongoDB
-    - `/actions` - Server actions to manage database
-    - `/models` - Database schemas
   - `/lib` - Shared library
+    - `/api` - Endpoints to connect with api
     - `/constants` - Constant values
     - `/types` - TypeScript type definitions
     - `/utils` - Utility functions
-  - `middleware.ts` - Authentication middleware for the Clerk
-  - `navigation.ts` - Managing navigation routes and links
 
 - `/` - Configurations files in root directory:
-  
   - `.gitignore` - List of files to ignore by git
   - `components.json` - Shadcn components configuration
   - `next.config.js` - Configuration file for Next.js
