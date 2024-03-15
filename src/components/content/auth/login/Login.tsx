@@ -15,6 +15,7 @@ import { useState } from "react"
 import Input from "@/components/shared/Input"
 import IncorrectData from "@/components/content/auth/login/IncorrectData"
 import CheckboxDemo from "@/components/shared/CheckboxDemo"
+import { Label } from "@/components/ui/label"
 
 interface FormData {
 	email: string
@@ -62,7 +63,9 @@ export default function Login() {
 						handleChange={handleChange}  
 					/>
 				</div>
-				<CheckboxDemo id="remember" label="Zapamiętaj mnie" />
+				<CheckboxDemo id="remember">
+					<Label htmlFor="remember">Zapamiętaj mnie</Label>
+				</CheckboxDemo>
 			</CardContent>
 			<CardFooter className='flex flex-col gap-2 pt-5'>
 				<Button className='w-full'>
