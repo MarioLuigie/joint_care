@@ -44,9 +44,7 @@ const config = {
 			},
 			fontFamily: {
 				sans: ['Verdana', 'sans-serif'],
-				serif: ['Times New Roman', 'serif'],
-				poppins: ['var(--font-poppins)'],
-				roboto: ['var(--font-roboto)'],
+				serif: ['Times New Roman', 'serif']
 			},
 			keyframes: {
 				'accordion-down': {

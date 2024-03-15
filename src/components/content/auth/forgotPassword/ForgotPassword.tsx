@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
 import Link from "next/link"
 import { useState } from "react"
 
@@ -32,7 +31,6 @@ export default function Login() {
 			...formData,
 			[e.target.name]: e.target.value
 		})
-		console.log(formData);
 	}
 
 	return (

@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/card"
 import Link from "next/link"
 import { useState } from "react"
-import CheckboxDemo from "@/components/shared/CheckboxDemo"
 
 import Input from "@/components/shared/Input"
 import IncorrectData from "@/components/content/auth/login/IncorrectData"
+import CheckboxDemo from "@/components/shared/CheckboxDemo"
 
 interface FormData {
 	email: string

@@ -2,7 +2,6 @@ import AuthHeader from "@/components/layout/AuthHeader"
 import AuthMain from "@/components/layout/AuthMain"
 import Footer from "@/components/layout/Footer"
 
-
 export default function AuthLayout({
 	children,
 }: Readonly<{
