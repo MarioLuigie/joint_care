@@ -1,6 +1,6 @@
-import AuthHeader from "@/components/layout/AuthHeader"
-import AuthMain from "@/components/layout/AuthMain"
-import Footer from "@/components/layout/Footer"
+import AuthHeader from '@/components/layout/AuthHeader'
+import AuthMain from '@/components/layout/AuthMain'
+import Footer from '@/components/layout/Footer'
 
 export default function AuthLayout({
 	children,
@@ -9,9 +9,9 @@ export default function AuthLayout({
 }>) {
 	return (
 		<div className="flex flex-col min-h-screen">
-      <AuthHeader />
-      <AuthMain>{ children }</AuthMain>
-      <Footer />
+			<AuthHeader />
+			<AuthMain>{children}</AuthMain>
+			<Footer />
 		</div>
 	)
 }
