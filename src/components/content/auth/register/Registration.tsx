@@ -51,6 +51,7 @@ export default function Login() {
 						type="email" 
 						name="email" 
 						placeholder="Wpisz" 
+						label="Adres e-mail"
 						handleChange={handleChange} 
 					/>
 					<Input 
@@ -58,6 +59,7 @@ export default function Login() {
 						type="password" 
 						name="password" 
 						placeholder="Hasło" 
+						label="Hasło"
 						handleChange={handleChange}  
 					/>
 					<PasswordReqs />
