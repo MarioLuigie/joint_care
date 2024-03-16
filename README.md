@@ -10,7 +10,7 @@ You can try it out here: **[https://joint-care.vercel.app/](https://joint-care.v
 
 - **[Node.js](https://nodejs.org/en/docs/)** - JavaScript runtime environment for executing server-side code.
 - **[Next.js](https://nextjs.org/docs)** - React framework for building efficient and scalable web applications.
-- **[TypeScipt](https://www.typescriptlang.org/docs/)** - Typed superset of JavaScript for building maintainable applications.
+- **[TypeScript](https://www.typescriptlang.org/docs/)** - Typed superset of JavaScript for building maintainable applications.
 - **[Tailwind CSS](https://tailwindcss.com/docs)** - Utility-first CSS framework for building custom designs with ease.
 - **[Shadcn/UI](https://ui.shadcn.com/docs)** - Comprehensive components library for building modern user interfaces.
 
