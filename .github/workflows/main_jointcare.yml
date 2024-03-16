@@ -45,4 +45,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: dist # This should be your distribution path, not the root path
+          path: public # This should be your distribution path, not the root path
