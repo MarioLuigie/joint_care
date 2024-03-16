@@ -8,7 +8,7 @@ export default function AuthHeader() {
 				width={163}
 				height={32}
 				alt="Joint Care Logo"
-				aria-label="Joint Care Logo"
+				aria-label="Logo Joint Care"
 			/>
 		</header>
 	)
