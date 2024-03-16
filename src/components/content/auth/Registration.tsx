@@ -14,7 +14,7 @@ import Link from 'next/link'
 
 import Input from '@/components/shared/Input'
 import PasswordReqs from './partials/PasswordReqs'
-import CheckboxDemo from '@/components/shared/CheckboxLabel'
+import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 
 interface FormData {
@@ -65,7 +65,7 @@ export default function Login() {
 					/>
 					<PasswordReqs />
 					<div className="flex">
-						<CheckboxDemo id="statute">
+						<CheckboxLabel id="statute">
 							<Label htmlFor="statute">Akceptuję</Label>
 							<Link
 								href="#"
@@ -73,7 +73,7 @@ export default function Login() {
 							>
 								Regulamin serwisu
 							</Link>
-						</CheckboxDemo>
+						</CheckboxLabel>
 					</div>
 				</div>
 			</CardContent>

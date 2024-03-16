@@ -14,7 +14,7 @@ import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
 import IncorrectData from '@/components/content/auth/partials/IncorrectData'
-import CheckboxDemo from '@/components/shared/CheckboxLabel'
+import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 
 interface FormData {
@@ -64,9 +64,9 @@ export default function Login() {
 						handleChange={handleChange}
 					/>
 				</div>
-				<CheckboxDemo id="remember">
+				<CheckboxLabel id="remember">
 					<Label htmlFor="remember">Zapamiętaj mnie</Label>
-				</CheckboxDemo>
+				</CheckboxLabel>
 			</CardContent>
 			<CardFooter className="flex flex-col gap-2 pt-5">
 				<Button className="w-full">Zaloguj</Button>
