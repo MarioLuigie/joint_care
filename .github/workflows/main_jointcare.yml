@@ -63,12 +63,12 @@ jobs:
       #- name: Unzip artifact for deployment
       #  run: unzip node-app.zip
 
-      #- name: 'Deploy to Azure Web App'
-      #  uses: azure/webapps-deploy@v2
-      #  id: deploy-to-webapp
-      #  with:
-      #   app-name: 'jointcare'
-      #    slot-name: 'Production'
-      #    package: .
-      #    publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4CBC899D501A4DB69B162D7B50A4CF2A }}
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+         app-name: 'jointcare'
+         slot-name: 'Production'
+         package: .
+         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
          
