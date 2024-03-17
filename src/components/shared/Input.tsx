@@ -43,14 +43,14 @@ export default function Input ({
         {label}
         <span className='text-[#0092FD]'>*</span>
       </p>
-      {name === "password" ? 
+      {name === "password" &&
         <div className='absolute right-5 cursor-pointer' onClick={handleShowPassword}>
           <Image 
             src={visibilityOff}
             width={20}
             height={14}
             alt="Ikona hasło ukryte" />
-        </div> : null
+        </div> 
       }
     </div>
   );
