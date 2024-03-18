@@ -1,4 +1,3 @@
-'use client'
 import { Button } from '@/components/ui/button'
 import {
 	Card,
@@ -9,28 +8,10 @@ import {
 	CardTitle,
 } from '@/components/ui/card'
 import Link from 'next/link'
-import { useState } from 'react'
 
-import Input from '@/components/shared/Input'
 import LoginAgain from '@/components/content/auth/partials/LoginAgain'
 
-interface FormData {
-	email: string
-}
-
 export default function AccountBlocked() {
-	const initFormData: FormData = {
-		email: '',
-	}
-
-	const [formData, setFormData] = useState(initFormData)
-
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
-		})
-	}
 
 	return (
 		<Card className="auth-card">

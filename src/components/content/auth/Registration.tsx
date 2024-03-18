@@ -50,12 +50,12 @@ export default function Registration() {
 				<div className="flex flex-col gap-3">
 					<Warning>
 						<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
-						<div className='flex gap-2 text-jc-text1'>
-							<Link href="#" className="jc-warning-link">
+						<div className='flex items-center gap-2 text-jc-text1'>
+							<Link href="#" className="jc-warning-link underline">
 								Zaloguj się
 							</Link>
-							<p>lub</p>
-							<Link href="#" className="jc-warning-link">
+							<p className="jc-warning-link">lub</p>
+							<Link href="#" className="jc-warning-link underline">
 								Przypomnij hasło
 							</Link>
 						</div>
