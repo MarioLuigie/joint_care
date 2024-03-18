@@ -9,16 +9,16 @@ export default function Socials() {
 			{socials.map((social) => (
 				<Link
 					href={social.href}
-					aria-label={social.ariaLabel}
+					aria-label={social.alt}
 					target="_blank"
 					rel="noopener noreferrer"
-					style={{ width: `${social.width}px` }}
+					style={{ width: `${social.size}px` }}
 					key={social.alt}
 				>
 					<Image
 						src={social.src}
-						width={social.width}
-						height={social.height}
+						width={social.size}
+						height={social.size}
 						alt={social.alt}
 					/>
 				</Link>

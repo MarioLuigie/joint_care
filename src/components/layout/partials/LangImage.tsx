@@ -4,11 +4,11 @@ import { Language } from '@/lib/types'
 
 export default function LangImage({ language }: { language: Language }) {
 	return (
-		<div aria-label={language.ariaLabel}>
+		<div aria-label={language.alt}>
 			<Image
 				src={language.src}
-				width={language.width}
-				height={language.height}
+				width={language.size}
+				height={language.size}
 				alt={language.alt}
 			/>
 		</div>
