@@ -1,3 +1,7 @@
+export interface Children {
+	children: React.ReactNode
+}
+
 export interface Language {
 	value: string
 	src: string

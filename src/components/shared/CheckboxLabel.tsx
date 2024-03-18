@@ -1,11 +1,11 @@
 import { Checkbox } from '@/components/ui/checkbox'
 
-interface CheckboxDemoProps {
+interface CheckboxLabelProps {
 	children: React.ReactNode
 	id: string
 }
 
-export default function CheckboxLabel({ children, id }: CheckboxDemoProps) {
+export default function CheckboxLabel({ children, id }: CheckboxLabelProps) {
 	return (
 		<div className="flex items-center space-x-2">
 			<Checkbox id={id} />

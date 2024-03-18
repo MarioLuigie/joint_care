@@ -14,7 +14,7 @@ import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
 import InputPassword from '@/components/shared/InputPassword'
-import IncorrectData from '@/components/content/auth/partials/IncorrectData'
+import Alert from '@/components/content/auth/partials/Alert'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 
@@ -47,7 +47,10 @@ export default function Login() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3 pb-5">
-					<IncorrectData />
+					<Alert>
+						<p>Niepoprawne dane do logowania!</p>
+						<p>Uzupełnij ponownie</p>
+					</Alert>
 					<Input
 						value={formData.email}
 						type="email"

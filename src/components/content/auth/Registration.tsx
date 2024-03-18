@@ -14,6 +14,7 @@ import Link from 'next/link'
 import Input from '@/components/shared/Input'
 import InputPassword from '@/components/shared/InputPassword'
 import PasswordReqs from './partials/PasswordReqs'
+import Warning from './partials/Warning'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 
@@ -47,6 +48,18 @@ export default function Registration() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3">
+					<Warning>
+						<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
+						<div className='flex gap-2 text-jc-text1'>
+							<Link href="#" className="jc-warning-link">
+								Zaloguj się
+							</Link>
+							<p>lub</p>
+							<Link href="#" className="jc-warning-link">
+								Przypomnij hasło
+							</Link>
+						</div>
+					</Warning>
 					<Input
 						value={formData.email}
 						type="email"
