@@ -1,5 +1,4 @@
 'use client'
-
 import { Button } from '@/components/ui/button'
 import {
 	Card,
@@ -22,7 +21,7 @@ interface FormData {
 	password: string
 }
 
-export default function Login() {
+export default function Registration() {
 	const initFormData: FormData = {
 		email: '',
 		password: '',

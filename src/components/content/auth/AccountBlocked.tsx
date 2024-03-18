@@ -17,7 +17,7 @@ interface FormData {
 	email: string
 }
 
-export default function ForgotPassword() {
+export default function AccountBlocked() {
 	const initFormData: FormData = {
 		email: '',
 	}
