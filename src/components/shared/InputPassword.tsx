@@ -23,12 +23,17 @@ export default function Input ({
   label,
   handleChange
 }: InputProps) {
+  const [ isPasswordHidden, setIsPasswordHidden ] = useState(true)
 
+  const handleShowPassword = () => {
+    setIsPasswordHidden(prev => !prev)
+  }
+  
   return (
     <div className='flex flex-col justify-center items-stretch relative'>
       <input 
         name={name}
-        type={type}
+        type={ isPasswordHidden ? "password" : "text" }
         value={value}
         placeholder={placeholder}
         className='jc-input' 
@@ -38,6 +43,13 @@ export default function Input ({
         {label}
         <span className='text-[#0092FD]'>*</span>
       </p>
+      <div className='absolute right-5 cursor-pointer' onClick={handleShowPassword}>
+        <Image 
+          src={visibilityOff}
+          width={20}
+          height={14}
+          alt="Ikona hasło ukryte" />
+      </div> 
     </div>
   );
 }

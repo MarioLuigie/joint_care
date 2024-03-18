@@ -12,6 +12,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
+import LoginAgain from '@/components/content/auth/partials/LoginAgain'
 
 interface FormData {
 	email: string
@@ -34,29 +35,21 @@ export default function AccountBlocked() {
 	return (
 		<Card className="auth-card">
 			<CardHeader>
-				<CardTitle>Zapomniałeś hasła?</CardTitle>
+				<CardTitle>Twoje konto zostało zablokowane</CardTitle>
 				<CardDescription>
-					Wprowadż swój adres email wyślemy Ci link z instrukcją do odzyskania
-					dostępu do serwisu.
+					Przekroczona została maksymalna liczba nieudanych logowań - konto zostało zablokowane.
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
-				<Input
-					value={formData.email}
-					type="email"
-					name="email"
-					placeholder="Wpisz"
-					label="Adres e-mail"
-					handleChange={handleChange}
-				/>
+				<LoginAgain />
 			</CardContent>
 			<CardFooter className="flex flex-col gap-3 pt-7">
-				<Button className="w-full">Wyślij</Button>
+				<Button className="w-full">Zaloguj</Button>
 				<Link
-					href="/auth/login"
+					href="/auth/forgot-password"
 					className="flex-center underline text-sm text-jc-text4"
 				>
-					<p>Wróć do logowania</p>
+					<p>Zapomniałem hasło</p>
 				</Link>
 			</CardFooter>
 		</Card>

@@ -6,4 +6,12 @@
 	.auth-card {
 		@apply min-w-[370px] w-full sm:w-[390px] lg:w-[460px] p-[50px];
 	}
+
+	.jc-input {
+		@apply p-3 pt-7 rounded-lg border border-slate-300 h-[60px] focus:border-slate-200 focus:outline-none;
+	}
+
+	.jc-inputLabel {
+		@apply absolute top-2 left-3 text-[13px] text-[#999999];
+	}
 }

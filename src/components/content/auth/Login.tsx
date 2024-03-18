@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
+import InputPassword from '@/components/shared/InputPassword'
 import IncorrectData from '@/components/content/auth/partials/IncorrectData'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
@@ -55,7 +56,7 @@ export default function Login() {
 						label="Adres e-mail"
 						handleChange={handleChange}
 					/>
-					<Input
+					<InputPassword
 						value={formData.password}
 						type="password"
 						name="password"
