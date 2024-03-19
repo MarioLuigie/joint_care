@@ -12,6 +12,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
+import AlertNotif from "@/components/content/auth/partials/AlertNotif"
 
 interface FormData {
 	email: string
@@ -41,6 +42,15 @@ export default function ForgotPassword() {
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
+				<AlertNotif>
+					<p>Konto o podanym adresie e-mail nie istnieje.</p>
+					<div className='flex gap-1'>
+						<p>Sprawdź poprawność adresu lub</p>
+						<Link href="/auth/register">
+							<p className='jc-warning-link underline'>utwórz nowe konto</p>
+						</Link>
+					</div>
+				</AlertNotif>
 				<Input
 					value={formData.email}
 					type="email"
