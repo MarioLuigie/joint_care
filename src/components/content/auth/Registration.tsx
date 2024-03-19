@@ -14,7 +14,7 @@ import Link from 'next/link'
 import Input from '@/components/shared/Input'
 import InputPassword from '@/components/shared/InputPassword'
 import PasswordReqs from './partials/PasswordReqs'
-import Warning from './partials/Warning'
+import Warning from './partials/WarningNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 

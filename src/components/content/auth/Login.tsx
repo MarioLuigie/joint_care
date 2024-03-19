@@ -14,7 +14,7 @@ import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
 import InputPassword from '@/components/shared/InputPassword'
-import Alert from '@/components/content/auth/partials/Alert'
+import Alert from '@/components/content/auth/partials/AlertNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 

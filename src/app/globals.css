@@ -16,6 +16,6 @@
 	}
 
 	.jc-warning-link {
-		@apply text-sm font-medium text-[#030303];
+		@apply text-[13px] font-medium text-[#030303];
 	}
 }

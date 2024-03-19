@@ -14,10 +14,9 @@ export default function AccountActivate() {
 	return (
 		<Card className="auth-card">
 			<CardHeader>
-				<CardTitle>Aktywuj swoje konto</CardTitle>
+				<CardTitle>Resetuj swoje hasło</CardTitle>
 				<CardDescription>
-          Na podany adres e-mail wysłaliśmy link aktywacyjny.
-          Aby aktywować konto postępuj zgodnie z instrukcją.
+        Na podany adres e-mail wysłaliśmy link pozwalający na zmianę hasła. Aby zmienić hasło postępuj zgodnie z instrukcją.
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
