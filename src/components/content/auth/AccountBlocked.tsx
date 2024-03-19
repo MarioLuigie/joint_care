@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/card'
 import Link from 'next/link'
 
-import LoginAgain from '@/components/content/auth/partials/LoginAgain'
+import LoginAgain from '@/components/content/auth/partials/LoginAgainTiming'
 
 export default function AccountBlocked() {
 
