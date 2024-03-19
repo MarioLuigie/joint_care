@@ -9,6 +9,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 import Input from '@/components/shared/Input'
@@ -17,16 +18,16 @@ import PasswordReqs from './partials/PasswordReqs'
 import Warning from './partials/WarningNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
-
-interface FormData {
-	email: string
-	password: string
-}
+import { IRegistration } from '@/lib/types'
+import { registerUser } from "@/lib/api/auth-api"
 
 export default function Registration() {
-	const initFormData: FormData = {
+	const router = useRouter()
+
+	const initFormData: IRegistration = {
 		email: '',
 		password: '',
+		password_confirmation: ''
 	}
 
 	const [formData, setFormData] = useState(initFormData)
@@ -36,6 +37,15 @@ export default function Registration() {
 			...formData,
 			[e.target.name]: e.target.value,
 		})
+	}
+
+	const handleSubmit = async () => {
+		const data = await registerUser(formData)
+		if(data.success) {
+			setFormData(initFormData)
+			router.push("/auth/register-success")
+		}
+		console.log(data)
 	}
 
 	return (
@@ -76,6 +86,14 @@ export default function Registration() {
 						label="Hasło"
 						handleChange={handleChange}
 					/>
+					<InputPassword
+						value={formData.password_confirmation}
+						type="password"
+						name="password_confirmation"
+						placeholder="Hasło"
+						label="Powtórz nowe hasło"
+						handleChange={handleChange}
+					/>
 					<PasswordReqs />
 					<div className="flex">
 						<CheckboxLabel id="statute">
@@ -91,9 +109,7 @@ export default function Registration() {
 				</div>
 			</CardContent>
 			<CardFooter className="flex flex-col pt-5">
-				<Link href="/auth/register">
-					<Button className="w-full">Załóż konto</Button>
-				</Link>
+				<Button onClick={handleSubmit} className="w-full">Załóż konto</Button>
 			</CardFooter>
 		</Card>
 	)

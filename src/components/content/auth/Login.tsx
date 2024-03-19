@@ -17,14 +17,10 @@ import InputPassword from '@/components/shared/InputPassword'
 import Alert from '@/components/content/auth/partials/AlertNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
-
-interface FormData {
-	email: string
-	password: string
-}
+import { ILogin } from '@/lib/types'
 
 export default function Login() {
-	const initFormData: FormData = {
+	const initFormData: ILogin = {
 		email: '',
 		password: '',
 	}
