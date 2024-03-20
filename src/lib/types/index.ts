@@ -1,5 +1,10 @@
+import { validationErrors as v } from "@/lib/constants/"
 export interface Children {
 	children: React.ReactNode
+}
+
+export interface IValidationErrors {
+	[key: string]: boolean
 }
 
 export interface IRegistration {

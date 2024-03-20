@@ -19,7 +19,9 @@ import Warning from './partials/WarningNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 import { IRegistration } from '@/lib/types'
+import { IValidationErrors } from '@/lib/types'
 import { registerUser } from "@/lib/api/auth-api"
+import { validationErrors as v } from "@/lib/constants/"
 
 export default function Registration() {
 
@@ -29,14 +31,78 @@ export default function Registration() {
 		password_confirmation: ''
 	}
 
+	const initValidationErrors: IValidationErrors = {
+		passwordLength: false,
+		letterSize: false,
+		digit: false,
+		specialCharacter: false
+	}
+
 	const router = useRouter()
-	const [formData, setFormData] = useState(initFormData)
+	const [ formData, setFormData ] = useState(initFormData)
 	const [ errors, setErrors ] = useState<boolean>(false)
+	const [ validationErrors, setValidationErrors ] = useState<IValidationErrors>(initValidationErrors);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+
+		if(name === 'password') {
+			// password min length validation
+			if (value.length > 8) {
+				setValidationErrors(prevState => ({
+					...prevState,
+					[v.PASSWORD_LENGTH]: true
+				}));
+			} else {
+				setValidationErrors(prevState => ({
+					...prevState,
+					[v.PASSWORD_LENGTH]: false
+				}));
+			}
+		
+			// uppercase and lowercase letter validation
+			if (/[A-Z]/.test(value) && /[a-z]/.test(value)) {
+				setValidationErrors(prevState => ({
+					...prevState,
+					[v.LETTER_SIZE]: true
+				}));
+			} else {
+				setValidationErrors(prevState => ({
+					...prevState,
+					[v.LETTER_SIZE]: false
+				}));
+			}
+		
+			// digit validation
+			if (/\d/.test(value)) {
+				setValidationErrors(prevState => ({
+					...prevState,
+					[v.DIGIT]: true
+				}));
+			} else {
+				setValidationErrors(prevState => ({
+					...prevState,
+					[v.DIGIT]: false
+				}));
+			}
+		
+			// special characters validation
+			if (/[^A-Za-z0-9]/.test(value)) {
+				setValidationErrors(prevState => ({
+					...prevState,
+					[v.SPECIAL_CHARACTER]: true
+				}));
+			} else {
+				setValidationErrors(prevState => ({
+					...prevState,
+					[v.SPECIAL_CHARACTER]: false
+				}));
+			}
+		}
+	
 		setFormData({
 			...formData,
-			[e.target.name]: e.target.value,
+			[name]: value,
 		})
 	}
 
@@ -105,7 +171,7 @@ export default function Registration() {
 						label="Powtórz nowe hasło"
 						handleChange={handleChange}
 					/>
-					<PasswordReqs />
+					<PasswordReqs validationErrors={validationErrors}/>
 					<div className="flex">
 						<CheckboxLabel id="statute">
 							<Label htmlFor="statute">Akceptuję</Label>
