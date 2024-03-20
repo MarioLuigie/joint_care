@@ -109,7 +109,7 @@ export default function Registration() {
 	const handleSubmit = async () => {
 		const data = await registerUser(formData)
 
-		if(data.errors.email) {
+		if(data.errors && data.errors.email) {
 			setErrors(true)
 		} else {
 			setErrors(false)
