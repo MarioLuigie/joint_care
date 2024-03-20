@@ -13,6 +13,11 @@ export interface ILogin {
 	password: string
 }
 
+export interface ILogin {
+	email: string
+	password: string
+}
+
 export interface Language {
 	value: string
 	src: string

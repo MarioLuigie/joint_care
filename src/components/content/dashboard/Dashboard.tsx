@@ -1,3 +1,3 @@
 export default function Dashbord() {
-	return <div>DASHBORD</div>
+	return <div className="text-white">DASHBORD</div>
 }

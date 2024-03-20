@@ -22,7 +22,6 @@ import { IRegistration } from '@/lib/types'
 import { registerUser } from "@/lib/api/auth-api"
 
 export default function Registration() {
-	const router = useRouter()
 
 	const initFormData: IRegistration = {
 		email: '',
@@ -30,7 +29,9 @@ export default function Registration() {
 		password_confirmation: ''
 	}
 
+	const router = useRouter()
 	const [formData, setFormData] = useState(initFormData)
+	const [ errors, setErrors ] = useState<boolean>(false)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFormData({
@@ -41,10 +42,18 @@ export default function Registration() {
 
 	const handleSubmit = async () => {
 		const data = await registerUser(formData)
+
+		if(data.errors.email) {
+			setErrors(true)
+		} else {
+			setErrors(false)
+		}
+
 		if(data.success) {
 			setFormData(initFormData)
 			router.push("/auth/register-success")
 		}
+
 		console.log(data)
 	}
 
@@ -58,18 +67,20 @@ export default function Registration() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3">
-					<Warning>
-						<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
-						<div className='flex items-center gap-2 text-jc-text1'>
-							<Link href="#" className="jc-warning-link underline">
-								Zaloguj się
-							</Link>
-							<p className="jc-warning-link">lub</p>
-							<Link href="#" className="jc-warning-link underline">
-								Przypomnij hasło
-							</Link>
-						</div>
-					</Warning>
+					{errors && (
+						<Warning>
+							<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
+							<div className='flex items-center gap-2 text-jc-text1'>
+								<Link href="#" className="jc-warning-link underline">
+									Zaloguj się
+								</Link>
+								<p className="jc-warning-link">lub</p>
+								<Link href="#" className="jc-warning-link underline">
+									Przypomnij hasło
+								</Link>
+							</div>
+						</Warning>
+					)}
 					<Input
 						value={formData.email}
 						type="email"
@@ -82,7 +93,7 @@ export default function Registration() {
 						value={formData.password}
 						type="password"
 						name="password"
-						placeholder="Hasło"
+						placeholder="Wpisz"
 						label="Hasło"
 						handleChange={handleChange}
 					/>
@@ -90,7 +101,7 @@ export default function Registration() {
 						value={formData.password_confirmation}
 						type="password"
 						name="password_confirmation"
-						placeholder="Hasło"
+						placeholder="Wpisz"
 						label="Powtórz nowe hasło"
 						handleChange={handleChange}
 					/>
