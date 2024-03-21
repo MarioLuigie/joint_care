@@ -3,12 +3,13 @@ import Image from 'next/image'
 import closeIcon from '/public/assets/icons/close-red.svg'
 import checkIcon from '/public/assets/icons/check.svg'
 import { IValidationErrors } from '@/lib/types'
+import { errorMsg } from '@/lib/constants'
 
 const reqs = {
-	password_length: 'Minimum 8 znaków',
-	password_letter_size: 'Duże i małe litery',
-	password_special_characters: 'Znak specjalny (np. !, &, *, $, itd)',
-	password_digit: 'Minimum jedną cyfrę',
+	password_length: errorMsg.PASSWORD_LENGTH,
+	password_letter_size: errorMsg.PASSWORD_LETTER_SIZE,
+	password_special_chars: errorMsg.PASSWORD_SPECIAL_CHARS,
+	password_digit: errorMsg.PASSWORD_DIGIT,
 }
 
 const Req = ({ req, isError }: { req: string, isError: boolean }) => (
@@ -26,7 +27,7 @@ export default function PasswordReqs({ validationErrors }: IPasswordReqs ) {
 
 	return (
 		<div>
-			<p className="pt-4 pb-2 text-sm font-semibold">
+			<p className="pt-1 pb-2 text-sm font-semibold">
 				Silne hasło powinno zawierać:
 			</p>
 			{Object.entries(reqs).map(([key, value], i) => (

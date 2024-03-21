@@ -8,7 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
@@ -22,6 +22,9 @@ import { IRegistrationForm } from '@/lib/types'
 import { IValidationErrors } from '@/lib/types'
 import { registerUser } from "@/lib/api/auth-api"
 import { validate } from '@/lib/utils/validation'
+import { errorMsg } from '@/lib/constants'
+
+import { formatErrorMsg } from '@/lib/utils'
 
 export default function Registration() {
 
@@ -36,41 +39,43 @@ export default function Registration() {
 		password_confirmation: false,
 		password_length: false,
 		password_letter_size: false,
-		password_special_characters: false,
+		password_special_chars: false,
 		password_digit: false
 	}
 
 	const router = useRouter()
-	const [ serverError, setServerError ] = useState<boolean>(false)
+	const [ isClientError, setIsClientError ] = useState<boolean>(false)
+	const [ isServerError, setIsServerError ] = useState<boolean>(false)
 	const [ registrationFormData, setRegistrationFormData ] = useState<IRegistrationForm>(initRegistrationFormData)
 	const [ validationErrors, setValidationErrors ] = useState<IValidationErrors>(initValidationErrors);
 
-	useEffect(() => {
-		setValidationErrors(validate(registrationFormData))
-	}, [registrationFormData])
-
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setRegistrationFormData({
+		const updatedFormData = {
 			...registrationFormData,
 			[e.target.name]: e.target.value,
-		})
+		}
+		setValidationErrors(validate(updatedFormData))
+		setRegistrationFormData(updatedFormData)
 	}
 
 	const handleSubmit = async () => {
-		const data = await registerUser(registrationFormData)
+		if(Object.values(validationErrors).every(value => value === true)) {
+			const data = await registerUser(registrationFormData)
 
-		if(data.errors && data.errors.email) {
-			setServerError(true)
+			if(data.errors && data.errors.email) {
+				setIsServerError(true)
+			} else {
+				setIsServerError(false)
+			}
+
+			if(data.success) {
+				router.push("/auth/register-success")
+			}
+
 		} else {
-			setServerError(false)
+			console.log("INVALID FORM");
+			setIsClientError (true)
 		}
-
-		if(data.success) {
-			setRegistrationFormData(initRegistrationFormData)
-			router.push("/auth/register-success")
-		}
-
-		console.log(data)
 	}
 
 	return (
@@ -83,20 +88,18 @@ export default function Registration() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3">
-					{serverError && (
-						<Warning>
-							<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
-							<div className='flex items-center gap-2 text-jc-text1'>
-								<Link href="/auth/login" className="jc-warning-link underline">
-									Zaloguj się
-								</Link>
-								<p className="jc-warning-link">lub</p>
-								<Link href="/auth/forgot-password" className="jc-warning-link underline">
-									Przypomnij hasło
-								</Link>
-							</div>
-						</Warning>
-					)}
+					<Warning isError={isServerError}>
+						<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
+						<div className='flex items-center gap-2 text-jc-text1'>
+							<Link href="/auth/login" className="jc-warning-link underline">
+								Zaloguj się
+							</Link>
+							<p className="jc-warning-link">lub</p>
+							<Link href="/auth/forgot-password" className="jc-warning-link underline">
+								Przypomnij hasło
+							</Link>
+						</div>
+					</Warning>
 					<Input
 						value={registrationFormData.email}
 						type="email"
@@ -104,22 +107,35 @@ export default function Registration() {
 						placeholder="Wpisz"
 						label="Adres e-mail"
 						handleChange={handleChange}
+						isClientError={isClientError} 
+						specificErrors={[
+							{error: validationErrors.email, msg: errorMsg.EMAIL} 
+						]} 
 					/>
 					<InputPassword
 						value={registrationFormData.password}
-						type="password"
 						name="password"
 						placeholder="Wpisz"
 						label="Hasło"
 						handleChange={handleChange}
+						isClientError={isClientError} 
+						specificErrors={[
+							{error: validationErrors.password_digit, msg: formatErrorMsg(errorMsg.PASSWORD_DIGIT)},
+							{error: validationErrors.password_length, msg: formatErrorMsg(errorMsg.PASSWORD_LENGTH)},
+							{error: validationErrors.password_special_chars, msg: formatErrorMsg(errorMsg.PASSWORD_SPECIAL_CHARS)},
+							{error: validationErrors.password_letter_size, msg: formatErrorMsg(errorMsg.PASSWORD_LETTER_SIZE)} 
+						]} 
 					/>
 					<InputPassword
 						value={registrationFormData.password_confirmation}
-						type="password"
 						name="password_confirmation"
 						placeholder="Wpisz"
 						label="Powtórz nowe hasło"
 						handleChange={handleChange}
+						isClientError={isClientError} 
+						specificErrors={[
+							{error: validationErrors.password_confirmation, msg: errorMsg.PASSWORD_CONFIRMATION} 
+						]} 
 					/>
 					<PasswordReqs validationErrors={validationErrors}/>
 					<div className="flex">

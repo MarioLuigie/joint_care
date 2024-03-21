@@ -50,8 +50,6 @@ export default function Login() {
 		}
 
 		if(data.success) {
-			setErrors(false)
-			setFormData(initFormData)
 			router.push("/dashboard")
 		}
 	}
@@ -80,7 +78,6 @@ export default function Login() {
 					/>
 					<InputPassword
 						value={formData.password}
-						type="password"
 						name="password"
 						placeholder="Hasło"
 						label="Hasło"

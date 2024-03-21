@@ -1,10 +1,6 @@
-'use client'
-
 import React from 'react'
-import Image from 'next/image'
-import { useState } from 'react'
 
-import visibilityOff from "/public/assets/icons/visibility-off.svg"
+import ErrorMsg from './partials/ErrorMsg'
 
 interface InputProps {
   value: string
@@ -12,6 +8,8 @@ interface InputProps {
   type: string
   placeholder: string
   label: string
+  isClientError: boolean
+  specificErrors: {error: boolean, msg: string}[]
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -21,24 +19,30 @@ export default function Input ({
   type,
   placeholder,
   label,
+  isClientError,
+  specificErrors,
   handleChange
 }: InputProps) {
 
   return (
-    <div className='flex flex-col justify-center items-stretch relative'>
-      <input 
-        name={name}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        className='jc-input' 
-        onChange={handleChange}
-      />
-      <p className='jc-inputLabel'>
-        {label}
-        <span className='text-[#0092FD]'>*</span>
-      </p>
-    </div>
+    <>    
+      <div className='flex flex-col justify-center items-stretch relative'>
+        <input 
+          name={name}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          className='jc-input' 
+          onChange={handleChange}
+        />
+        <p className='jc-inputLabel'>
+          {label}
+          <span className='text-[#0092FD]'>*</span>
+        </p>
+      </div>
+      <ErrorMsg isClientError={isClientError} specificErrors={specificErrors} />
+    </>
+
   );
 }
 

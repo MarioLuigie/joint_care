@@ -8,7 +8,7 @@ export interface IValidationErrors {
 	password_confirmation: boolean
 	password_length: boolean
 	password_letter_size: boolean
-	password_special_characters: boolean
+	password_special_chars: boolean
 	password_digit: boolean
 }
 

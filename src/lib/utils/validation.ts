@@ -16,7 +16,7 @@ export const validate = (formData: IRegistrationForm) => {
     password_confirmation: formData.password === formData.password_confirmation,
     password_letter_size: (passwordRegex.uppercase.test(formData.password) && passwordRegex.lowercase.test(formData.password)),
     password_digit: passwordRegex.digit.test(formData.password),
-    password_special_characters: passwordRegex.specialChars.test(formData.password),
+    password_special_chars: passwordRegex.specialChars.test(formData.password),
     password_length: formData.password.length >= passwordLength
   }
   

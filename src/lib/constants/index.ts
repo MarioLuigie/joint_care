@@ -1,8 +1,8 @@
-// export const validationErrors = {
-// 	EMAIL: 'EMAIL',
-// 	PASSWORD_CONFIRMATION: 'PASSWORD_CONFIRMATION',
-// 	PASSWORD_LENGTH: 'PASSWORD_LENGTH',
-// 	PASSWORD_LETTER_SIZE: 'PASSWORD_LETTER_SIZE',
-// 	PASSWORD_SPECIAL_CHARACTERS: 'PASSWORD_SPECIAL_CHARACTERS',
-// 	PASSWORD_DIGIT: 'PASSWORD_DIGIT'
-// }
+export const errorMsg = {
+  EMAIL: 'Niepoprawny adres e-mail',
+  PASSWORD_CONFIRMATION: 'Podane hasła nie pasują do siebie',
+	PASSWORD_LENGTH: 'Minimum 8 znaków',
+	PASSWORD_LETTER_SIZE: 'Duże i małe litery',
+	PASSWORD_SPECIAL_CHARS: 'Znak specjalny (np. !, &, $)',
+	PASSWORD_DIGIT: 'Minimum jedną cyfrę',
+}

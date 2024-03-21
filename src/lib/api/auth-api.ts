@@ -1,6 +1,6 @@
-import { IRegistration, ILogin } from '@/lib/types'
+import { IRegistrationForm, ILogin } from '@/lib/types'
 
-export const registerUser = async (data: IRegistration) => {
+export const registerUser = async (data: IRegistrationForm) => {
   const url = new URL(
     "https://jointcare.azurewebsites.net/api/v1/auth/register"
   )
