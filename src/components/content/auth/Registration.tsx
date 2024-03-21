@@ -19,9 +19,9 @@ import Warning from './partials/WarningNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 import { IRegistrationForm } from '@/lib/types'
-import { IValidationErrors } from '@/lib/types'
+import { IRegisterValidationErrors } from '@/lib/types'
 import { registerUser } from "@/lib/api/auth-api"
-import { validate } from '@/lib/utils/validation'
+import { validateRegistration } from '@/lib/utils/validation'
 import { errorMsg } from '@/lib/constants'
 
 import { formatErrorMsg } from '@/lib/utils'
@@ -34,7 +34,7 @@ export default function Registration() {
 		password_confirmation: ''
 	}
 
-	const initValidationErrors: IValidationErrors = {
+	const initRegisterValidationErrors: IRegisterValidationErrors = {
 		email: false,
 		password_confirmation: false,
 		password_length: false,
@@ -47,19 +47,19 @@ export default function Registration() {
 	const [ isClientError, setIsClientError ] = useState<boolean>(false)
 	const [ isServerError, setIsServerError ] = useState<boolean>(false)
 	const [ registrationFormData, setRegistrationFormData ] = useState<IRegistrationForm>(initRegistrationFormData)
-	const [ validationErrors, setValidationErrors ] = useState<IValidationErrors>(initValidationErrors);
+	const [ registerValidationErrors, setRegisterValidationErrors ] = useState<IRegisterValidationErrors>(initRegisterValidationErrors);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
 			...registrationFormData,
 			[e.target.name]: e.target.value,
 		}
-		setValidationErrors(validate(updatedFormData))
+		setRegisterValidationErrors(validateRegistration(updatedFormData))
 		setRegistrationFormData(updatedFormData)
 	}
 
 	const handleSubmit = async () => {
-		if(Object.values(validationErrors).every(value => value === true)) {
+		if(Object.values(registerValidationErrors).every(value => value === true)) {
 			const data = await registerUser(registrationFormData)
 
 			if(data.errors && data.errors.email) {
@@ -73,8 +73,8 @@ export default function Registration() {
 			}
 
 		} else {
-			console.log("INVALID FORM");
-			setIsClientError (true)
+			console.log("INVALID REGISTERFORM");
+			setIsClientError(true)
 		}
 	}
 
@@ -109,7 +109,7 @@ export default function Registration() {
 						handleChange={handleChange}
 						isClientError={isClientError} 
 						specificErrors={[
-							{error: validationErrors.email, msg: errorMsg.EMAIL} 
+							{error: registerValidationErrors.email, msg: errorMsg.EMAIL} 
 						]} 
 					/>
 					<InputPassword
@@ -120,10 +120,10 @@ export default function Registration() {
 						handleChange={handleChange}
 						isClientError={isClientError} 
 						specificErrors={[
-							{error: validationErrors.password_digit, msg: formatErrorMsg(errorMsg.PASSWORD_DIGIT)},
-							{error: validationErrors.password_length, msg: formatErrorMsg(errorMsg.PASSWORD_LENGTH)},
-							{error: validationErrors.password_special_chars, msg: formatErrorMsg(errorMsg.PASSWORD_SPECIAL_CHARS)},
-							{error: validationErrors.password_letter_size, msg: formatErrorMsg(errorMsg.PASSWORD_LETTER_SIZE)} 
+							{error: registerValidationErrors.password_digit, msg: formatErrorMsg(errorMsg.PASSWORD_DIGIT)},
+							{error: registerValidationErrors.password_length, msg: formatErrorMsg(errorMsg.PASSWORD_LENGTH)},
+							{error: registerValidationErrors.password_special_chars, msg: formatErrorMsg(errorMsg.PASSWORD_SPECIAL_CHARS)},
+							{error: registerValidationErrors.password_letter_size, msg: formatErrorMsg(errorMsg.PASSWORD_LETTER_SIZE)} 
 						]} 
 					/>
 					<InputPassword
@@ -134,10 +134,10 @@ export default function Registration() {
 						handleChange={handleChange}
 						isClientError={isClientError} 
 						specificErrors={[
-							{error: validationErrors.password_confirmation, msg: errorMsg.PASSWORD_CONFIRMATION} 
+							{error: registerValidationErrors.password_confirmation, msg: errorMsg.PASSWORD_CONFIRMATION} 
 						]} 
 					/>
-					<PasswordReqs validationErrors={validationErrors}/>
+					<PasswordReqs validationErrors={registerValidationErrors}/>
 					<div className="flex">
 						<CheckboxLabel id="statute">
 							<Label htmlFor="statute">Akceptuję</Label>

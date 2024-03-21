@@ -17,40 +17,63 @@ import InputPassword from '@/components/shared/InputPassword'
 import Alert from '@/components/content/auth/partials/AlertNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
-import { ILogin } from '@/lib/types'
+import { ILoginForm } from '@/lib/types'
+import { ILoginValidationErrors } from '@/lib/types'
 import { loginUser } from "@/lib/api/auth-api"
+import { validateLogin } from '@/lib/utils/validation'
+import { errorMsg } from '@/lib/constants'
 
 
 export default function Login() {
-	const initFormData: ILogin = {
+	const initFormData: ILoginForm = {
 		email: '',
 		password: '',
 	}
 
+	const initLoginValidationErrors: ILoginValidationErrors = {
+		email: false,
+		password_length: false
+	}
+
 	const router = useRouter()
 	const [ errors, setErrors ] = useState<boolean>(false)
-	const [formData, setFormData] = useState<ILogin>(initFormData)
+	const [ loginFormData, setLoginFormData ] = useState<ILoginForm>(initFormData)
+	const [ isClientError, setIsClientError ] = useState<boolean>(false)
+	const [ loginValidationErrors, setLoginValidationErrors ] = useState<ILoginValidationErrors>(initLoginValidationErrors);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData({
-			...formData,
+		const updatedFormData = {
+			...loginFormData,
 			[e.target.name]: e.target.value,
-		})
+		}
+
+		console.log("%%%", updatedFormData);
+
+		setLoginValidationErrors(validateLogin(updatedFormData))
+		setLoginFormData(updatedFormData)
 		setErrors(false)
-		console.log(formData)
+		console.log(loginFormData)
+		console.log(loginValidationErrors);
 	}
 
 	const handleSubmit = async () => {
-		const data = await loginUser(formData)
+		console.log(loginValidationErrors);
 
-		console.log("Login:", data)
+		if(Object.values(loginValidationErrors).every(value => value === true)) {
+			const data = await loginUser(loginFormData)
 
-		if(data.errors) {
-			setErrors(true)
-		}
-
-		if(data.success) {
-			router.push("/dashboard")
+			console.log("Login:", data)
+	
+			if(data.errors) {
+				setErrors(true)
+			}
+	
+			if(data.success) {
+				router.push("/dashboard")
+			}
+		} else {
+			console.log("INVALID LOGINFORM");
+			setIsClientError(true)
 		}
 	}
 
@@ -69,19 +92,27 @@ export default function Login() {
 						</Alert>
 						)}
 					<Input
-						value={formData.email}
+						value={loginFormData.email}
 						type="email"
 						name="email"
 						placeholder="Wpisz"
 						label="Adres e-mail"
 						handleChange={handleChange}
+						isClientError={isClientError} 
+						specificErrors={[
+							{error: loginValidationErrors.email, msg: errorMsg.EMAIL} 
+						]} 
 					/>
 					<InputPassword
-						value={formData.password}
+						value={loginFormData.password}
 						name="password"
 						placeholder="Hasło"
 						label="Hasło"
 						handleChange={handleChange}
+						isClientError={isClientError} 
+						specificErrors={[
+							{error: loginValidationErrors.password_length, msg: errorMsg.PASSWORD} 
+						]} 
 					/>
 				</div>
 				<CheckboxLabel id="remember">

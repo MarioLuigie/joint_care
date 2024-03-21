@@ -7,7 +7,7 @@ import { useState } from 'react'
 import visibilityOff from "/public/assets/icons/visibility-off.svg"
 import ErrorMsg from './partials/ErrorMsg'
 
-interface InputProps {
+interface IInputProps {
   value: string
   name: string
   placeholder: string
@@ -25,7 +25,7 @@ export default function Input ({
   isClientError,
   specificErrors,
   handleChange
-}: InputProps) {
+}: IInputProps) {
 
   const [ isPasswordHidden, setIsPasswordHidden ] = useState(true)
 

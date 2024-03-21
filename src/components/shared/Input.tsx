@@ -2,7 +2,7 @@ import React from 'react'
 
 import ErrorMsg from './partials/ErrorMsg'
 
-interface InputProps {
+interface IInputProps {
   value: string
   name: string
   type: string
@@ -22,7 +22,7 @@ export default function Input ({
   isClientError,
   specificErrors,
   handleChange
-}: InputProps) {
+}: IInputProps) {
 
   return (
     <>    
