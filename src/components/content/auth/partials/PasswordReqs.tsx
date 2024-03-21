@@ -3,13 +3,12 @@ import Image from 'next/image'
 import closeIcon from '/public/assets/icons/close-red.svg'
 import checkIcon from '/public/assets/icons/check.svg'
 import { IValidationErrors } from '@/lib/types'
-import { validationErrors as v } from "@/lib/constants/"
 
 const reqs = {
-	[v.PASSWORD_LENGTH]: 'Minimum 8 znaków',
-	[v.LETTER_SIZE]: 'Duże i małe litery',
-	[v.DIGIT]: 'Minimum jedną cyfrę',
-	[v.SPECIAL_CHARACTER]: 'Znak specjalny (np. !, &, *, $, itd)',
+	password_length: 'Minimum 8 znaków',
+	password_letter_size: 'Duże i małe litery',
+	password_special_characters: 'Znak specjalny (np. !, &, *, $, itd)',
+	password_digit: 'Minimum jedną cyfrę',
 }
 
 const Req = ({ req, isError }: { req: string, isError: boolean }) => (

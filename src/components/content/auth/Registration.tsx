@@ -8,7 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
@@ -18,105 +18,55 @@ import PasswordReqs from './partials/PasswordReqs'
 import Warning from './partials/WarningNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
-import { IRegistration } from '@/lib/types'
+import { IRegistrationForm } from '@/lib/types'
 import { IValidationErrors } from '@/lib/types'
 import { registerUser } from "@/lib/api/auth-api"
-import { validationErrors as v } from "@/lib/constants/"
+import { validate } from '@/lib/utils/validation'
 
 export default function Registration() {
 
-	const initFormData: IRegistration = {
+	const initRegistrationFormData: IRegistrationForm = {
 		email: '',
 		password: '',
 		password_confirmation: ''
 	}
 
 	const initValidationErrors: IValidationErrors = {
-		passwordLength: false,
-		letterSize: false,
-		digit: false,
-		specialCharacter: false
+		email: false,
+		password_confirmation: false,
+		password_length: false,
+		password_letter_size: false,
+		password_special_characters: false,
+		password_digit: false
 	}
 
 	const router = useRouter()
-	const [ formData, setFormData ] = useState(initFormData)
-	const [ errors, setErrors ] = useState<boolean>(false)
+	const [ serverError, setServerError ] = useState<boolean>(false)
+	const [ registrationFormData, setRegistrationFormData ] = useState<IRegistrationForm>(initRegistrationFormData)
 	const [ validationErrors, setValidationErrors ] = useState<IValidationErrors>(initValidationErrors);
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
+	useEffect(() => {
+		setValidationErrors(validate(registrationFormData))
+	}, [registrationFormData])
 
-		if(name === 'password') {
-			// password min length validation
-			if (value.length > 8) {
-				setValidationErrors(prevState => ({
-					...prevState,
-					[v.PASSWORD_LENGTH]: true
-				}));
-			} else {
-				setValidationErrors(prevState => ({
-					...prevState,
-					[v.PASSWORD_LENGTH]: false
-				}));
-			}
-		
-			// uppercase and lowercase letter validation
-			if (/[A-Z]/.test(value) && /[a-z]/.test(value)) {
-				setValidationErrors(prevState => ({
-					...prevState,
-					[v.LETTER_SIZE]: true
-				}));
-			} else {
-				setValidationErrors(prevState => ({
-					...prevState,
-					[v.LETTER_SIZE]: false
-				}));
-			}
-		
-			// digit validation
-			if (/\d/.test(value)) {
-				setValidationErrors(prevState => ({
-					...prevState,
-					[v.DIGIT]: true
-				}));
-			} else {
-				setValidationErrors(prevState => ({
-					...prevState,
-					[v.DIGIT]: false
-				}));
-			}
-		
-			// special characters validation
-			if (/[^A-Za-z0-9]/.test(value)) {
-				setValidationErrors(prevState => ({
-					...prevState,
-					[v.SPECIAL_CHARACTER]: true
-				}));
-			} else {
-				setValidationErrors(prevState => ({
-					...prevState,
-					[v.SPECIAL_CHARACTER]: false
-				}));
-			}
-		}
-	
-		setFormData({
-			...formData,
-			[name]: value,
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setRegistrationFormData({
+			...registrationFormData,
+			[e.target.name]: e.target.value,
 		})
 	}
 
 	const handleSubmit = async () => {
-		const data = await registerUser(formData)
+		const data = await registerUser(registrationFormData)
 
 		if(data.errors && data.errors.email) {
-			setErrors(true)
+			setServerError(true)
 		} else {
-			setErrors(false)
+			setServerError(false)
 		}
 
 		if(data.success) {
-			setFormData(initFormData)
+			setRegistrationFormData(initRegistrationFormData)
 			router.push("/auth/register-success")
 		}
 
@@ -133,7 +83,7 @@ export default function Registration() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3">
-					{errors && (
+					{serverError && (
 						<Warning>
 							<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
 							<div className='flex items-center gap-2 text-jc-text1'>
@@ -148,7 +98,7 @@ export default function Registration() {
 						</Warning>
 					)}
 					<Input
-						value={formData.email}
+						value={registrationFormData.email}
 						type="email"
 						name="email"
 						placeholder="Wpisz"
@@ -156,7 +106,7 @@ export default function Registration() {
 						handleChange={handleChange}
 					/>
 					<InputPassword
-						value={formData.password}
+						value={registrationFormData.password}
 						type="password"
 						name="password"
 						placeholder="Wpisz"
@@ -164,7 +114,7 @@ export default function Registration() {
 						handleChange={handleChange}
 					/>
 					<InputPassword
-						value={formData.password_confirmation}
+						value={registrationFormData.password_confirmation}
 						type="password"
 						name="password_confirmation"
 						placeholder="Wpisz"

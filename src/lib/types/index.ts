@@ -1,13 +1,18 @@
-import { validationErrors as v } from "@/lib/constants/"
 export interface Children {
 	children: React.ReactNode
 }
 
 export interface IValidationErrors {
 	[key: string]: boolean
+	email: boolean
+	password_confirmation: boolean
+	password_length: boolean
+	password_letter_size: boolean
+	password_special_characters: boolean
+	password_digit: boolean
 }
 
-export interface IRegistration {
+export interface IRegistrationForm {
 	email: string
 	password: string
 	password_confirmation: string
