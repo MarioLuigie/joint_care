@@ -24,7 +24,6 @@ export default function Input({
 	isError: isClientError,
 	handleChange,
 }: InputProps) {
-	console.log(validators)
 	return (
 		<>
 			<div className="flex flex-col justify-center items-stretch relative">
