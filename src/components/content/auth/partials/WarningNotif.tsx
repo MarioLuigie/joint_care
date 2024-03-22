@@ -7,7 +7,7 @@ interface WarningProps {
 	children: React.ReactNode
 }
 
-export default function Warning({ isError, children }: WarningProps) {
+export default function WarningNotif({ isError, children }: WarningProps) {
 	if (isError) {
 		return (
 			<div className="flex-start gap-3 bg-[#FBF4DD] p-4 mb-2 rounded-lg">

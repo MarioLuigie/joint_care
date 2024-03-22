@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 
 import Input from '@/components/shared/Input'
 import InputPassword from '@/components/shared/InputPassword'
-import Alert from '@/components/content/auth/partials/AlertNotif'
+import AlertNotif from '@/components/content/auth/partials/AlertNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 import { ILoginForm } from '@/lib/types'
@@ -36,9 +36,9 @@ export default function Login() {
 	}
 
 	const router = useRouter()
-	const [ errors, setErrors ] = useState<boolean>(false)
-	const [ loginFormData, setLoginFormData ] = useState<ILoginForm>(initFormData)
+	const [ isServerError, setIsServerError ] = useState<boolean>(false)
 	const [ isClientError, setIsClientError ] = useState<boolean>(false)
+	const [ loginFormData, setLoginFormData ] = useState<ILoginForm>(initFormData)
 	const [ loginValidationErrors, setLoginValidationErrors ] = useState<ILoginValidationErrors>(initLoginValidationErrors);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,11 +47,11 @@ export default function Login() {
 			[e.target.name]: e.target.value,
 		}
 
-		console.log("%%%", updatedFormData);
+		console.log("***", updatedFormData);
 
 		setLoginValidationErrors(validateLogin(updatedFormData))
 		setLoginFormData(updatedFormData)
-		setErrors(false)
+		setIsServerError(false)
 		console.log(loginFormData)
 		console.log(loginValidationErrors);
 	}
@@ -65,7 +65,7 @@ export default function Login() {
 			console.log("Login:", data)
 	
 			if(data.errors) {
-				setErrors(true)
+				setIsServerError(true)
 			}
 	
 			if(data.success) {
@@ -85,12 +85,10 @@ export default function Login() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3 pb-5">
-					{errors && (
-						<Alert>
-							<p>Niepoprawne dane do logowania!</p>
-							<p>Uzupełnij ponownie</p>
-						</Alert>
-						)}
+					<AlertNotif isError={isServerError}>
+						<p>Niepoprawne dane do logowania!</p>
+						<p>Uzupełnij ponownie</p>
+					</AlertNotif>
 					<Input
 						value={loginFormData.email}
 						type="email"

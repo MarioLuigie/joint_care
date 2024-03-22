@@ -18,6 +18,10 @@ export interface ILoginValidationErrors {
 	password_length: boolean
 }
 
+export interface IForgotPasswordValidationErrors {
+	email: boolean
+}
+
 export interface IRegistrationForm {
 	email: string
 	password: string

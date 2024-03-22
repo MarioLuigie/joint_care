@@ -13,23 +13,31 @@ import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
 import AlertNotif from "@/components/content/auth/partials/AlertNotif"
+import { IForgotPasswordValidationErrors } from '@/lib/types'
+import { errorMsg } from '@/lib/constants'
 
 interface FormData {
 	email: string
 }
 
 export default function ForgotPassword() {
-	const initFormData: FormData = {
-		email: '',
+	const initForgotPasswordFormData: FormData = {
+		email: ''
 	}
 
-	const [ formData, setFormData ] = useState<FormData>(initFormData)
-	const [ errors, setErrors ] = useState<boolean>(false)
+	const initForgotPasswordValidationErrors: IForgotPasswordValidationErrors = {
+		email: false
+	}
+
+	const [ forgotPasswordFormData, setForgotPasswordFormData ] = useState<FormData>(initForgotPasswordFormData)
+	const [ isServerError, setIsServerError ] = useState<boolean>(false)
+	const [ isClientError, setIsClientError ] = useState<boolean>(false)
+	const [ forgotPasswordValidationErrors, setForgotPasswordValidationErrors ] = useState<IForgotPasswordValidationErrors>(initForgotPasswordValidationErrors)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
+		setForgotPasswordFormData({
+			...forgotPasswordFormData,
+			email: e.target.value,
 		})
 	}
 
@@ -47,24 +55,26 @@ export default function ForgotPassword() {
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
-				{errors && (
-					<AlertNotif>
-						<p>Konto o podanym adresie e-mail nie istnieje.</p>
-						<div className='flex gap-1'>
-							<p>Sprawdź poprawność adresu lub</p>
-							<Link href="/auth/register">
-								<p className='jc-warning-link underline'>utwórz nowe konto</p>
-							</Link>
-						</div>
-					</AlertNotif>
-				)}
+				<AlertNotif isError={isServerError}>
+					<p>Konto o podanym adresie e-mail nie istnieje.</p>
+					<div className='flex gap-1'>
+						<p>Sprawdź poprawność adresu lub</p>
+						<Link href="/auth/register">
+							<p className='jc-warning-link underline'>utwórz nowe konto</p>
+						</Link>
+					</div>
+				</AlertNotif>
 				<Input
-					value={formData.email}
+					value={forgotPasswordFormData.email}
 					type="email"
 					name="email"
 					placeholder="Wpisz"
 					label="Adres e-mail"
 					handleChange={handleChange}
+					isClientError={isClientError}
+					specificErrors={[
+						{error: forgotPasswordValidationErrors.email, msg: errorMsg.EMAIL}
+					]}
 				/>
 			</CardContent>
 			<CardFooter className="flex flex-col gap-3 pt-7">
