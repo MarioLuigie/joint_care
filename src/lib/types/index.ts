@@ -2,7 +2,7 @@ export interface Children {
 	children: React.ReactNode
 }
 
-export interface IRegisterValidationErrors {
+export interface RegisterValidationErrors {
 	[key: string]: boolean
 	email: boolean
 	password_confirmation: boolean
@@ -12,25 +12,29 @@ export interface IRegisterValidationErrors {
 	password_digit: boolean
 }
 
-export interface ILoginValidationErrors {
+export interface LoginValidationErrors {
 	[key: string]: boolean
 	email: boolean
 	password_length: boolean
 }
 
-export interface IForgotPasswordValidationErrors {
+export interface ForgotPasswordValidationErrors {
 	email: boolean
 }
 
-export interface IRegistrationForm {
+export interface RegistrationFormData {
 	email: string
 	password: string
 	password_confirmation: string
 }
 
-export interface ILoginForm {
+export interface LoginFormData {
 	email: string
 	password: string
+}
+
+export interface ForgotPasswordFormData {
+	email: string
 }
 
 export interface Language {

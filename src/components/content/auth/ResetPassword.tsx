@@ -9,7 +9,7 @@ import Link from "next/link"
 
 import LinkNotif from './partials/LinkNotif'
 
-export default function AccountActivate() {
+export default function ResetPassword() {
 
 	return (
 		<Card className="auth-card">

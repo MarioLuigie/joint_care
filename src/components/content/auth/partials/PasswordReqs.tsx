@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import closeIcon from '/public/assets/icons/close-red.svg'
 import checkIcon from '/public/assets/icons/check.svg'
-import { IRegisterValidationErrors } from '@/lib/types'
+import { RegisterValidationErrors } from '@/lib/types'
 import { errorMsg } from '@/lib/constants'
 
 const reqs = {
@@ -19,11 +19,11 @@ const Req = ({ req, isError }: { req: string, isError: boolean }) => (
 	</div>
 )
 
-interface IPasswordReqs {
-	validationErrors: IRegisterValidationErrors
+interface PasswordReqs {
+	validationErrors: RegisterValidationErrors
 }
 
-export default function PasswordReqs({ validationErrors }: IPasswordReqs ) {
+export default function PasswordReqs({ validationErrors }: PasswordReqs ) {
 
 	return (
 		<div>

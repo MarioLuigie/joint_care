@@ -1,13 +1,16 @@
 import { 
-  ILoginForm, 
-  IRegistrationForm, 
-  IRegisterValidationErrors, 
-  ILoginValidationErrors 
+  LoginFormData, 
+  RegistrationFormData, 
+  RegisterValidationErrors, 
+  LoginValidationErrors,
+  ForgotPasswordFormData,
+  ForgotPasswordValidationErrors
 } from '@/lib/types'
 
-export const validateRegistration = (formData: IRegistrationForm) => {
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+export const validateRegistration = (formData: RegistrationFormData) => {
   
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   const passwordLength = 8
   const passwordRegex = {
     uppercase: /[A-Z]/,
@@ -16,7 +19,7 @@ export const validateRegistration = (formData: IRegistrationForm) => {
     specialChars: /[^A-Za-z0-9]/
   }
   
-  const errors: IRegisterValidationErrors = {
+  const errors: RegisterValidationErrors = {
     email: emailRegex.test(formData.email),
     password_confirmation: formData.password === formData.password_confirmation,
     password_letter_size: (passwordRegex.uppercase.test(formData.password) && passwordRegex.lowercase.test(formData.password)),
@@ -28,14 +31,22 @@ export const validateRegistration = (formData: IRegistrationForm) => {
   return errors
 }
 
-export const validateLogin = (formData: ILoginForm) => {
+export const validateLogin = (formData: LoginFormData) => {
   
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   const passwordLength = 0
   
-  const errors: ILoginValidationErrors = {
+  const errors: LoginValidationErrors = {
     email: emailRegex.test(formData.email),
     password_length: formData.password.length > passwordLength
+  }
+  
+  return errors
+}
+
+export const validateForgotPassword = (formData: ForgotPasswordFormData) => {
+
+  const errors: ForgotPasswordValidationErrors = {
+    email: emailRegex.test(formData.email),
   }
   
   return errors

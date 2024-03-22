@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 import { Children } from '@/lib/types'
 
 export default function LinkNotif({ children }: Children) {

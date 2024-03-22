@@ -13,36 +13,39 @@ import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
 import AlertNotif from "@/components/content/auth/partials/AlertNotif"
-import { IForgotPasswordValidationErrors } from '@/lib/types'
+import { ForgotPasswordValidationErrors } from '@/lib/types'
 import { errorMsg } from '@/lib/constants'
-
-interface FormData {
-	email: string
-}
+import { ForgotPasswordFormData } from '@/lib/types'
+import { validateForgotPassword } from '@/lib/utils/validation'
 
 export default function ForgotPassword() {
-	const initForgotPasswordFormData: FormData = {
+	const initForgotPasswordFormData: ForgotPasswordFormData = {
 		email: ''
 	}
 
-	const initForgotPasswordValidationErrors: IForgotPasswordValidationErrors = {
+	const initForgotPasswordValidationErrors: ForgotPasswordValidationErrors = {
 		email: false
 	}
 
-	const [ forgotPasswordFormData, setForgotPasswordFormData ] = useState<FormData>(initForgotPasswordFormData)
+	const [ forgotPasswordFormData, setForgotPasswordFormData ] = useState<ForgotPasswordFormData>(initForgotPasswordFormData)
 	const [ isServerError, setIsServerError ] = useState<boolean>(false)
 	const [ isClientError, setIsClientError ] = useState<boolean>(false)
-	const [ forgotPasswordValidationErrors, setForgotPasswordValidationErrors ] = useState<IForgotPasswordValidationErrors>(initForgotPasswordValidationErrors)
+	const [ forgotPasswordValidationErrors, setForgotPasswordValidationErrors ] = useState<ForgotPasswordValidationErrors>(initForgotPasswordValidationErrors)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setForgotPasswordFormData({
+
+		const updatedFormData = {
 			...forgotPasswordFormData,
-			email: e.target.value,
-		})
+			email: e.target.value
+		}
+
+		setForgotPasswordValidationErrors(validateForgotPassword(updatedFormData))
+		setForgotPasswordFormData(updatedFormData)
 	}
 
 	const handleSubmit = () => {
 		console.log("Send");
+		setIsClientError(true)
 	}
 
 	return (

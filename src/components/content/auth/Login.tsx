@@ -17,20 +17,20 @@ import InputPassword from '@/components/shared/InputPassword'
 import AlertNotif from '@/components/content/auth/partials/AlertNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
-import { ILoginForm } from '@/lib/types'
-import { ILoginValidationErrors } from '@/lib/types'
+import { LoginFormData } from '@/lib/types'
+import { LoginValidationErrors } from '@/lib/types'
 import { loginUser } from "@/lib/api/auth-api"
 import { validateLogin } from '@/lib/utils/validation'
 import { errorMsg } from '@/lib/constants'
 
 
 export default function Login() {
-	const initFormData: ILoginForm = {
+	const initLoginFormData: LoginFormData = {
 		email: '',
 		password: '',
 	}
 
-	const initLoginValidationErrors: ILoginValidationErrors = {
+	const initLoginValidationErrors: LoginValidationErrors = {
 		email: false,
 		password_length: false
 	}
@@ -38,8 +38,8 @@ export default function Login() {
 	const router = useRouter()
 	const [ isServerError, setIsServerError ] = useState<boolean>(false)
 	const [ isClientError, setIsClientError ] = useState<boolean>(false)
-	const [ loginFormData, setLoginFormData ] = useState<ILoginForm>(initFormData)
-	const [ loginValidationErrors, setLoginValidationErrors ] = useState<ILoginValidationErrors>(initLoginValidationErrors);
+	const [ loginFormData, setLoginFormData ] = useState<LoginFormData>(initLoginFormData)
+	const [ loginValidationErrors, setLoginValidationErrors ] = useState<LoginValidationErrors>(initLoginValidationErrors);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {

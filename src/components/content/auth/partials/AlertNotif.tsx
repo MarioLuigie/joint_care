@@ -1,15 +1,13 @@
 import Image from 'next/image'
 
-import { Children } from '@/lib/types'
-
 import closeErrIcon from '/public/assets/icons/close-err.svg'
 
-interface IAlertNotifProps {
+interface AlertNotifProps {
 	isError: boolean
 	children: React.ReactNode
 }
 
-export default function AlertNotif({ isError, children }: IAlertNotifProps) {
+export default function AlertNotif({ isError, children }: AlertNotifProps) {
 	if(isError) {
 		return (
 			<div className="flex-start gap-3 bg-[#FDF4F5] p-4 mb-2 rounded-lg">

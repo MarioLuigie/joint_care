@@ -18,8 +18,8 @@ import PasswordReqs from './partials/PasswordReqs'
 import WarningNotif from './partials/WarningNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
-import { IRegistrationForm } from '@/lib/types'
-import { IRegisterValidationErrors } from '@/lib/types'
+import { RegistrationFormData } from '@/lib/types'
+import { RegisterValidationErrors } from '@/lib/types'
 import { registerUser } from "@/lib/api/auth-api"
 import { validateRegistration } from '@/lib/utils/validation'
 import { errorMsg } from '@/lib/constants'
@@ -28,13 +28,13 @@ import { formatErrorMsg } from '@/lib/utils'
 
 export default function Registration() {
 
-	const initRegistrationFormData: IRegistrationForm = {
+	const initRegistrationFormData: RegistrationFormData = {
 		email: '',
 		password: '',
 		password_confirmation: ''
 	}
 
-	const initRegisterValidationErrors: IRegisterValidationErrors = {
+	const initRegisterValidationErrors: RegisterValidationErrors = {
 		email: false,
 		password_confirmation: false,
 		password_length: false,
@@ -46,8 +46,8 @@ export default function Registration() {
 	const router = useRouter()
 	const [ isClientError, setIsClientError ] = useState<boolean>(false)
 	const [ isServerError, setIsServerError ] = useState<boolean>(false)
-	const [ registrationFormData, setRegistrationFormData ] = useState<IRegistrationForm>(initRegistrationFormData)
-	const [ registerValidationErrors, setRegisterValidationErrors ] = useState<IRegisterValidationErrors>(initRegisterValidationErrors);
+	const [ registrationFormData, setRegistrationFormData ] = useState<RegistrationFormData>(initRegistrationFormData)
+	const [ registerValidationErrors, setRegisterValidationErrors ] = useState<RegisterValidationErrors>(initRegisterValidationErrors);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
