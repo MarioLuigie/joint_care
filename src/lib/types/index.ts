@@ -2,14 +2,15 @@ export interface Children {
 	children: React.ReactNode
 }
 
+export interface ValidationError {
+	error: boolean,
+	msg: string
+}
+
 export interface RegisterValidationErrors {
-	[key: string]: boolean
-	email: boolean
-	password_confirmation: boolean
-	password_length: boolean
-	password_letter_size: boolean
-	password_special_chars: boolean
-	password_digit: boolean
+	email: ValidationError[]
+	password: ValidationError[]
+	password_confirmation: ValidationError[]
 }
 
 export interface LoginValidationErrors {

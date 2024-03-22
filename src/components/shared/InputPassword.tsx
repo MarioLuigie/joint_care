@@ -6,26 +6,27 @@ import { useState } from 'react'
 
 import visibilityOff from "/public/assets/icons/visibility-off.svg"
 import ErrorMsg from './partials/ErrorMsg'
+import { ValidationError } from '@/lib/types'
 
-interface IInputProps {
-  value: string
+interface InputProps {
+  value: string,
+  validators: ValidationError[]
   name: string
   placeholder: string
   label: string
   isClientError: boolean
-  specificErrors: {error: boolean, msg: string}[]
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function Input ({
   value,
+  validators,
   name,
   placeholder,
   label,
   isClientError,
-  specificErrors,
   handleChange
-}: IInputProps) {
+}: InputProps) {
 
   const [ isPasswordHidden, setIsPasswordHidden ] = useState(true)
 
@@ -58,7 +59,7 @@ export default function Input ({
       </div>
       <ErrorMsg 
         isClientError={isClientError} 
-        specificErrors={specificErrors} 
+        validators={validators}
       />
     </>
   );

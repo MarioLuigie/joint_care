@@ -1,16 +1,18 @@
-interface IErrorMsg {
+import { ValidationError } from "@/lib/types"
+
+interface ErrorMsgProps {
   isClientError: boolean
-  specificErrors: {error: boolean, msg: string}[]
+  validators: ValidationError[]
 }
 
 export default function ErrorMsg({
   isClientError,
-  specificErrors
-}: IErrorMsg) {
+  validators
+}: ErrorMsgProps) {
   if (isClientError) {
     return (
       <>
-        {specificErrors.map((error, i)=> {
+        {validators.map((error, i)=> {
           if (!error.error) {
             return (<div key={i} className="text-red text-xs ml-3">{error.msg}</div>)
           }

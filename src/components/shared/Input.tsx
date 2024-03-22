@@ -1,29 +1,31 @@
 import React from 'react'
 
 import ErrorMsg from './partials/ErrorMsg'
+import { ValidationError } from "@/lib/types"
 
-interface IInputProps {
+interface InputProps {
   value: string
+  validators: ValidationError[]
   name: string
   type: string
   placeholder: string
   label: string
   isClientError: boolean
-  specificErrors: {error: boolean, msg: string}[]
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function Input ({
   value,
+  validators,
   name,
   type,
   placeholder,
   label,
   isClientError,
-  specificErrors,
   handleChange
-}: IInputProps) {
+}: InputProps) {
 
+  console.log(validators)
   return (
     <>    
       <div className='flex flex-col justify-center items-stretch relative'>
@@ -40,9 +42,8 @@ export default function Input ({
           <span className='text-[#0092FD]'>*</span>
         </p>
       </div>
-      <ErrorMsg isClientError={isClientError} specificErrors={specificErrors} />
+      <ErrorMsg isClientError={isClientError} validators={validators} />
     </>
-
   );
 }
 

@@ -24,8 +24,6 @@ import { registerUser } from "@/lib/api/auth-api"
 import { validateRegistration } from '@/lib/utils/validation'
 import { errorMsg } from '@/lib/constants'
 
-import { formatErrorMsg } from '@/lib/utils'
-
 export default function Registration() {
 
 	const initRegistrationFormData: RegistrationFormData = {
@@ -35,12 +33,18 @@ export default function Registration() {
 	}
 
 	const initRegisterValidationErrors: RegisterValidationErrors = {
-		email: false,
-		password_confirmation: false,
-		password_length: false,
-		password_letter_size: false,
-		password_special_chars: false,
-		password_digit: false
+		email: [
+			{error: false, msg: errorMsg.EMAIL}
+		],
+		password: [
+			{error: false, msg: errorMsg.PASSWORD_LETTER_SIZE},
+			{error: false, msg: errorMsg.PASSWORD_DIGIT},
+			{error: false, msg: errorMsg.PASSWORD_SPECIAL_CHAR},
+			{error: false, msg: errorMsg.PASSWORD_LENGTH}
+		],
+		password_confirmation: [
+			{error: false, msg: errorMsg.PASSWORD_CONFIRMATION}
+		]
 	}
 
 	const router = useRouter()
@@ -59,6 +63,7 @@ export default function Registration() {
 	}
 
 	const handleSubmit = async () => {
+		
 		if(Object.values(registerValidationErrors).every(value => value === true)) {
 			const data = await registerUser(registrationFormData)
 
@@ -102,42 +107,33 @@ export default function Registration() {
 					</WarningNotif>
 					<Input
 						value={registrationFormData.email}
+						validators={registerValidationErrors.email}
 						type="email"
 						name="email"
 						placeholder="Wpisz"
 						label="Adres e-mail"
 						handleChange={handleChange}
-						isClientError={isClientError} 
-						specificErrors={[
-							{error: registerValidationErrors.email, msg: errorMsg.EMAIL} 
-						]} 
+						isClientError={isClientError}  
 					/>
 					<InputPassword
 						value={registrationFormData.password}
+						validators={registerValidationErrors.password}
 						name="password"
 						placeholder="Wpisz"
 						label="Hasło"
 						handleChange={handleChange}
 						isClientError={isClientError} 
-						specificErrors={[
-							{error: registerValidationErrors.password_digit, msg: formatErrorMsg(errorMsg.PASSWORD_DIGIT)},
-							{error: registerValidationErrors.password_length, msg: formatErrorMsg(errorMsg.PASSWORD_LENGTH)},
-							{error: registerValidationErrors.password_special_chars, msg: formatErrorMsg(errorMsg.PASSWORD_SPECIAL_CHARS)},
-							{error: registerValidationErrors.password_letter_size, msg: formatErrorMsg(errorMsg.PASSWORD_LETTER_SIZE)} 
-						]} 
 					/>
 					<InputPassword
 						value={registrationFormData.password_confirmation}
+						validators={registerValidationErrors.password_confirmation}
 						name="password_confirmation"
 						placeholder="Wpisz"
 						label="Powtórz nowe hasło"
 						handleChange={handleChange}
 						isClientError={isClientError} 
-						specificErrors={[
-							{error: registerValidationErrors.password_confirmation, msg: errorMsg.PASSWORD_CONFIRMATION} 
-						]} 
 					/>
-					<PasswordReqs validationErrors={registerValidationErrors}/>
+					<PasswordReqs validators={registerValidationErrors.password}/>
 					<div className="flex">
 						<CheckboxLabel id="statute">
 							<Label htmlFor="statute">Akceptuję</Label>
