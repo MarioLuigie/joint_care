@@ -6,7 +6,7 @@ export default function HomePage() {
 	const router = useRouter()
 	useEffect(() => {
 		router.push('/auth/login')
-	}, [])
+	}, [router])
 
 	return <div className="flex-center p-2">HOME PAGE</div>
 }
