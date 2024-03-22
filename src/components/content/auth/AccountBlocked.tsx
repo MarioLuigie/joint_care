@@ -12,13 +12,13 @@ import Link from 'next/link'
 import LoginAgain from '@/components/content/auth/partials/LoginAgainTiming'
 
 export default function AccountBlocked() {
-
 	return (
 		<Card className="auth-card">
 			<CardHeader>
 				<CardTitle>Twoje konto zostało zablokowane</CardTitle>
 				<CardDescription>
-					Przekroczona została maksymalna liczba nieudanych logowań - konto zostało zablokowane.
+					Przekroczona została maksymalna liczba nieudanych logowań - konto
+					zostało zablokowane.
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">

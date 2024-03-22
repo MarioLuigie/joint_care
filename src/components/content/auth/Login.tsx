@@ -18,61 +18,57 @@ import AlertNotif from '@/components/content/auth/partials/AlertNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 import { LoginFormData } from '@/lib/types'
-import { LoginValidationErrors } from '@/lib/types'
-import { loginUser } from "@/lib/api/auth-api"
-import { validateLogin } from '@/lib/utils/validation'
+import { LoginValidators } from '@/lib/types'
+import { loginUser } from '@/lib/api/auth-api'
+import { validateLogin } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
-
+import { checkValidators } from '@/lib/utils'
 
 export default function Login() {
-	const initLoginFormData: LoginFormData = {
+	const initFormData: LoginFormData = {
 		email: '',
 		password: '',
 	}
 
-	const initLoginValidationErrors: LoginValidationErrors = {
-		email: false,
-		password_length: false
+	const initValidators: LoginValidators = {
+		email: [{ error: false, msg: errorMsg.EMPTY }],
+		password: [{ error: false, msg: errorMsg.EMPTY }],
 	}
 
 	const router = useRouter()
-	const [ isServerError, setIsServerError ] = useState<boolean>(false)
-	const [ isClientError, setIsClientError ] = useState<boolean>(false)
-	const [ loginFormData, setLoginFormData ] = useState<LoginFormData>(initLoginFormData)
-	const [ loginValidationErrors, setLoginValidationErrors ] = useState<LoginValidationErrors>(initLoginValidationErrors);
+
+	const [formData, setFormData] = useState<LoginFormData>(initFormData)
+	const [validators, setValidators] = useState<LoginValidators>(initValidators)
+
+	const [isServerError, setIsServerError] = useState<boolean>(false)
+	const [isClientError, setIsClientError] = useState<boolean>(false)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
-			...loginFormData,
+			...formData,
 			[e.target.name]: e.target.value,
 		}
 
-		console.log("***", updatedFormData);
-
-		setLoginValidationErrors(validateLogin(updatedFormData))
-		setLoginFormData(updatedFormData)
+		setValidators(validateLogin(updatedFormData))
+		setFormData(updatedFormData)
 		setIsServerError(false)
-		console.log(loginFormData)
-		console.log(loginValidationErrors);
 	}
 
 	const handleSubmit = async () => {
-		console.log(loginValidationErrors);
+		if (checkValidators(validators)) {
+			const data = await loginUser(formData)
 
-		if(Object.values(loginValidationErrors).every(value => value === true)) {
-			const data = await loginUser(loginFormData)
+			console.log('Login:', data)
 
-			console.log("Login:", data)
-	
-			if(data.errors) {
+			if (data.errors) {
 				setIsServerError(true)
 			}
-	
-			if(data.success) {
-				router.push("/dashboard")
+
+			if (data.success) {
+				router.push('/dashboard')
 			}
 		} else {
-			console.log("INVALID LOGINFORM");
+			console.log('INVALID LOGINFORM')
 			setIsClientError(true)
 		}
 	}
@@ -90,27 +86,23 @@ export default function Login() {
 						<p>Uzupełnij ponownie</p>
 					</AlertNotif>
 					<Input
-						value={loginFormData.email}
-						type="email"
-						name="email"
-						placeholder="Wpisz"
-						label="Adres e-mail"
 						handleChange={handleChange}
-						isClientError={isClientError} 
-						specificErrors={[
-							{error: loginValidationErrors.email, msg: errorMsg.EMAIL} 
-						]} 
+						isError={isClientError}
+						label="Adres e-mail"
+						name="email"
+						placeholder="Wpisz e-mail"
+						type="email"
+						validators={validators.email}
+						value={formData.email}
 					/>
 					<InputPassword
-						value={loginFormData.password}
-						name="password"
-						placeholder="Hasło"
-						label="Hasło"
 						handleChange={handleChange}
-						isClientError={isClientError} 
-						specificErrors={[
-							{error: loginValidationErrors.password_length, msg: errorMsg.PASSWORD} 
-						]} 
+						isError={isClientError}
+						label="Hasło"
+						name="password"
+						placeholder="Wpisz hasło"
+						validators={validators.password}
+						value={formData.password}
 					/>
 				</div>
 				<CheckboxLabel id="remember">
@@ -118,7 +110,9 @@ export default function Login() {
 				</CheckboxLabel>
 			</CardContent>
 			<CardFooter className="flex flex-col gap-2 pt-5">
-				<Button className="w-full" onClick={handleSubmit}>Zaloguj</Button>
+				<Button className="w-full" onClick={handleSubmit}>
+					Zaloguj
+				</Button>
 				<Link
 					href="/auth/forgot-password"
 					className="flex-center underline text-sm text-jc-text4"

@@ -12,39 +12,37 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
-import AlertNotif from "@/components/content/auth/partials/AlertNotif"
-import { ForgotPasswordValidationErrors } from '@/lib/types'
+import AlertNotif from '@/components/content/auth/partials/AlertNotif'
+import { ForgotPasswordValidators, ForgotPasswordFormData } from '@/lib/types'
+import { validateForgotPassword } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
-import { ForgotPasswordFormData } from '@/lib/types'
-import { validateForgotPassword } from '@/lib/utils/validation'
 
 export default function ForgotPassword() {
-	const initForgotPasswordFormData: ForgotPasswordFormData = {
-		email: ''
+	const initFormData: ForgotPasswordFormData = {
+		email: '',
+	}
+	const initValidators: ForgotPasswordValidators = {
+		email: [{ error: false, msg: errorMsg.EMPTY }],
 	}
 
-	const initForgotPasswordValidationErrors: ForgotPasswordValidationErrors = {
-		email: false
-	}
+	const [formData, setFormData] = useState<ForgotPasswordFormData>(initFormData)
+	const [validators, setValidators] = useState<ForgotPasswordValidators>(initValidators)
 
-	const [ forgotPasswordFormData, setForgotPasswordFormData ] = useState<ForgotPasswordFormData>(initForgotPasswordFormData)
-	const [ isServerError, setIsServerError ] = useState<boolean>(false)
-	const [ isClientError, setIsClientError ] = useState<boolean>(false)
-	const [ forgotPasswordValidationErrors, setForgotPasswordValidationErrors ] = useState<ForgotPasswordValidationErrors>(initForgotPasswordValidationErrors)
+	const [isServerError, setIsServerError] = useState<boolean>(false)
+	const [isClientError, setIsClientError] = useState<boolean>(false)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
 		const updatedFormData = {
-			...forgotPasswordFormData,
-			email: e.target.value
+			...formData,
+			email: e.target.value,
 		}
 
-		setForgotPasswordValidationErrors(validateForgotPassword(updatedFormData))
-		setForgotPasswordFormData(updatedFormData)
+		setValidators(validateForgotPassword(updatedFormData))
+		setFormData(updatedFormData)
 	}
 
 	const handleSubmit = () => {
-		console.log("Send");
+		console.log('Send')
 		setIsClientError(true)
 	}
 
@@ -60,28 +58,28 @@ export default function ForgotPassword() {
 			<CardContent className="flex flex-col gap-3">
 				<AlertNotif isError={isServerError}>
 					<p>Konto o podanym adresie e-mail nie istnieje.</p>
-					<div className='flex gap-1'>
+					<div className="flex gap-1">
 						<p>Sprawdź poprawność adresu lub</p>
 						<Link href="/auth/register">
-							<p className='jc-warning-link underline'>utwórz nowe konto</p>
+							<p className="jc-warning-link underline">utwórz nowe konto</p>
 						</Link>
 					</div>
 				</AlertNotif>
 				<Input
-					value={forgotPasswordFormData.email}
-					type="email"
+					handleChange={handleChange}
+					isError={isClientError}
+					label="Adres e-mail"
 					name="email"
 					placeholder="Wpisz"
-					label="Adres e-mail"
-					handleChange={handleChange}
-					isClientError={isClientError}
-					specificErrors={[
-						{error: forgotPasswordValidationErrors.email, msg: errorMsg.EMAIL}
-					]}
+					type="email"
+					validators={validators.email}
+					value={formData.email}
 				/>
 			</CardContent>
 			<CardFooter className="flex flex-col gap-3 pt-7">
-				<Button className="w-full" onClick={handleSubmit}>Wyślij</Button>
+				<Button className="w-full" onClick={handleSubmit}>
+					Wyślij
+				</Button>
 				<Link
 					href="/auth/login"
 					className="flex-center underline text-sm text-jc-text4"

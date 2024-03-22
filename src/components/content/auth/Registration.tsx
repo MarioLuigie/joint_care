@@ -18,67 +18,64 @@ import PasswordReqs from './partials/PasswordReqs'
 import WarningNotif from './partials/WarningNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
-import { RegistrationFormData } from '@/lib/types'
-import { RegisterValidationErrors } from '@/lib/types'
-import { registerUser } from "@/lib/api/auth-api"
-import { validateRegistration } from '@/lib/utils/validation'
+import { RegistrationFormData, Validator } from '@/lib/types'
+import { RegisterValidators } from '@/lib/types'
+import { registerUser } from '@/lib/api/auth-api'
+import { validateRegistration } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
+import { checkValidators } from '@/lib/utils'
 
 export default function Registration() {
-
-	const initRegistrationFormData: RegistrationFormData = {
+	const initFormData: RegistrationFormData = {
 		email: '',
 		password: '',
-		password_confirmation: ''
+		password_confirmation: '',
 	}
 
-	const initRegisterValidationErrors: RegisterValidationErrors = {
-		email: [
-			{error: false, msg: errorMsg.EMAIL}
-		],
+	const initValidators: RegisterValidators = {
+		email: [{ error: false, msg: errorMsg.EMPTY }],
 		password: [
-			{error: false, msg: errorMsg.PASSWORD_LETTER_SIZE},
-			{error: false, msg: errorMsg.PASSWORD_DIGIT},
-			{error: false, msg: errorMsg.PASSWORD_SPECIAL_CHAR},
-			{error: false, msg: errorMsg.PASSWORD_LENGTH}
+			{ error: false, msg: errorMsg.PASSWORD_LETTER_SIZE },
+			{ error: false, msg: errorMsg.PASSWORD_DIGIT },
+			{ error: false, msg: errorMsg.PASSWORD_SPECIAL_CHAR },
+			{ error: false, msg: errorMsg.PASSWORD_LENGTH },
 		],
-		password_confirmation: [
-			{error: false, msg: errorMsg.PASSWORD_CONFIRMATION}
-		]
+		password_confirmation: [{ error: false, msg: errorMsg.EMPTY }],
 	}
 
 	const router = useRouter()
-	const [ isClientError, setIsClientError ] = useState<boolean>(false)
-	const [ isServerError, setIsServerError ] = useState<boolean>(false)
-	const [ registrationFormData, setRegistrationFormData ] = useState<RegistrationFormData>(initRegistrationFormData)
-	const [ registerValidationErrors, setRegisterValidationErrors ] = useState<RegisterValidationErrors>(initRegisterValidationErrors);
+
+	const [formData, setFormData] = useState<RegistrationFormData>(initFormData)
+	const [validators, setValidators] =
+		useState<RegisterValidators>(initValidators)
+
+	const [isClientError, setIsClientError] = useState<boolean>(false)
+	const [isServerError, setIsServerError] = useState<boolean>(false)
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
-			...registrationFormData,
+			...formData,
 			[e.target.name]: e.target.value,
 		}
-		setRegisterValidationErrors(validateRegistration(updatedFormData))
-		setRegistrationFormData(updatedFormData)
+		setValidators(validateRegistration(updatedFormData))
+		setFormData(updatedFormData)
 	}
 
 	const handleSubmit = async () => {
-		
-		if(Object.values(registerValidationErrors).every(value => value === true)) {
-			const data = await registerUser(registrationFormData)
+		if (checkValidators(validators)) {
+			const data = await registerUser(formData)
 
-			if(data.errors && data.errors.email) {
+			if (data.errors && data.errors.email) {
 				setIsServerError(true)
 			} else {
 				setIsServerError(false)
 			}
 
-			if(data.success) {
-				router.push("/auth/register-success")
+			if (data.success) {
+				router.push('/auth/register-success')
 			}
-
 		} else {
-			console.log("INVALID REGISTERFORM");
+			console.log('INVALID REGISTER FORM')
 			setIsClientError(true)
 		}
 	}
@@ -95,45 +92,48 @@ export default function Registration() {
 				<div className="flex flex-col gap-3">
 					<WarningNotif isError={isServerError}>
 						<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
-						<div className='flex items-center gap-2 text-jc-text1'>
+						<div className="flex items-center gap-2 text-jc-text1">
 							<Link href="/auth/login" className="jc-warning-link underline">
 								Zaloguj się
 							</Link>
 							<p className="jc-warning-link">lub</p>
-							<Link href="/auth/forgot-password" className="jc-warning-link underline">
+							<Link
+								href="/auth/forgot-password"
+								className="jc-warning-link underline"
+							>
 								Przypomnij hasło
 							</Link>
 						</div>
 					</WarningNotif>
 					<Input
-						value={registrationFormData.email}
-						validators={registerValidationErrors.email}
-						type="email"
-						name="email"
-						placeholder="Wpisz"
+						handleChange={handleChange}
+						isError={isClientError}
 						label="Adres e-mail"
-						handleChange={handleChange}
-						isClientError={isClientError}  
+						name="email"
+						placeholder="Wpisz e-mail"
+						type="email"
+						validators={validators.email}
+						value={formData.email}
 					/>
 					<InputPassword
-						value={registrationFormData.password}
-						validators={registerValidationErrors.password}
-						name="password"
-						placeholder="Wpisz"
+						handleChange={handleChange}
+						isError={isClientError}
 						label="Hasło"
-						handleChange={handleChange}
-						isClientError={isClientError} 
+						name="password"
+						placeholder="Wpisz hasło"
+						validators={validators.password}
+						value={formData.password}
 					/>
 					<InputPassword
-						value={registrationFormData.password_confirmation}
-						validators={registerValidationErrors.password_confirmation}
-						name="password_confirmation"
-						placeholder="Wpisz"
-						label="Powtórz nowe hasło"
 						handleChange={handleChange}
-						isClientError={isClientError} 
+						isError={isClientError}
+						label="Powtórzenie hasła"
+						name="password_confirmation"
+						placeholder="Powtórz hasło"
+						validators={validators.password_confirmation}
+						value={formData.password_confirmation}
 					/>
-					<PasswordReqs validators={registerValidationErrors.password}/>
+					<PasswordReqs validators={validators.password} />
 					<div className="flex">
 						<CheckboxLabel id="statute">
 							<Label htmlFor="statute">Akceptuję</Label>
@@ -148,7 +148,9 @@ export default function Registration() {
 				</div>
 			</CardContent>
 			<CardFooter className="flex flex-col pt-5">
-				<Button onClick={handleSubmit} className="w-full">Załóż konto</Button>
+				<Button onClick={handleSubmit} className="w-full">
+					Załóż konto
+				</Button>
 			</CardFooter>
 		</Card>
 	)

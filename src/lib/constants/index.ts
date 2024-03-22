@@ -6,4 +6,5 @@ export const errorMsg = {
 	PASSWORD_LETTER_SIZE: 'Hasło powinno zawierać duże i małe litery',
 	PASSWORD_SPECIAL_CHAR: 'Hasło powinno zawierać znak specjalny (np. !, &, $)',
 	PASSWORD_DIGIT: 'Hasło powinno zawierać minimum jedną cyfrę',
+	EMPTY: "Uzupełnij pole formularza"
 }

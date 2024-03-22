@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import closeIcon from '/public/assets/icons/close-red.svg'
 import checkIcon from '/public/assets/icons/check.svg'
-import { ValidationError } from '@/lib/types'
+import { Validator } from '@/lib/types'
 
 const Req = ({ msg, error }: { msg: string, error: boolean }) => (
 	<div className="flex gap-2 text-base font-normal pb-3 text-[#747678]">
@@ -12,7 +12,7 @@ const Req = ({ msg, error }: { msg: string, error: boolean }) => (
 )
 
 interface PasswordReqsProps {
-	validators: ValidationError[]
+	validators: Validator[]
 }
 
 export default function PasswordReqs({ validators }: PasswordReqsProps ) {
