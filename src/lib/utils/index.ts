@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function checkValidators(validators: Validators) {
-	return Object.values(validators).every((validationErrors) =>
-		validationErrors.every((error) => error.error)
+	return Object.values(validators).every((arrayOfValidators) =>
+	arrayOfValidators.every((validator) => validator.error)
 	)
 }
