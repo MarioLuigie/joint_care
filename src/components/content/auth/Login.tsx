@@ -18,11 +18,11 @@ import AlertNotif from '@/components/content/auth/partials/AlertNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 import { LoginFormData } from '@/lib/types'
-import { LoginValidators } from '@/lib/types'
+import { LoginFormErrors as LoginFormErrors } from '@/lib/types'
 import { loginUser } from '@/lib/api/auth-api'
 import { validateLogin } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
-import { checkValidators } from '@/lib/utils'
+import { checkErrors } from '@/lib/utils'
 
 export default function Login() {
 	const initFormData: LoginFormData = {
@@ -30,15 +30,15 @@ export default function Login() {
 		password: '',
 	}
 
-	const initValidators: LoginValidators = {
-		email: [{ error: false, msg: errorMsg.EMPTY }],
-		password: [{ error: false, msg: errorMsg.EMPTY }],
+	const initFormErrors: LoginFormErrors = {
+		email: [errorMsg.EMPTY],
+		password: [errorMsg.EMPTY],
 	}
 
 	const router = useRouter()
 
 	const [formData, setFormData] = useState<LoginFormData>(initFormData)
-	const [validators, setValidators] = useState<LoginValidators>(initValidators)
+	const [formErrors, setFormErrors] = useState<LoginFormErrors>(initFormErrors)
 
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const [isClientError, setIsClientError] = useState<boolean>(false)
@@ -49,13 +49,13 @@ export default function Login() {
 			[e.target.name]: e.target.value,
 		}
 
-		setValidators(validateLogin(updatedFormData))
+		setFormErrors(validateLogin(updatedFormData))
 		setFormData(updatedFormData)
 		setIsServerError(false)
 	}
 
 	const handleSubmit = async () => {
-		if (checkValidators(validators)) {
+		if (checkErrors(formErrors)) {
 			const data = await loginUser(formData)
 
 			console.log('Login:', data)
@@ -87,21 +87,21 @@ export default function Login() {
 					</AlertNotif>
 					<Input
 						handleChange={handleChange}
-						isError={isClientError}
 						label="Adres e-mail"
 						name="email"
 						placeholder="Wpisz e-mail"
 						type="email"
-						validators={validators.email}
+						isError={isClientError}
+						errors={formErrors.email}
 						value={formData.email}
 					/>
 					<InputPassword
 						handleChange={handleChange}
-						isError={isClientError}
 						label="Hasło"
 						name="password"
 						placeholder="Wpisz hasło"
-						validators={validators.password}
+						isError={isClientError}
+						errors={formErrors.password}
 						value={formData.password}
 					/>
 				</div>

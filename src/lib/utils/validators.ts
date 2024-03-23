@@ -1,57 +1,40 @@
 import {
 	ForgotPasswordFormData,
-	ForgotPasswordValidators,
+	ForgotPasswordFormErrors,
 	LoginFormData,
-	LoginValidators,
-	RegisterValidators,
+	LoginFormErrors,
+	RegistrationFormErrors,
 	RegistrationFormData,
 } from '@/lib/types'
 import { errorMsg } from '@/lib/constants'
 
 // Validators
 const V = {
-	digit: (text: string) => /\d/.test(text),
-	lowercase: (text: string) => /[a-z]/.test(text),
-	uppercase: (text: string) => /[A-Z]/.test(text),
-	specialChar: (text: string) => /[^A-Za-z0-9]/.test(text),
-	email: (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
-	minLength: (text: string, numb: number) => text.length >= numb,
-	maxLength: (text: string, numb: number) => text.length <= numb,
-	match: (text1: string, text2: string) => text1 === text2,
+	digit: (data: string, msg: string) => /\d/.test(data) ? '' : msg,
+	lowercase: (data: string, msg: string) => /[a-z]/.test(data) ? '' : msg,
+	uppercase: (data: string, msg: string) => /[A-Z]/.test(data) ? '' : msg,
+	lettersize: (data: string, msg: string) => /[a-z]/.test(data) && /[A-Z]/.test(data) ? '' : msg,
+	specialChar: (data: string, msg: string) => /[^A-Za-z0-9]/.test(data) ? '' : msg,
+	email: (data: string, msg: string) =>	/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data) ? '' : msg,
+	minLength: (num: number, data: string, msg: string) => data.length >= num ? '' : msg,
+	maxLength: (num: number, data: string, msg: string) => data.length <= num ? '' : msg,
+	match: (data1: string, data2: string, msg: string) =>	data1 === data2 ? '' : msg,
 }
 
 // Registration validation
 export const validateRegistration = (data: RegistrationFormData) => {
-	const errors: RegisterValidators = {
+	const errors: RegistrationFormErrors = {
 		email: [
-			{
-				error: V.email(data.email),
-				msg: errorMsg.EMAIL,
-			},
+			V.email(data.email, errorMsg.EMAIL)
 		],
 		password: [
-			{
-				error: V.lowercase(data.password) && V.uppercase(data.password),
-				msg: errorMsg.PASSWORD_LETTER_SIZE,
-			},
-			{
-				error: V.digit(data.password),
-				msg: errorMsg.PASSWORD_DIGIT,
-			},
-			{
-				error: V.specialChar(data.password),
-				msg: errorMsg.PASSWORD_SPECIAL_CHAR,
-			},
-			{
-				error: V.minLength(data.password, 8),
-				msg: errorMsg.PASSWORD_LENGTH,
-			},
+			V.lettersize(data.password, errorMsg.PASSWORD_LETTER_SIZE),
+			V.digit(data.password, errorMsg.PASSWORD_DIGIT),
+			V.specialChar(data.password, errorMsg.PASSWORD_SPECIAL_CHAR),
+			V.minLength(8, data.password, errorMsg.PASSWORD_LENGTH),
 		],
 		password_confirmation: [
-			{
-				error: V.match(data.password, data.password_confirmation),
-				msg: errorMsg.PASSWORD_CONFIRMATION,
-			},
+			V.match(data.password, data.password_confirmation,	errorMsg.PASSWORD_CONFIRMATION),
 		],
 	}
 	return errors
@@ -59,18 +42,12 @@ export const validateRegistration = (data: RegistrationFormData) => {
 
 // Login validation
 export const validateLogin = (data: LoginFormData) => {
-	const errors: LoginValidators = {
+	const errors: LoginFormErrors = {
 		email: [
-			{
-				error: V.email(data.email),
-				msg: errorMsg.EMAIL,
-			},
+			V.email(data.email, errorMsg.EMAIL)
 		],
 		password: [
-			{
-				error: V.minLength(data.password, 1),
-				msg: errorMsg.PASSWORD,
-			},
+			V.minLength(1, data.password, errorMsg.PASSWORD)
 		],
 	}
 	return errors
@@ -78,12 +55,9 @@ export const validateLogin = (data: LoginFormData) => {
 
 // Forgot Password validation
 export const validateForgotPassword = (data: ForgotPasswordFormData) => {
-	const errors: ForgotPasswordValidators = {
+	const errors: ForgotPasswordFormErrors = {
 		email: [
-			{
-				error: V.email(data.email),
-				msg: errorMsg.EMAIL,
-			},
+			V.email(data.email, errorMsg.EMAIL)
 		],
 	}
 	return errors

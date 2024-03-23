@@ -1,11 +1,10 @@
 import React from 'react'
 
-import ErrorMsg from './partials/ErrorMsg'
-import { Validator } from '@/lib/types'
+import Errors from './Errors'
 
 interface InputProps {
 	value: string
-	validators: Validator[]
+	errors: string[]
 	name: string
 	type: string
 	placeholder: string
@@ -16,12 +15,12 @@ interface InputProps {
 
 export default function Input({
 	value,
-	validators,
+	errors,
 	name,
 	type,
 	placeholder,
 	label,
-	isError: isClientError,
+	isError,
 	handleChange,
 }: InputProps) {
 	return (
@@ -40,7 +39,7 @@ export default function Input({
 					<span className="text-[#0092FD]">*</span>
 				</p>
 			</div>
-			<ErrorMsg isClientError={isClientError} validators={validators} />
+			<Errors isError={isError} errors={errors} />
 		</>
 	)
 }

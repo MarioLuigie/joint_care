@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
 import AlertNotif from '@/components/content/auth/partials/AlertNotif'
-import { ForgotPasswordValidators, ForgotPasswordFormData } from '@/lib/types'
+import { ForgotPasswordFormErrors as ForgotPasswordFormErrors, ForgotPasswordFormData } from '@/lib/types'
 import { validateForgotPassword } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 
@@ -21,12 +21,12 @@ export default function ForgotPassword() {
 	const initFormData: ForgotPasswordFormData = {
 		email: '',
 	}
-	const initValidators: ForgotPasswordValidators = {
-		email: [{ error: false, msg: errorMsg.EMPTY }],
+	const initFormErrors: ForgotPasswordFormErrors = {
+		email: [errorMsg.EMPTY],
 	}
 
 	const [formData, setFormData] = useState<ForgotPasswordFormData>(initFormData)
-	const [validators, setValidators] = useState<ForgotPasswordValidators>(initValidators)
+	const [formErrors, setFormErrors] = useState<ForgotPasswordFormErrors>(initFormErrors)
 
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const [isClientError, setIsClientError] = useState<boolean>(false)
@@ -37,7 +37,7 @@ export default function ForgotPassword() {
 			email: e.target.value,
 		}
 
-		setValidators(validateForgotPassword(updatedFormData))
+		setFormErrors(validateForgotPassword(updatedFormData))
 		setFormData(updatedFormData)
 	}
 
@@ -67,12 +67,12 @@ export default function ForgotPassword() {
 				</AlertNotif>
 				<Input
 					handleChange={handleChange}
-					isError={isClientError}
 					label="Adres e-mail"
 					name="email"
 					placeholder="Wpisz"
 					type="email"
-					validators={validators.email}
+					isError={isClientError}
+					errors={formErrors.email}
 					value={formData.email}
 				/>
 			</CardContent>

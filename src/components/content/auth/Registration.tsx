@@ -19,11 +19,11 @@ import WarningNotif from './partials/WarningNotif'
 import CheckboxLabel from '@/components/shared/CheckboxLabel'
 import { Label } from '@/components/ui/label'
 import { RegistrationFormData } from '@/lib/types'
-import { RegisterValidators } from '@/lib/types'
+import { RegistrationFormErrors } from '@/lib/types'
 import { registerUser } from '@/lib/api/auth-api'
 import { validateRegistration } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
-import { checkValidators } from '@/lib/utils'
+import { checkErrors } from '@/lib/utils'
 
 export default function Registration() {
 	const initFormData: RegistrationFormData = {
@@ -32,22 +32,27 @@ export default function Registration() {
 		password_confirmation: '',
 	}
 
-	const initValidators: RegisterValidators = {
-		email: [{ error: false, msg: errorMsg.EMPTY }],
-		password: [
-			{ error: false, msg: errorMsg.PASSWORD_LETTER_SIZE },
-			{ error: false, msg: errorMsg.PASSWORD_DIGIT },
-			{ error: false, msg: errorMsg.PASSWORD_SPECIAL_CHAR },
-			{ error: false, msg: errorMsg.PASSWORD_LENGTH },
+	const initFormErrors: RegistrationFormErrors = {
+		email: [
+			errorMsg.EMPTY
 		],
-		password_confirmation: [{ error: false, msg: errorMsg.EMPTY }],
+		password: [
+			errorMsg.PASSWORD_LETTER_SIZE,
+			errorMsg.PASSWORD_DIGIT,
+			errorMsg.PASSWORD_SPECIAL_CHAR,
+			errorMsg.PASSWORD_LENGTH
+			,
+		],
+		password_confirmation: [
+			errorMsg.EMPTY
+		],
 	}
 
 	const router = useRouter()
 
 	const [formData, setFormData] = useState<RegistrationFormData>(initFormData)
-	const [validators, setValidators] =
-		useState<RegisterValidators>(initValidators)
+	const [formErrors, setFormErrors] =
+		useState<RegistrationFormErrors>(initFormErrors)
 
 	const [isClientError, setIsClientError] = useState<boolean>(false)
 	const [isServerError, setIsServerError] = useState<boolean>(false)
@@ -57,12 +62,13 @@ export default function Registration() {
 			...formData,
 			[e.target.name]: e.target.value,
 		}
-		setValidators(validateRegistration(updatedFormData))
+		setFormErrors(validateRegistration(updatedFormData))
 		setFormData(updatedFormData)
 	}
 
 	const handleSubmit = async () => {
-		if (checkValidators(validators)) {
+	
+		if (checkErrors(formErrors)) {
 			const data = await registerUser(formData)
 
 			if (data.errors && data.errors.email) {
@@ -107,33 +113,33 @@ export default function Registration() {
 					</WarningNotif>
 					<Input
 						handleChange={handleChange}
-						isError={isClientError}
 						label="Adres e-mail"
 						name="email"
 						placeholder="Wpisz e-mail"
 						type="email"
-						validators={validators.email}
+						isError={isClientError}
+						errors={formErrors.email}
 						value={formData.email}
 					/>
 					<InputPassword
 						handleChange={handleChange}
-						isError={isClientError}
 						label="Hasło"
 						name="password"
 						placeholder="Wpisz hasło"
-						validators={validators.password}
+						isError={isClientError}
+						errors={formErrors.password}
 						value={formData.password}
 					/>
 					<InputPassword
 						handleChange={handleChange}
-						isError={isClientError}
 						label="Powtórzenie hasła"
 						name="password_confirmation"
 						placeholder="Powtórz hasło"
-						validators={validators.password_confirmation}
+						isError={isClientError}
+						errors={formErrors.password_confirmation}
 						value={formData.password_confirmation}
 					/>
-					<PasswordReqs validators={validators.password} />
+					<PasswordReqs errors={formErrors.password} />
 					<div className="flex">
 						<CheckboxLabel id="statute">
 							<Label htmlFor="statute">Akceptuję</Label>
