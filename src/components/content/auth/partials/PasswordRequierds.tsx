@@ -3,16 +3,16 @@ import closeIcon from '/public/assets/icons/close-red.svg'
 import checkIcon from '/public/assets/icons/check.svg'
 import { errorMsg } from '@/lib/constants'
 
-interface ReqProps {
+interface RequierdProps {
 	msg: string
 	error: boolean
 }
 
-interface PasswordReqsProps {
+interface PasswordRequierdsProps {
 	errors: string[]
 }
 
-const Req = ({ msg, error }: ReqProps) => (
+const Requierd = ({ msg, error }: RequierdProps) => (
 	<div className="flex gap-2 text-base font-normal pb-3 text-[#747678]">
 		<Image
 			src={error ? checkIcon : closeIcon}
@@ -22,7 +22,7 @@ const Req = ({ msg, error }: ReqProps) => (
 	</div>
 )
 
-export default function PasswordReqs({ errors }: PasswordReqsProps) {
+export default function PasswordRequierds({ errors }: PasswordRequierdsProps) {
 
 	const passwordErrors = [
 		errorMsg.PASSWORD_LETTER_SIZE,
@@ -37,7 +37,7 @@ export default function PasswordReqs({ errors }: PasswordReqsProps) {
 				Silne hasło powinno zawierać:
 			</p>
 			{passwordErrors.map((error, i) => (
-				<Req key={i} msg={error.slice(22)} error={!errors.includes(error)} />
+				<Requierd key={i} msg={error.slice(22)} error={!errors.includes(error)} />
 			))}
 		</div>
 	)

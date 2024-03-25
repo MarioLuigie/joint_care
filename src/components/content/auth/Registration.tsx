@@ -14,7 +14,7 @@ import Link from 'next/link'
 
 import Input from '@/components/shared/Input'
 import InputPassword from '@/components/shared/InputPassword'
-import PasswordReqs from './partials/PasswordReqs'
+import PasswordRequierds from './partials/PasswordRequierds'
 import WarningNotif from '../../shared/WarningNotif'
 import CheckboxLabel from '@/components/shared/InputCheckBox'
 import { Label } from '@/components/ui/label'
@@ -24,7 +24,7 @@ import { registerUser } from '@/lib/api/auth-api'
 import { validateRegistration } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
-import RegisterWarning from '@/components/content/auth/partials/RegisterWarning'
+import RegisterWarning from '@/components/content/auth/partials/RegisteredAccountWarning'
 
 export default function Registration() {
 	const initFormData: RegistrationFormData = {
@@ -128,7 +128,7 @@ export default function Registration() {
 						errors={formErrors.password_confirmation}
 						value={formData.password_confirmation}
 					/>
-					<PasswordReqs errors={formErrors.password} />
+					<PasswordRequierds errors={formErrors.password} />
 					<div className="flex">
 						<CheckboxLabel id="statute">
 							<Label htmlFor="statute">Akceptuję</Label>
