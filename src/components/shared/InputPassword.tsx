@@ -40,7 +40,7 @@ export default function InputPassword({
 					type={isPasswordHidden ? 'password' : 'text'}
 					value={value}
 					placeholder={placeholder}
-					className={isClientError && validators.some(a => a.error === false) ? `jc-input-err` : 'jc-input'}
+					className={'jc-input'}
 					onChange={handleChange}
 				/>
 				<p className="jc-inputLabel">
