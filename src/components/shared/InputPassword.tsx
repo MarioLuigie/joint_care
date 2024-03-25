@@ -19,11 +19,11 @@ interface InputProps {
 
 export default function InputPassword({
 	value,
-	errors: validators,
+	errors,
 	name,
 	placeholder,
 	label,
-	isError: isClientError,
+	isError,
 	handleChange,
 }: InputProps) {
 	const [isPasswordHidden, setIsPasswordHidden] = useState(true)
@@ -40,7 +40,7 @@ export default function InputPassword({
 					type={isPasswordHidden ? 'password' : 'text'}
 					value={value}
 					placeholder={placeholder}
-					className={'jc-input'}
+					className={isError && errors.every(err => err !== "") ? 'jc-input-err' : 'jc-input'}
 					onChange={handleChange}
 				/>
 				<p className="jc-inputLabel">
@@ -59,7 +59,7 @@ export default function InputPassword({
 					/>
 				</div>
 			</div>
-			<Errors isError={isClientError} errors={validators} />
+			<Errors isError={isError} errors={errors} />
 		</>
 	)
 }

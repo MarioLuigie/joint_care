@@ -24,6 +24,9 @@ export default function Input({
 	handleChange,
 }: InputProps) {
 
+	console.log("***", errors);
+	console.log("$$$", isError);
+
 	return (
 		<>
 			<div className="flex flex-col justify-center items-stretch relative">
@@ -32,7 +35,7 @@ export default function Input({
 					type={type}
 					value={value}
 					placeholder={placeholder}
-					className={'jc-input'}
+					className={isError && errors.every(err => err !== "") ? 'jc-input-err' : 'jc-input'}
 					onChange={handleChange}
 				/>
 				<p className="jc-inputLabel">
