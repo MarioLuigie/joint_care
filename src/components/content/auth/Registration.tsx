@@ -10,14 +10,12 @@ import {
 } from '@/components/ui/card'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 
 import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
 import PasswordRequierds from './partials/PasswordRequierds'
 import WarningNotif from '../../shared/notifs/WarningNotif'
 import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
-import { Label } from '@/components/ui/label'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'
 import { registerUser } from '@/lib/api/auth-api'
@@ -25,6 +23,7 @@ import { validateRegistration } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
 import RegisteredAccountWarning from '@/components/content/auth/partials/RegisteredAccountWarning'
+import AcceptStatute from './partials/AcceptStatute'
 
 export default function Registration() {
 	const initFormData: RegistrationFormData = {
@@ -131,13 +130,7 @@ export default function Registration() {
 					<PasswordRequierds errors={formErrors.password} />
 					<div className="flex">
 						<InputCheckbox id="statute">
-							<Label htmlFor="statute">Akceptuję</Label>
-							<Link
-								href="#"
-								className="underline text-sm font-medium text-[#030303]"
-							>
-								Regulamin serwisu
-							</Link>
+							<AcceptStatute />
 						</InputCheckbox>
 					</div>
 				</div>
