@@ -12,10 +12,10 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-import Input from '@/components/shared/Input'
-import InputPassword from '@/components/shared/InputPassword'
-import AlertNotif from '@/components/content/auth/partials/AlertNotif'
-import CheckboxLabel from '@/components/shared/InputCheckBox'
+import Input from '@/components/shared/inputs/Input'
+import InputPassword from '@/components/shared/inputs/InputPassword'
+import AlertNotif from '@/components/shared/notifs/AlertNotif'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import { Label } from '@/components/ui/label'
 import { LoginFormData } from '@/lib/types'
 import { LoginFormErrors as LoginFormErrors } from '@/lib/types'
@@ -23,6 +23,7 @@ import { loginUser } from '@/lib/api/auth-api'
 import { validateLogin } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
+import IncorrectDataAlert from './partials/IncorrectDataAlert'
 
 export default function Login() {
 	const initFormData: LoginFormData = {
@@ -83,8 +84,7 @@ export default function Login() {
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3 pb-5">
 					<AlertNotif isError={isServerError}>
-						<p>Niepoprawne dane do logowania!</p>
-						<p>Uzupełnij ponownie</p>
+						<IncorrectDataAlert />
 					</AlertNotif>
 					<Input
 						handleChange={handleChange}
@@ -106,9 +106,9 @@ export default function Login() {
 						value={formData.password}
 					/>
 				</div>
-				<CheckboxLabel id="remember">
+				<InputCheckbox id="remember">
 					<Label htmlFor="remember">Zapamiętaj mnie</Label>
-				</CheckboxLabel>
+				</InputCheckbox>
 			</CardContent>
 			<CardFooter className="flex flex-col gap-2 pt-5">
 				<Button className="w-full" onClick={handleSubmit}>

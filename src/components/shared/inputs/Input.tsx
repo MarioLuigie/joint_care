@@ -1,43 +1,38 @@
-'use client'
-
 import React from 'react'
-import Image from 'next/image'
-import { useState } from 'react'
 
-import visibilityOff from '/public/assets/icons/visibility-off.svg'
-import Errors from './Errors'
+import Errors from '@/components/shared/Errors'
 
 interface InputProps {
 	value: string
 	errors: string[]
 	name: string
+	type: string
 	placeholder: string
 	label: string
 	isError: boolean
 	handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function InputPassword({
+export default function Input({
 	value,
 	errors,
 	name,
+	type,
 	placeholder,
 	label,
 	isError,
 	handleChange,
 }: InputProps) {
-	const [isPasswordHidden, setIsPasswordHidden] = useState(true)
 
-	const handleShowPassword = () => {
-		setIsPasswordHidden((prev) => !prev)
-	}
-	
+	console.log("***", errors);
+	console.log("$$$", isError);
+
 	return (
 		<>
 			<div className="flex flex-col justify-center items-stretch relative">
 				<input
 					name={name}
-					type={isPasswordHidden ? 'password' : 'text'}
+					type={type}
 					value={value}
 					placeholder={placeholder}
 					className={isError && errors.every(err => err !== "") ? 'jc-input-err' : 'jc-input'}
@@ -47,17 +42,6 @@ export default function InputPassword({
 					{label}
 					<span className="text-[#0092FD]">*</span>
 				</p>
-				<div
-					className="absolute right-5 cursor-pointer"
-					onClick={handleShowPassword}
-				>
-					<Image
-						src={visibilityOff}
-						width={20}
-						height={14}
-						alt="Ikona hasło ukryte"
-					/>
-				</div>
 			</div>
 			<Errors isError={isError} errors={errors} />
 		</>

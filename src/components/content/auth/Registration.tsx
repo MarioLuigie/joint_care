@@ -12,11 +12,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-import Input from '@/components/shared/Input'
-import InputPassword from '@/components/shared/InputPassword'
+import Input from '@/components/shared/inputs/Input'
+import InputPassword from '@/components/shared/inputs/InputPassword'
 import PasswordRequierds from './partials/PasswordRequierds'
-import WarningNotif from '../../shared/WarningNotif'
-import CheckboxLabel from '@/components/shared/InputCheckBox'
+import WarningNotif from '../../shared/notifs/WarningNotif'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import { Label } from '@/components/ui/label'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'
@@ -24,7 +24,7 @@ import { registerUser } from '@/lib/api/auth-api'
 import { validateRegistration } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
-import RegisterWarning from '@/components/content/auth/partials/RegisteredAccountWarning'
+import RegisteredAccountWarning from '@/components/content/auth/partials/RegisteredAccountWarning'
 
 export default function Registration() {
 	const initFormData: RegistrationFormData = {
@@ -98,7 +98,7 @@ export default function Registration() {
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3">
 					<WarningNotif isError={isServerError}>
-						<RegisterWarning />
+						<RegisteredAccountWarning />
 					</WarningNotif>
 					<Input
 						handleChange={handleChange}
@@ -130,7 +130,7 @@ export default function Registration() {
 					/>
 					<PasswordRequierds errors={formErrors.password} />
 					<div className="flex">
-						<CheckboxLabel id="statute">
+						<InputCheckbox id="statute">
 							<Label htmlFor="statute">Akceptuję</Label>
 							<Link
 								href="#"
@@ -138,7 +138,7 @@ export default function Registration() {
 							>
 								Regulamin serwisu
 							</Link>
-						</CheckboxLabel>
+						</InputCheckbox>
 					</div>
 				</div>
 			</CardContent>

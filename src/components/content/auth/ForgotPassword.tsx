@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import Input from '@/components/shared/Input'
-import AlertNotif from '@/components/content/auth/partials/AlertNotif'
+import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import { ForgotPasswordFormErrors as ForgotPasswordFormErrors, ForgotPasswordFormData } from '@/lib/types'
 import { validateForgotPassword } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'

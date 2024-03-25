@@ -5,7 +5,7 @@ interface CheckboxLabelProps {
 	id: string
 }
 
-export default function CheckboxLabel({ children, id }: CheckboxLabelProps) {
+export default function InputCheckbox({ children, id }: CheckboxLabelProps) {
 	return (
 		<div className="flex items-center space-x-2">
 			<Checkbox id={id} />
