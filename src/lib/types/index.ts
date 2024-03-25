@@ -1,3 +1,5 @@
+import { Validator } from "react"
+
 export interface Children {
 	children: React.ReactNode
 }
@@ -16,21 +18,17 @@ export interface Social {
 	alt: string
 }
 
-// Validators
-export interface Validator {
-	error: boolean
-	msg: string
-}
-export interface Validators {
-	[key: string]: Validator[]
+// Errors
+export interface Errors {
+	[key: string]: string[]
 }
 
 // ForgotPassword
 export interface ForgotPasswordFormData {
 	email: string
 }
-export interface ForgotPasswordValidators extends Validators {
-	email: Validator[]
+export interface ForgotPasswordFormErrors extends Errors {
+	email: string[]
 }
 
 // Login
@@ -38,9 +36,9 @@ export interface LoginFormData {
 	email: string
 	password: string
 }
-export interface LoginValidators extends Validators {
-	email: Validator[]
-	password: Validator[]
+export interface LoginFormErrors extends Errors {
+	email: string[]
+	password: string[]
 }
 
 // Registration
@@ -49,8 +47,8 @@ export interface RegistrationFormData {
 	password: string
 	password_confirmation: string
 }
-export interface RegisterValidators extends Validators {
-	email: Validator[]
-	password: Validator[]
-	password_confirmation: Validator[]
+export interface RegistrationFormErrors extends Errors {
+	email: string[]
+	password: string[]
+	password_confirmation: string[]
 }

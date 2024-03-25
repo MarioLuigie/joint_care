@@ -1,11 +1,10 @@
 import React from 'react'
 
-import ErrorMsg from './partials/ErrorMsg'
-import { Validator } from '@/lib/types'
+import Errors from './Errors'
 
 interface InputProps {
 	value: string
-	validators: Validator[]
+	errors: string[]
 	name: string
 	type: string
 	placeholder: string
@@ -16,16 +15,15 @@ interface InputProps {
 
 export default function Input({
 	value,
-	validators,
+	errors,
 	name,
 	type,
 	placeholder,
 	label,
-	isError: isClientError,
+	isError,
 	handleChange,
 }: InputProps) {
 
-	console.log("***", validators.length, validators);
 	return (
 		<>
 			<div className="flex flex-col justify-center items-stretch relative">
@@ -34,7 +32,7 @@ export default function Input({
 					type={type}
 					value={value}
 					placeholder={placeholder}
-					className={isClientError && validators.some(a => a.error === false) ? `jc-input-err` : 'jc-input'}
+					className={'jc-input'}
 					onChange={handleChange}
 				/>
 				<p className="jc-inputLabel">
@@ -42,7 +40,7 @@ export default function Input({
 					<span className="text-[#0092FD]">*</span>
 				</p>
 			</div>
-			<ErrorMsg isClientError={isClientError} validators={validators} />
+			<Errors isError={isError} errors={errors} />
 		</>
 	)
 }

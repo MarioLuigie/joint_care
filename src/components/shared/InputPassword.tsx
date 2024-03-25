@@ -5,12 +5,11 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import visibilityOff from '/public/assets/icons/visibility-off.svg'
-import ErrorMsg from './partials/ErrorMsg'
-import { Validator } from '@/lib/types'
+import Errors from './Errors'
 
 interface InputProps {
 	value: string
-	validators: Validator[]
+	errors: string[]
 	name: string
 	placeholder: string
 	label: string
@@ -20,7 +19,7 @@ interface InputProps {
 
 export default function InputPassword({
 	value,
-	validators,
+	errors: validators,
 	name,
 	placeholder,
 	label,
@@ -60,7 +59,7 @@ export default function InputPassword({
 					/>
 				</div>
 			</div>
-			<ErrorMsg isClientError={isClientError} validators={validators} />
+			<Errors isError={isClientError} errors={validators} />
 		</>
 	)
 }

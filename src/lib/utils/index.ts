@@ -1,13 +1,13 @@
 import { type ClassValue, clsx } from 'clsx'
-import { Validators } from '../types'
+import { Errors } from '../types'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
 }
 
-export function checkValidators(validators: Validators) {
-	return Object.values(validators).every((arrayOfValidators) =>
-	arrayOfValidators.every((validator) => validator.error)
+export function checkErrors(errors: Errors) {
+	return Object.values(errors).every((errorsArray) =>
+		errorsArray.every((error) => error == '')
 	)
 }
