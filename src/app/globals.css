@@ -11,6 +11,10 @@
 		@apply p-3 pt-7 rounded-lg border border-slate-300 h-[60px] focus:border-slate-200 focus:outline-none;
 	}
 
+	.jc-input-err {
+		@apply p-3 pt-7 rounded-lg border border-[#D97C7C] h-[60px] focus:border-slate-200 focus:outline-none;
+	}
+
 	.jc-inputLabel {
 		@apply absolute top-2 left-3 text-[13px] text-[#999999];
 	}

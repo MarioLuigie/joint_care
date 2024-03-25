@@ -24,6 +24,8 @@ export default function Input({
 	isError: isClientError,
 	handleChange,
 }: InputProps) {
+
+	console.log("***", validators.length, validators);
 	return (
 		<>
 			<div className="flex flex-col justify-center items-stretch relative">
@@ -32,7 +34,7 @@ export default function Input({
 					type={type}
 					value={value}
 					placeholder={placeholder}
-					className="jc-input"
+					className={isClientError && validators.some(a => a.error === false) ? `jc-input-err` : 'jc-input'}
 					onChange={handleChange}
 				/>
 				<p className="jc-inputLabel">

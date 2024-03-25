@@ -62,6 +62,7 @@ export default function Login() {
 
 			if (data.errors) {
 				setIsServerError(true)
+				setIsClientError(false)
 			}
 
 			if (data.success) {
