@@ -15,8 +15,8 @@ import Link from 'next/link'
 import Input from '@/components/shared/Input'
 import InputPassword from '@/components/shared/InputPassword'
 import PasswordReqs from './partials/PasswordReqs'
-import WarningNotif from './partials/WarningNotif'
-import CheckboxLabel from '@/components/shared/CheckboxLabel'
+import WarningNotif from '../../shared/WarningNotif'
+import CheckboxLabel from '@/components/shared/InputCheckBox'
 import { Label } from '@/components/ui/label'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'
@@ -24,6 +24,7 @@ import { registerUser } from '@/lib/api/auth-api'
 import { validateRegistration } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
+import RegisterWarning from '@/components/content/auth/partials/RegisterWarning'
 
 export default function Registration() {
 	const initFormData: RegistrationFormData = {
@@ -97,19 +98,7 @@ export default function Registration() {
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3">
 					<WarningNotif isError={isServerError}>
-						<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
-						<div className="flex items-center gap-2 text-jc-text1">
-							<Link href="/auth/login" className="jc-warning-link underline">
-								Zaloguj się
-							</Link>
-							<p className="jc-warning-link">lub</p>
-							<Link
-								href="/auth/forgot-password"
-								className="jc-warning-link underline"
-							>
-								Przypomnij hasło
-							</Link>
-						</div>
+						<RegisterWarning />
 					</WarningNotif>
 					<Input
 						handleChange={handleChange}
