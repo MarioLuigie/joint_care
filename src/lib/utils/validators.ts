@@ -19,6 +19,7 @@ const V = {
 	minLength: (num: number, data: string, msg: string) => data.length >= num ? '' : msg,
 	maxLength: (num: number, data: string, msg: string) => data.length <= num ? '' : msg,
 	match: (data1: string, data2: string, msg: string) =>	data1 === data2 ? '' : msg,
+	checked: (checked: boolean, msg: string) => checked ? '' : msg
 }
 
 // Registration validation
@@ -31,11 +32,14 @@ export const validateRegistration = (data: RegistrationFormData) => {
 			V.lettersize(data.password, errorMsg.PASSWORD_LETTER_SIZE),
 			V.digit(data.password, errorMsg.PASSWORD_DIGIT),
 			V.specialChar(data.password, errorMsg.PASSWORD_SPECIAL_CHAR),
-			V.minLength(8, data.password, errorMsg.PASSWORD_LENGTH),
+			V.minLength(8, data.password, errorMsg.PASSWORD_LENGTH)
 		],
 		password_confirmation: [
-			V.match(data.password, data.password_confirmation,	errorMsg.PASSWORD_CONFIRMATION),
+			V.match(data.password, data.password_confirmation,	errorMsg.PASSWORD_CONFIRMATION)
 		],
+		accept_statute: [
+			V.checked(data.accept_statute, errorMsg.ACCEPT_STATUTE)
+		]
 	}
 	return errors
 }
@@ -48,7 +52,7 @@ export const validateLogin = (data: LoginFormData) => {
 		],
 		password: [
 			V.minLength(1, data.password, errorMsg.PASSWORD)
-		],
+		]
 	}
 	return errors
 }
@@ -58,7 +62,7 @@ export const validateForgotPassword = (data: ForgotPasswordFormData) => {
 	const errors: ForgotPasswordFormErrors = {
 		email: [
 			V.email(data.email, errorMsg.EMAIL)
-		],
+		]
 	}
 	return errors
 }

@@ -8,6 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 
 export function checkErrors(errors: Errors) {
 	return Object.values(errors).every((errorsArray) =>
-		errorsArray.every((error) => error == '')
+		errorsArray.every((error) => error === '')
 	)
 }

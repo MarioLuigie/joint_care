@@ -5,7 +5,7 @@ export default function AcceptStatute() {
 
   return (
     <>
-      <Label htmlFor="statute">Akceptuję</Label>
+      <Label htmlFor="accept_statute">Akceptuję</Label>
       <Link
         href="#"
         className="underline text-sm font-medium text-[#030303]"

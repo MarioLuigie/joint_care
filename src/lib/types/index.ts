@@ -46,9 +46,11 @@ export interface RegistrationFormData {
 	email: string
 	password: string
 	password_confirmation: string
+	accept_statute: boolean
 }
 export interface RegistrationFormErrors extends Errors {
 	email: string[]
 	password: string[]
 	password_confirmation: string[]
+	accept_statute: string[]
 }

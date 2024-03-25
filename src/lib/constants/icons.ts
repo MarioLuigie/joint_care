@@ -18,7 +18,7 @@ export const socials: Social[] = [
 		href: 'https://instagram.pl',
 		size: 27,
 		alt: 'Link do Instagram'
-	},
+	}
 ]
 
 export const languages: Language[] = [
@@ -27,5 +27,5 @@ export const languages: Language[] = [
 		src: '/assets/icons/poland.svg',
 		size: 20,
 		alt: 'Polish Language'
-	},
+	}
 ]

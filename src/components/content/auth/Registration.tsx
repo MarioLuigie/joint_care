@@ -30,6 +30,7 @@ export default function Registration() {
 		email: '',
 		password: '',
 		password_confirmation: '',
+		accept_statute: false
 	}
 
 	const initFormErrors: RegistrationFormErrors = {
@@ -46,6 +47,9 @@ export default function Registration() {
 		password_confirmation: [
 			errorMsg.EMPTY
 		],
+		accept_statute: [
+			errorMsg.ACCEPT_STATUTE
+		]
 	}
 
 	const router = useRouter()
@@ -61,6 +65,15 @@ export default function Registration() {
 		const updatedFormData = {
 			...formData,
 			[e.target.name]: e.target.value,
+		}
+		setFormErrors(validateRegistration(updatedFormData))
+		setFormData(updatedFormData)
+	}
+
+	const handleCheck = (isChecked: boolean) => {
+		const updatedFormData = {
+			...formData,
+			accept_statute: isChecked
 		}
 		setFormErrors(validateRegistration(updatedFormData))
 		setFormData(updatedFormData)
@@ -128,11 +141,15 @@ export default function Registration() {
 						value={formData.password_confirmation}
 					/>
 					<PasswordRequierds errors={formErrors.password} />
-					<div className="flex">
-						<InputCheckbox id="statute">
-							<AcceptStatute />
-						</InputCheckbox>
-					</div>
+					<InputCheckbox 
+						id="accept_statute" 
+						name='accept_statute' 
+						handleCheck={handleCheck} 
+						isError={isClientError} 
+						errors={formErrors.accept_statute}
+					>
+						<AcceptStatute />
+					</InputCheckbox>
 				</div>
 			</CardContent>
 			<CardFooter className="flex flex-col pt-5">

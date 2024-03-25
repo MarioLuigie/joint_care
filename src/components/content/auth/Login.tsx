@@ -106,7 +106,7 @@ export default function Login() {
 						value={formData.password}
 					/>
 				</div>
-				<InputCheckbox id="remember">
+				<InputCheckbox id="remember" name='remember' handleCheck={() => {}} isError={isClientError} errors={[]}>
 					<Label htmlFor="remember">Zapamiętaj mnie</Label>
 				</InputCheckbox>
 			</CardContent>
