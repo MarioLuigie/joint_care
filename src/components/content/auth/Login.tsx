@@ -43,6 +43,7 @@ export default function Login() {
 
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const [isClientError, setIsClientError] = useState<boolean>(false)
+	const [loginFailedCount, setLoginFailedCount] = useState(0);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
@@ -64,11 +65,19 @@ export default function Login() {
 			if (data.errors) {
 				setIsServerError(true)
 				setIsClientError(false)
+				setLoginFailedCount(prev => prev + 1)
+			}
+
+			if(loginFailedCount === 3) {
+				router.push('/auth/account-blocked')
 			}
 
 			if (data.success) {
+				setLoginFailedCount(0)
 				router.push('/dashboard')
 			}
+
+			console.log("***", loginFailedCount);
 		} else {
 			console.log('INVALID LOGINFORM')
 			setIsClientError(true)
