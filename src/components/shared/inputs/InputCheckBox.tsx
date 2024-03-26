@@ -1,19 +1,22 @@
 import { Checkbox } from '@/components/ui/checkbox'
 import Errors from '@/components/shared/Errors'
+import { Label } from "@/components/ui/label";
 
 interface InputCheckboxProps {
-	children: React.ReactNode
+	label: React.ReactNode
 	id: string
 	name: string
-	handleCheck: (isChecked: boolean) => void
+	checked: boolean
+	handleCheck: (name: string, id: string) => (isChecked: boolean) => void
 	isError: boolean
 	errors: string[]
 }
 
 export default function InputCheckbox({ 
-	children, 
+	label,
 	id, 
 	name, 
+	checked,
 	handleCheck, 
 	isError, 
 	errors}: InputCheckboxProps) {
@@ -21,10 +24,13 @@ export default function InputCheckbox({
 	return (
 		<>
 			<div className="flex items-center space-x-2">
-				<Checkbox id={id} name={name} 
-					onCheckedChange={handleCheck}
+				<Checkbox 
+					id={id} 
+					name={name} 
+					checked={checked}
+					onCheckedChange={handleCheck(name, id)}
 				/>
-				{children}
+				<Label htmlFor={id}>{label}</Label>
 			</div>
 			<Errors isError={isError} errors={errors} />
 		</>

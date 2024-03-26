@@ -83,9 +83,10 @@ export default function Login() {
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
 				<div className="flex flex-col gap-3 pb-5">
-					<AlertNotif isError={isServerError}>
-						<IncorrectDataAlert />
-					</AlertNotif>
+					<AlertNotif 
+						isError={isServerError} 
+						content={<IncorrectDataAlert />}
+					/>
 					<Input
 						handleChange={handleChange}
 						label="Adres e-mail"
@@ -106,9 +107,15 @@ export default function Login() {
 						value={formData.password}
 					/>
 				</div>
-				<InputCheckbox id="remember" name='remember' handleCheck={() => {}} isError={isClientError} errors={[]}>
-					<Label htmlFor="remember">Zapamiętaj mnie</Label>
-				</InputCheckbox>
+				<InputCheckbox 
+					id="remember" 
+					name='remember' 
+					checked={false} 
+					handleCheck={() => () => {}} 
+					isError={isClientError} 
+					errors={[]} 
+					label='Zapamiętaj mnie'
+				/>
 			</CardContent>
 			<CardFooter className="flex flex-col gap-2 pt-5">
 				<Button className="w-full" onClick={handleSubmit}>

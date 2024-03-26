@@ -29,3 +29,4 @@ export const languages: Language[] = [
 		alt: 'Polish Language'
 	}
 ]
+

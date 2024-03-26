@@ -14,7 +14,6 @@ import { useRouter } from 'next/navigation'
 import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
 import PasswordRequierds from './partials/PasswordRequierds'
-import WarningNotif from '../../shared/notifs/WarningNotif'
 import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'
@@ -24,6 +23,7 @@ import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
 import RegisteredAccountWarning from '@/components/content/auth/partials/RegisteredAccountWarning'
 import AcceptStatute from './partials/AcceptStatute'
+import WarningNotif from '@/components/shared/notifs/WarningNotif'
 
 export default function Registration() {
 	const initFormData: RegistrationFormData = {
@@ -70,13 +70,13 @@ export default function Registration() {
 		setFormData(updatedFormData)
 	}
 
-	const handleCheck = (isChecked: boolean) => {
+	const handleCheck = (name: string) => (isChecked: boolean) => {
 		const updatedFormData = {
 			...formData,
-			accept_statute: isChecked
+			[name]: isChecked
 		}
-		setFormErrors(validateRegistration(updatedFormData))
 		setFormData(updatedFormData)
+		setFormErrors(validateRegistration(updatedFormData))
 	}
 
 	const handleSubmit = async () => {
@@ -108,10 +108,10 @@ export default function Registration() {
 				</CardDescription>
 			</CardHeader>
 			<CardContent className="flex flex-col gap-3">
-				<div className="flex flex-col gap-3">
-					<WarningNotif isError={isServerError}>
-						<RegisteredAccountWarning />
-					</WarningNotif>
+					<WarningNotif 
+						isError={isServerError}
+						content={<RegisteredAccountWarning />}	
+					/>
 					<Input
 						handleChange={handleChange}
 						label="Adres e-mail"
@@ -144,13 +144,12 @@ export default function Registration() {
 					<InputCheckbox 
 						id="accept_statute" 
 						name='accept_statute' 
+						checked={formData.accept_statute}
 						handleCheck={handleCheck} 
 						isError={isClientError} 
 						errors={formErrors.accept_statute}
-					>
-						<AcceptStatute />
-					</InputCheckbox>
-				</div>
+						label={<AcceptStatute />}
+					/>
 			</CardContent>
 			<CardFooter className="flex flex-col pt-5">
 				<Button onClick={handleSubmit} className="w-full">
