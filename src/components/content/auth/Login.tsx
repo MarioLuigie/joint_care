@@ -23,7 +23,8 @@ import { loginUser } from '@/lib/api/auth-api'
 import { validateLogin } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
-import IncorrectDataAlert from './partials/IncorrectDataAlert'
+import IncorrectDataAlert from './partials/notifs/IncorrectDataAlert'
+import { routes } from '@/lib/constants'
 
 export default function Login() {
 	const initFormData: LoginFormData = {
@@ -69,12 +70,12 @@ export default function Login() {
 			}
 
 			if(loginFailedCount === 3) {
-				router.push('/auth/account-blocked')
+				router.push(routes.ACCOUNT_BLOCKED)
 			}
 
 			if (data.success) {
 				setLoginFailedCount(0)
-				router.push('/dashboard')
+				router.push(routes.DASHBOARD)
 			}
 
 			console.log("***", loginFailedCount);

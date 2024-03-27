@@ -6,6 +6,8 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
+import { routes } from '@/lib/constants'
+
 import Link from 'next/link'
 
 export default function LoginTrigger() {
@@ -16,7 +18,7 @@ export default function LoginTrigger() {
 				<CardDescription>Chcę się zalogować</CardDescription>
 			</CardHeader>
 			<CardFooter className="flex flex-col gap-3">
-				<Link href="/auth/login">
+				<Link href={routes.LOGIN}>
 					<Button variant="outline" className="w-full">
 						Zaloguj się
 					</Button>

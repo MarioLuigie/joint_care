@@ -8,6 +8,8 @@ import {
 } from '@/components/ui/card'
 import Link from 'next/link'
 
+import { routes } from '@/lib/constants'
+
 export default function RegisterSuccess() {
 	return (
 		<Card className="auth-card">
@@ -19,7 +21,7 @@ export default function RegisterSuccess() {
 				<p>Zaloguj się aby przejść do serwisu.</p>
 			</CardContent>
 			<CardFooter className="flex flex-col gap-3 pt-7">
-				<Link href="/auth/login">
+				<Link href={routes.LOGIN}>
 					<Button className="w-full">Zaloguj</Button>
 				</Link>
 			</CardFooter>

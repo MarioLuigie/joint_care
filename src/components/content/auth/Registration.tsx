@@ -21,9 +21,10 @@ import { registerUser } from '@/lib/api/auth-api'
 import { validateRegistration } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
-import RegisteredAccountWarning from '@/components/content/auth/partials/RegisteredAccountWarning'
+import RegisteredAccountWarning from '@/components/content/auth/partials/notifs/RegisteredAccountWarning'
 import AcceptStatute from './partials/AcceptStatute'
 import WarningNotif from '@/components/shared/notifs/WarningNotif'
+import { routes } from '@/lib/constants'
 
 export default function Registration() {
 	const initFormData: RegistrationFormData = {
@@ -91,7 +92,7 @@ export default function Registration() {
 			}
 
 			if (data.success) {
-				router.push('/auth/register-success')
+				router.push(routes.REGISTER_SUCCESS)
 			}
 		} else {
 			console.log('INVALID REGISTER FORM')

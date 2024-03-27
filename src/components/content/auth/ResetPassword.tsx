@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/card'
 import Link from 'next/link'
 
-import LinkNotif from './partials/LinkNotif'
+import LinkNotif from './partials/notifs/AccountToActivateInfo'
 
 export default function ResetPassword() {
 	return (

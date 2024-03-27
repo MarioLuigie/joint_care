@@ -8,6 +8,8 @@ import {
 } from '@/components/ui/card'
 import Link from 'next/link'
 
+import { routes } from '@/lib/constants'
+
 export default function RegistrationTrigger() {
 	return (
 		<Card className="auth-card">
@@ -18,7 +20,7 @@ export default function RegistrationTrigger() {
 				</CardDescription>
 			</CardHeader>
 			<CardFooter className="flex flex-col gap-3">
-				<Link href="/auth/register">
+				<Link href={routes.REGISTER}>
 					<Button variant="outline" className="w-full">
 						Załóż konto
 					</Button>

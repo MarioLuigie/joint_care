@@ -9,3 +9,11 @@ export const errorMsg = {
 	EMPTY: 'Uzupełnij pole formularza',
 	ACCEPT_STATUTE: 'Zaakceptuj Regulamin serwisu'
 }
+
+export const routes = {
+	REGISTER: '/auth/register',
+	LOGIN: '/auth/login',
+	DASHBOARD: '/dasboard',
+	ACCOUNT_BLOCKED: '/auth/account-blocked',
+	REGISTER_SUCCESS: '/auth/register-success'
+}
