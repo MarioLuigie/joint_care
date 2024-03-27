@@ -13,6 +13,7 @@ export const errorMsg = {
 export const routes = {
 	REGISTER: '/auth/register',
 	LOGIN: '/auth/login',
+	FORGOT_PASSWORD: '/auth/forgot-password',
 	DASHBOARD: '/dasboard',
 	ACCOUNT_BLOCKED: '/auth/account-blocked',
 	REGISTER_SUCCESS: '/auth/register-success'

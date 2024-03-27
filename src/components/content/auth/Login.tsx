@@ -69,7 +69,7 @@ export default function Login() {
 				setLoginFailedCount(prev => prev + 1)
 			}
 
-			if(loginFailedCount === 3) {
+			if(loginFailedCount === 12) {
 				router.push(routes.ACCOUNT_BLOCKED)
 			}
 

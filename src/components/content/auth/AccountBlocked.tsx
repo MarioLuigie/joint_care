@@ -10,6 +10,7 @@ import {
 import Link from 'next/link'
 
 import LoginAgain from '@/components/content/auth/partials/LoginAgainTiming'
+import { routes } from '@/lib/constants'
 
 export default function AccountBlocked() {
 	return (
@@ -27,7 +28,7 @@ export default function AccountBlocked() {
 			<CardFooter className="flex flex-col gap-3 pt-7">
 				<Button className="w-full">Zaloguj</Button>
 				<Link
-					href="/auth/forgot-password"
+					href={routes.FORGOT_PASSWORD}
 					className="flex-center underline text-sm text-jc-text4"
 				>
 					<p>Zapomniałem hasło</p>
