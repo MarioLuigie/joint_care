@@ -10,7 +10,7 @@ interface AlertNotifProps {
 export default function AlertNotif({ isError, content }: AlertNotifProps) {
 	if(isError) {
 		return (
-			<div className="flex-start gap-3 bg-[#FDF4F5] p-4 mb-2 rounded-lg">
+			<div className="flex-start gap-3 bg-[#FDF4F5] p-4  rounded-lg">
 				<div style={{minWidth: '25px'}}>
 					<Image src={closeErrIcon} alt="Ikona błędu wprowadzonych danych" />
 				</div>
