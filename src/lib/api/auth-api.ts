@@ -1,6 +1,6 @@
 import { RegistrationFormData, LoginFormData } from '@/lib/types'
 
-export const registerUser = async (data: RegistrationFormData) => {
+export const apiRegisterUser = async (data: RegistrationFormData) => {
   const url = new URL(
     "https://jointcare.azurewebsites.net/api/v1/auth/register"
   )
@@ -32,7 +32,7 @@ export const registerUser = async (data: RegistrationFormData) => {
   }
 };
 
-export const loginUser = async (data: LoginFormData) => {
+export const apiLoginUser = async (data: LoginFormData) => {
   const url = new URL(
     "https://jointcare.azurewebsites.net/api/v1/auth/login"
   )

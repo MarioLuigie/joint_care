@@ -10,7 +10,7 @@ import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import { LoginFormData } from '@/lib/types'
 import { LoginFormErrors as LoginFormErrors } from '@/lib/types'
-import { loginUser } from '@/lib/api/auth-api'
+import { apiLoginUser } from '@/lib/api/auth-api'
 import { validateLogin } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
@@ -52,7 +52,7 @@ export default function LoginForm() {
     e.preventDefault()
 
 		if (checkErrors(formErrors)) {
-			const data = await loginUser(formData)
+			const data = await apiLoginUser(formData)
 
 			console.log('Login:', data)
 

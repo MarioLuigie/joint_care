@@ -9,7 +9,7 @@ import PasswordRequierds from '@/components/content/auth/partials/PasswordRequie
 import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'
-import { registerUser } from '@/lib/api/auth-api'
+import { apiRegisterUser } from '@/lib/api/auth-api'
 import { validateRegistration } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
@@ -76,7 +76,7 @@ export default function RegistrationForm() {
     e.preventDefault()
 
 		if (checkErrors(formErrors)) {
-			const data = await registerUser(formData)
+			const data = await apiRegisterUser(formData)
 
 			if (data.errors && data.errors.email) {
 				setIsServerError(true)
