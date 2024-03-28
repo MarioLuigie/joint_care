@@ -1,4 +1,3 @@
-import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
 export default function AcceptStatute() {
