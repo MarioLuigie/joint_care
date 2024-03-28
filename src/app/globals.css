@@ -12,7 +12,7 @@
 	}
 
 	.jc-input-err {
-		@apply p-3 pt-7 rounded-lg border border-[#D97C7C] h-[60px] focus:border-slate-200 focus:outline-none;
+		@apply p-3 pt-7 rounded-lg border border-[#D97C7C] h-[60px] focus:border-[#c4a5a5] focus:outline-none;
 	}
 
 	.jc-inputLabel {
