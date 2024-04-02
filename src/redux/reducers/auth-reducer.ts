@@ -9,11 +9,11 @@ interface AuthAction {
   data?: any
 }
 
-const initState: AuthState = {
+const initAuthState: AuthState = {
   isLogout: false
 }
 
-const authReducer = (state: AuthState = initState, action: AuthAction): AuthState => {
+const authReducer = (state: AuthState = initAuthState, action: AuthAction): AuthState => {
   switch (action.type) {
 
     case type.LOGOUT:
