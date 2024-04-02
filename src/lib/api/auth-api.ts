@@ -1,10 +1,12 @@
+import axios from 'axios'
+
 import { RegistrationFormData, LoginFormData } from '@/lib/types'
 
+const baseUrl = 'https://jointcare.azurewebsites.net/api/v1/auth'
+const API = axios.create({baseURL: baseUrl})
+
 export const apiRegisterUser = async (data: RegistrationFormData) => {
-  const url = new URL(
-    "https://jointcare.azurewebsites.net/api/v1/auth/register"
-  )
-  
+
   const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -17,14 +19,8 @@ export const apiRegisterUser = async (data: RegistrationFormData) => {
   }
 
   try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body)
-    })
+    const { data } = await API.post('/register', body, { headers })
     
-    const data = await res.json()
-
     return data
 
   } catch (err) {
@@ -33,9 +29,6 @@ export const apiRegisterUser = async (data: RegistrationFormData) => {
 };
 
 export const apiLoginUser = async (data: LoginFormData) => {
-  const url = new URL(
-    "https://jointcare.azurewebsites.net/api/v1/auth/login"
-  )
 
   const headers = {
       "Content-Type": "application/json",
@@ -48,13 +41,7 @@ export const apiLoginUser = async (data: LoginFormData) => {
   }
 
   try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body)
-    })
-
-    const data = await res.json()
+    const { data } = await API.post('/login', body, { headers })
 
     return data
 
@@ -64,9 +51,6 @@ export const apiLoginUser = async (data: LoginFormData) => {
 }
 
 export const apiLogoutUser = async (userToken: string) => {
-  const url = new URL(
-    "https://jointcare.azurewebsites.net/api/v1/auth/logout"
-  )
 
   const headers = {
     "Authorization": `Bearer ${userToken}`,
@@ -75,12 +59,7 @@ export const apiLogoutUser = async (userToken: string) => {
   }
 
   try {
-    const res = await fetch(url, {
-      method: 'POST',
-      headers
-    })
-
-    const data = await res.json()
+    const { data } = await API.post('/logout', null, { headers })
 
     return data
     
