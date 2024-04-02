@@ -1,21 +1,22 @@
 'use client'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-import Input from '@/components/shared/inputs/Input'
-import InputPassword from '@/components/shared/inputs/InputPassword'
-import AlertNotif from '@/components/shared/notifs/AlertNotif'
-import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
+import { Button } from '@/components/ui/button'
 import { LoginFormData } from '@/lib/types'
 import { LoginFormErrors as LoginFormErrors } from '@/lib/types'
 import { apiLoginUser } from '@/lib/api/auth-api'
 import { validateLogin } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
-import IncorrectDataAlert from '@/components/content/auth/partials/notifs/IncorrectDataAlert'
 import { routes } from '@/lib/constants'
+import { useAppContext } from '@/context'
+import Input from '@/components/shared/inputs/Input'
+import InputPassword from '@/components/shared/inputs/InputPassword'
+import AlertNotif from '@/components/shared/notifs/AlertNotif'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
+import IncorrectDataAlert from '@/components/content/auth/partials/notifs/IncorrectDataAlert'
 
 export default function LoginForm() {
 	const initFormData: LoginFormData = {
@@ -35,7 +36,12 @@ export default function LoginForm() {
 
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const [isClientError, setIsClientError] = useState<boolean>(false)
-	const [loginFailedCount, setLoginFailedCount] = useState(0);
+	const { setUser }: any = useAppContext()
+
+	useEffect(() => {
+			setUser(null)
+			localStorage.removeItem('profile')
+		}, [])
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
@@ -53,25 +59,34 @@ export default function LoginForm() {
 
 		if (checkErrors(formErrors)) {
 			const data = await apiLoginUser(formData)
+			//success = true =>
+			// {success: true, message: 'User logged in.', data: {…}}
+			// data.data = {token, user}
+
+			//success = false =>
+			//{success: false, message: 'Too Many Requests'}
 
 			console.log('Login:', data)
 
 			if (data.errors) {
 				setIsServerError(true)
 				setIsClientError(false)
-				setLoginFailedCount(prev => prev + 1)
 			}
 
-			if(loginFailedCount === 12) {
+			if(!data.success) {
 				router.push(routes.ACCOUNT_BLOCKED)
 			}
 
 			if (data.success) {
-				setLoginFailedCount(0)
-				router.push(routes.DASHBOARD)
+				localStorage.setItem("profile", JSON.stringify(data))
+				const profile = localStorage.getItem('profile')
+
+				if (profile !== null) {
+						setUser(JSON.parse(profile))
+						router.push(routes.DASHBOARD)
+				}
 			}
 
-			console.log("***", loginFailedCount);
 		} else {
 			console.log('INVALID LOGINFORM')
 			setIsClientError(true)

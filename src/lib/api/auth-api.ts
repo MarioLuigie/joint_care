@@ -62,3 +62,29 @@ export const apiLoginUser = async (data: LoginFormData) => {
     console.error('There was a problem with the login request:', err)
   }
 }
+
+export const apiLogoutUser = async (userToken: string) => {
+  const url = new URL(
+    "https://jointcare.azurewebsites.net/api/v1/auth/logout"
+  )
+
+  const headers = {
+    "Authorization": `Bearer ${userToken}`,
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+  }
+
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers
+    })
+
+    const data = await res.json()
+
+    return data
+    
+  } catch (err) {
+    console.error('There was a problem with the logout request:', err)
+  }
+}

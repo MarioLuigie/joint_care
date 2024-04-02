@@ -34,13 +34,14 @@ export default function ForgotPasswordForm() {
 		setFormData(updatedFormData)
 	}
 
-	const handleSubmit = () => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsClientError(true)
 		console.log('Send')
-		setIsClientError(true)
 	}
 
 	return (
-    <form className="flex flex-col gap-3">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <AlertNotif 
         isError={isServerError}
         content={<AccountNotExistAlert />}
@@ -55,7 +56,7 @@ export default function ForgotPasswordForm() {
         errors={formErrors.email}
         value={formData.email}
       />
-      <Button className="w-full" onClick={handleSubmit}>
+      <Button className="w-full">
         Wyślij
       </Button>
       <Link
