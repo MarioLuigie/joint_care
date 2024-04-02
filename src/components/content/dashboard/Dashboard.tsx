@@ -12,12 +12,17 @@ export default function Dashboard() {
 	const { user }: any = useAppContext()
 
 	const handleLogout = async () => {
-		const data = await apiLogoutUser(user?.data?.token)
+		try {
+			const data = await apiLogoutUser(user.data.token)
 
-		if(data.success) {
-			router.push(routes.LOGIN)
+			if(data.success) {
+				router.push(routes.LOGIN)
+			}
+
+			console.log('Logout:', data)
+		} catch (err: any) {
+			console.error("There was a problem with authorization:", err)
 		}
-		console.log('Logout', data)
 	}
 
 	return (

@@ -21,8 +21,7 @@ import IncorrectDataAlert from '@/components/content/auth/partials/notifs/Incorr
 export default function LoginForm() {
 	const initFormData: LoginFormData = {
 		email: '',
-		password: '',
-		remember_me: false
+		password: ''
 	}
 
 	const initFormErrors: LoginFormErrors = {
@@ -34,6 +33,7 @@ export default function LoginForm() {
 
 	const [formData, setFormData] = useState<LoginFormData>(initFormData)
 	const [formErrors, setFormErrors] = useState<LoginFormErrors>(initFormErrors)
+	const [rememberMe, setRememberMe] = useState<boolean>(false)
 
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const [isClientError, setIsClientError] = useState<boolean>(false)
@@ -55,12 +55,8 @@ export default function LoginForm() {
 		setIsServerError(false)
 	}
 
-	const handleCheck = (name: string) => (isChecked: boolean) => {
-		const updatedFormData = {
-			...formData,
-			[name]: isChecked
-		}
-		setFormData(updatedFormData)
+	const handleCheck = () => (isChecked: boolean) => {
+		setRememberMe(isChecked)
 	}
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -82,7 +78,7 @@ export default function LoginForm() {
 				setIsClientError(false)
 			}
 
-			if(!data.success) {
+			if(!data.success && !data.errors) {
 				router.push(routes.ACCOUNT_BLOCKED)
 			}
 
@@ -95,7 +91,6 @@ export default function LoginForm() {
 						router.push(routes.DASHBOARD)
 				}
 			}
-
 		} else {
 			console.log('INVALID LOGINFORM')
 			setIsClientError(true)
@@ -133,7 +128,7 @@ export default function LoginForm() {
           <InputCheckbox 
             id="remember_me" 
             name='remember_me' 
-            checked={formData.remember_me} 
+            checked={rememberMe} 
             handleCheck={handleCheck} 
             isError={isClientError} 
             errors={[]} 

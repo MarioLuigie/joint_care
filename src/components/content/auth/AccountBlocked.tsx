@@ -23,7 +23,7 @@ export default function AccountBlocked() {
 
 	const initRemainingTime: number = Number(currentRemainingTime) || 180 
 	
-	const [ remainingTime, setRemainingTime] = useState<number>(initRemainingTime)
+	const [remainingTime, setRemainingTime] = useState<number>(initRemainingTime)
 	const router = useRouter()
 
 	

@@ -23,10 +23,14 @@ export const apiRegisterUser = async (data: RegistrationFormData) => {
     
     return data
 
-  } catch (err) {
-    console.error('There was a problem with the registration request:', err)
+  } catch (err: any) {
+    if(err.response.data) {
+      return err.response.data
+    } else {
+      console.error('There was a problem with the registration request:', err)
+    }
   }
-};
+}
 
 export const apiLoginUser = async (data: LoginFormData) => {
 
@@ -45,15 +49,19 @@ export const apiLoginUser = async (data: LoginFormData) => {
 
     return data
 
-  } catch (err) {
-    console.error('There was a problem with the login request:', err)
+  } catch (err: any) {
+    if(err.response.data) {
+      return err.response.data
+    } else {
+      console.error('There was a problem with the login request:', err)
+    }
   }
 }
 
-export const apiLogoutUser = async (userToken: string) => {
+export const apiLogoutUser = async (token: string) => {
 
   const headers = {
-    "Authorization": `Bearer ${userToken}`,
+    "Authorization": `Bearer ${token}`,
     "Content-Type": "application/json",
     "Accept": "application/json",
   }
