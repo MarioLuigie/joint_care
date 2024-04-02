@@ -18,3 +18,7 @@ export const routes = {
 	ACCOUNT_BLOCKED: '/auth/account-blocked',
 	REGISTER_SUCCESS: '/auth/register-success'
 }
+
+export const actions = {
+	LOGOUT: 'LOGOUT'
+}
