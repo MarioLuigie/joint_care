@@ -35,6 +35,7 @@ export interface ForgotPasswordFormErrors extends Errors {
 export interface LoginFormData {
 	email: string
 	password: string
+	remember_me: boolean
 }
 export interface LoginFormErrors extends Errors {
 	email: string[]

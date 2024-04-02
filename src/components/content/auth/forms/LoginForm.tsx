@@ -22,11 +22,12 @@ export default function LoginForm() {
 	const initFormData: LoginFormData = {
 		email: '',
 		password: '',
+		remember_me: false
 	}
 
 	const initFormErrors: LoginFormErrors = {
 		email: [errorMsg.EMPTY],
-		password: [errorMsg.EMPTY],
+		password: [errorMsg.EMPTY]
 	}
 
 	const router = useRouter()
@@ -52,6 +53,14 @@ export default function LoginForm() {
 		setFormErrors(validateLogin(updatedFormData))
 		setFormData(updatedFormData)
 		setIsServerError(false)
+	}
+
+	const handleCheck = (name: string) => (isChecked: boolean) => {
+		const updatedFormData = {
+			...formData,
+			[name]: isChecked
+		}
+		setFormData(updatedFormData)
 	}
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -122,10 +131,10 @@ export default function LoginForm() {
         </div>
         <div className='pt-4'>
           <InputCheckbox 
-            id="remember" 
-            name='remember' 
-            checked={false} 
-            handleCheck={() => () => {}} 
+            id="remember_me" 
+            name='remember_me' 
+            checked={formData.remember_me} 
+            handleCheck={handleCheck} 
             isError={isClientError} 
             errors={[]} 
             label='Zapamiętaj mnie'
