@@ -4,11 +4,12 @@ import { routes } from '@/lib/constants'
 import { useRouter } from 'next/navigation'
 import { apiLogoutUser } from '@/lib/api/auth-api'
 import { getUserProfile } from '@/lib/utils'
+import { User } from '@/lib/types'
 
 export default function Dashboard() {
 
 	const router = useRouter()
-	const user = getUserProfile()
+	const user: User = getUserProfile()
 
 	const handleLogout = async () => {
 		if (user !== null) {
