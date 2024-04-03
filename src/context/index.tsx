@@ -19,20 +19,26 @@ export const useAppContext = () => {
 }
 
 export const ContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const storedUser = localStorage.getItem('profile')
+  // const storedUser: string | null = localStorage.getItem('profile')
+  // console.log('Stored user:', storedUser)
+  // console.log('Stored user:', storedUser === null)
 
-  const parsedUser = () => {
-    try {
-      if (storedUser) {
-        return JSON.parse(storedUser)
-      }
-    } catch (err) {
-      console.error('Error parsing data from localStorage:', err)
-    }
-    return null
-  }
+  // const parsedUser = () => {
+  //   try {
+  //     if (storedUser) {
+  //       const parsed = JSON.parse(storedUser)
+  //       console.log('Parsed user:', parsed)
+  //       return parsed
+  //     }
+  //   } catch (err) {
+  //     console.error('Error parsing data from localStorage:', err)
+  //   }
+  //   return null
+  // }
 
-  const [user, setUser] = useState<User | null>(parsedUser)
+  // console.log("Parsed user:", parsedUser());
+
+  const [user, setUser] = useState<User | null>(null)
 
   const contextValue: AppContext = {
     user,
