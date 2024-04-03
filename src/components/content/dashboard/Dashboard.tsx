@@ -3,29 +3,27 @@ import { Button } from '@/components/ui/button'
 import { routes } from '@/lib/constants'
 import { useRouter } from 'next/navigation'
 import { apiLogoutUser } from '@/lib/api/auth-api'
-import { useAppContext } from '@/context'
-import { useDispatch } from 'react-redux'
-import { logoutUser } from '@/redux/slices/authSlice'
+import { getUserProfile } from '@/lib/utils'
 
 export default function Dashboard() {
 
 	const router = useRouter()
-	const { user }: any = useAppContext()
-	const dispatch = useDispatch()
+	const user = getUserProfile()
 
 	const handleLogout = async () => {
-		try {
-			const data = await apiLogoutUser(user.data.token)
-
-			if(data.success) {
-				router.push(routes.LOGIN)
-				
-				dispatch(logoutUser(true))
+		if (user !== null) {
+			try {
+				const data = await apiLogoutUser(user.data.token)
+	
+				if (data.success) {
+					router.push(routes.LOGIN)
+					localStorage.removeItem('profile')
+				}
+	
+				console.log('Logout:', data)
+			} catch (err: any) {
+				console.error("There was a problem with authorization:", err)
 			}
-
-			console.log('Logout:', data)
-		} catch (err: any) {
-			console.error("There was a problem with authorization:", err)
 		}
 	}
 

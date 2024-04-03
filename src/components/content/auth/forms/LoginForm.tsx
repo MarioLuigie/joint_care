@@ -1,8 +1,7 @@
 'use client'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useSelector } from 'react-redux'
 
 import { Button } from '@/components/ui/button'
 import { LoginFormData } from '@/lib/types'
@@ -12,12 +11,12 @@ import { validateLogin } from '@/lib/utils/validators'
 import { errorMsg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
 import { routes } from '@/lib/constants'
-import { useAppContext } from '@/context'
 import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import IncorrectDataAlert from '@/components/content/auth/partials/notifs/IncorrectDataAlert'
+import { setUserProfile } from '@/lib/utils'
 
 export default function LoginForm() {
 	const initFormData: LoginFormData = {
@@ -38,13 +37,6 @@ export default function LoginForm() {
 
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const [isClientError, setIsClientError] = useState<boolean>(false)
-	const { setUser }: any = useAppContext()
-	const { isLogout } = useSelector((store: any) => store.auth)
-
-	useEffect(() => {
-			setUser(null)
-			localStorage.removeItem('profile')
-		}, [])
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
@@ -85,11 +77,10 @@ export default function LoginForm() {
 			}
 
 			if (data.success) {
-				localStorage.setItem("profile", JSON.stringify(data))
+				setUserProfile(data)
 				const profile = localStorage.getItem('profile')
 
 				if (profile !== null) {
-						setUser(JSON.parse(profile))
 						router.push(routes.DASHBOARD)
 				}
 			}
@@ -98,8 +89,6 @@ export default function LoginForm() {
 			setIsClientError(true)
 		}
 	}
-
-	console.log('Is Logged out?', isLogout)
 
 	return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
