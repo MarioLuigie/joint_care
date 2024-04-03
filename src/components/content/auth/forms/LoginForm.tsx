@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
 
 import { Button } from '@/components/ui/button'
 import { LoginFormData } from '@/lib/types'
@@ -38,6 +39,7 @@ export default function LoginForm() {
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const [isClientError, setIsClientError] = useState<boolean>(false)
 	const { setUser }: any = useAppContext()
+	const { isLogout } = useSelector((store: any) => store.auth)
 
 	useEffect(() => {
 			setUser(null)
@@ -96,6 +98,8 @@ export default function LoginForm() {
 			setIsClientError(true)
 		}
 	}
+
+	console.log('Is Logged out?', isLogout)
 
 	return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">

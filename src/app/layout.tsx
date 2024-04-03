@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
 import { cn } from '@/lib/utils/'
+import localFont from 'next/font/local'
 import './globals.css'
 
 import { ContextProvider } from '@/context'
+import ReduxProvider from '@/redux/provider/Provider'
 
 // fonts
 const titillium = localFont({
@@ -35,9 +36,11 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={cn(titillium.className)}>
-				<ContextProvider>
-					{children}
-				</ContextProvider>
+				<ReduxProvider>
+					<ContextProvider>
+						{children}
+					</ContextProvider>
+				</ReduxProvider>
 			</body>
 		</html>
 	)
