@@ -15,7 +15,7 @@ import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
-import IncorrectDataAlert from '@/components/content/auth/partials/notifs/IncorrectDataAlert'
+import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
 import { setUserProfile } from '@/lib/utils'
 
 export default function LoginForm() {

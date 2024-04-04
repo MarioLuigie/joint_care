@@ -1,6 +1,6 @@
-import Header from '@/components/layout/Header'
-import ProfileMain from '@/components/layout/profile/ProfileMain'
-import Footer from '@/components/layout/Footer'
+import Header from '@/components/layout/common/Header'
+import ProfileMain from '@/components/layout/common/Main'
+import Footer from '@/components/layout/common/Footer'
 
 export default function ProfileLayout({
 	children,
