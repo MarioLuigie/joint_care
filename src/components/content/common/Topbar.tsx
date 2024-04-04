@@ -6,11 +6,12 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 
-import LangImage from './LangImage'
+import LangImage from '@/components/layout/common/partials/LangImage'
 import { Language } from '@/lib/types'
 import { languages } from '@/lib/constants/footer'
+import { topbar } from '@/lib/constants/topbar'
 
-export default function Languages() {
+export default function Topbar() {
 	return (
 		<Select>
 			<SelectTrigger className="bg-white w-[65px] rounded-full border-none focus:border-none">

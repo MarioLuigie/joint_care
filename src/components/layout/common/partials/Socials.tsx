@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { socials } from '@/lib/constants/icons'
+import { socials } from '@/lib/constants/footer'
 
 export default function Socials() {
 	return (

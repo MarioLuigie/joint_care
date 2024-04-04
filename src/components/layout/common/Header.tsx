@@ -1,8 +1,10 @@
+import Navbar from '@/components/content/common/Navbar'
+import Topbar from '@/components/content/common/Topbar'
 import Image from 'next/image'
 
 export default function Header() {
 	return (
-		<header className="flex-start pl-[30px] h-[80px] bg-white">
+		<header className="flex-between pl-[30px] pr-[30px] h-[80px] bg-white">
 			<Image
 				src="/assets/logo/jointCare-logo.svg"
 				width={115}
@@ -10,6 +12,8 @@ export default function Header() {
 				alt="Joint Care Logo"
 				aria-label="Logo Joint Care"
 			/>
+			<Navbar />
+			<Topbar />
 		</header>
 	)
 }

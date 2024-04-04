@@ -3,6 +3,8 @@ import { cn } from '@/lib/utils/'
 import localFont from 'next/font/local'
 import './globals.css'
 
+import { ContextProvider } from '@/context'
+
 // fonts
 const titillium = localFont({
 	src: [
@@ -33,7 +35,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={cn(titillium.className)}>
-				{children}
+				<ContextProvider>
+					{children}
+				</ContextProvider>
 			</body>
 		</html>
 	)
