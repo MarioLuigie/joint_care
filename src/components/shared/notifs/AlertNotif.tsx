@@ -4,10 +4,10 @@ import closeErrIcon from '/public/assets/icons/close-err.svg'
 
 interface AlertNotifProps {
 	isError: boolean
-	content: React.ReactNode
+	children: React.ReactNode
 }
 
-export default function AlertNotif({ isError, content }: AlertNotifProps) {
+export default function AlertNotif({ isError, children }: AlertNotifProps) {
 	if(isError) {
 		return (
 			<div className="flex-start gap-3 bg-[#FDF4F5] p-4  rounded-lg">
@@ -15,7 +15,7 @@ export default function AlertNotif({ isError, content }: AlertNotifProps) {
 					<Image src={closeErrIcon} alt="Ikona błędu wprowadzonych danych" />
 				</div>
 				<div className="text-[13px] text-[#E04F5F]">
-					{content}
+					{children}
 				</div>
 			</div>
 		)

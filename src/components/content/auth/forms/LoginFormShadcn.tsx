@@ -7,22 +7,11 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 // components
-import InputRef from '@/components/shared/inputsRef/InputRef'
 import InputShadcn from '@/components/shared/inputsShadcn/InputShadcn'
-import InputPasswordRef from '@/components/shared/inputsRef/InputPasswordRef'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import {
-	Form,
-	FormControl,
-	FormDescription,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
-} from '@/components/ui/form'
+import { Form } from '@/components/ui/form'
 // lib
 import { loginSchema } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
@@ -61,21 +50,30 @@ export default function LoginFormRef() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-				<InputShadcn 
+			<AlertNotif isError={isServerError}>
+				<IncorrectDataAlert />
+			</AlertNotif>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+				<InputShadcn
+					name="email"
 					control={form.control}
 					placeholder="Wpisz e-mail"
 					label="Adres e-mail"
+				/>
+				<InputShadcn
 					name="password"
+					control={form.control}
+					placeholder="Wpisz hasło"
+					label="Hasło"
 				/>
 				<Button className="w-full">Zaloguj</Button>
-				<Link
-					href={routes.FORGOT_PASSWORD}
-					className="flex-center underline text-sm text-jc-text4"
-				>
-					<p>Zapomniałem hasło</p>
-				</Link>
 			</form>
+			<Link
+				href={routes.FORGOT_PASSWORD}
+				className="flex-center underline text-sm text-jc-text4 mt-2"
+			>
+				<p>Zapomniałem hasło</p>
+			</Link>
 		</Form>
 	)
 }

@@ -21,12 +21,12 @@ import { setUserProfile } from '@/lib/utils'
 export default function LoginForm() {
 	const initFormData: LoginFormData = {
 		email: '',
-		password: ''
+		password: '',
 	}
 
 	const initFormErrors: LoginFormErrors = {
 		email: [errorMsg.EMPTY],
-		password: [errorMsg.EMPTY]
+		password: [errorMsg.EMPTY],
 	}
 
 	const router = useRouter()
@@ -54,7 +54,7 @@ export default function LoginForm() {
 	}
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+		e.preventDefault()
 
 		if (checkErrors(formErrors)) {
 			const data = await apiLoginUser(formData)
@@ -72,7 +72,7 @@ export default function LoginForm() {
 				setIsClientError(false)
 			}
 
-			if(!data.success && !data.errors) {
+			if (!data.success && !data.errors) {
 				router.push(routes.ACCOUNT_BLOCKED)
 			}
 
@@ -81,7 +81,7 @@ export default function LoginForm() {
 				const profile = localStorage.getItem('profile')
 
 				if (profile !== null) {
-						router.push(routes.DASHBOARD)
+					router.push(routes.DASHBOARD)
 				}
 			}
 		} else {
@@ -91,47 +91,44 @@ export default function LoginForm() {
 	}
 
 	return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <AlertNotif 
-        isError={isServerError} 
-        content={<IncorrectDataAlert />}
-      />
-      <div className="flex flex-col gap-3">
-        <Input
-          handleChange={handleChange}
-          label="Adres e-mail"
-          name="email"
-          placeholder="Wpisz e-mail"
-          type="email"
-          isError={isClientError}
-          errors={formErrors.email}
-          value={formData.email}
-        />
-        <InputPassword
-          handleChange={handleChange}
-          label="Hasło"
-          name="password"
-          placeholder="Wpisz hasło"
-          isError={isClientError}
-          errors={formErrors.password}
-          value={formData.password}
-          />
-        </div>
-        <div className='pt-4'>
-          <InputCheckbox 
-            id="remember_me" 
-            name='remember_me' 
-            checked={rememberMe} 
-            handleCheck={handleCheck} 
-            isError={isClientError} 
-            errors={[]} 
-            label='Zapamiętaj mnie'
-          />
-        </div>
+		<form onSubmit={handleSubmit} className="flex flex-col gap-3">
+			<AlertNotif isError={isServerError}>
+				<IncorrectDataAlert />
+			</AlertNotif>
+			<div className="flex flex-col gap-3">
+				<Input
+					handleChange={handleChange}
+					label="Adres e-mail"
+					name="email"
+					placeholder="Wpisz e-mail"
+					type="email"
+					isError={isClientError}
+					errors={formErrors.email}
+					value={formData.email}
+				/>
+				<InputPassword
+					handleChange={handleChange}
+					label="Hasło"
+					name="password"
+					placeholder="Wpisz hasło"
+					isError={isClientError}
+					errors={formErrors.password}
+					value={formData.password}
+				/>
+			</div>
+			<div className="pt-4">
+				<InputCheckbox
+					id="remember_me"
+					name="remember_me"
+					checked={rememberMe}
+					handleCheck={handleCheck}
+					isError={isClientError}
+					errors={[]}
+					label="Zapamiętaj mnie"
+				/>
+			</div>
 			<div className="flex flex-col gap-2 pt-4">
-				<Button className="w-full">
-					Zaloguj
-				</Button>
+				<Button className="w-full">Zaloguj</Button>
 				<Link
 					href={routes.FORGOT_PASSWORD}
 					className="flex-center underline text-sm text-jc-text4"
@@ -139,6 +136,6 @@ export default function LoginForm() {
 					<p>Zapomniałem hasło</p>
 				</Link>
 			</div>
-    </form>
+		</form>
 	)
 }

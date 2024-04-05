@@ -47,7 +47,9 @@ export default function LoginFormRef() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-			<AlertNotif isError={isServerError} content={<IncorrectDataAlert />} />{' '}
+			<AlertNotif isError={isServerError}>
+				<IncorrectDataAlert />
+			</AlertNotif>
 			<div className="flex flex-col gap-3">
 				<InputRef
 					{...register('email')}
