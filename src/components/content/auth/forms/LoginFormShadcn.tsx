@@ -3,14 +3,26 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 // components
-import { Button } from '@/components/ui/button'
 import InputRef from '@/components/shared/inputsRef/InputRef'
+import InputShadcn from '@/components/shared/inputsShadcn/InputShadcn'
 import InputPasswordRef from '@/components/shared/inputsRef/InputPasswordRef'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from '@/components/ui/form'
 // lib
 import { loginSchema } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
@@ -21,22 +33,24 @@ export default function LoginFormRef() {
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const router = useRouter()
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm({
+	// FORM
+	const form = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+		},
 	})
 
-	const onSubmit = async (data: any) => {
-		const res = await apiLoginUser(data)
-		if (res.errors) {
+	// SUBMIT FORM
+	const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+		console.log(values)
+		const data = await apiLoginUser(values)
+		if (data.errors) {
 			setIsServerError(true)
 		}
-
-		if (res.success) {
-			setUserProfile(res)
+		if (data.success) {
+			setUserProfile(data)
 			const profile = localStorage.getItem('profile')
 
 			if (profile !== null) {
@@ -46,24 +60,14 @@ export default function LoginFormRef() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-			<AlertNotif isError={isServerError} content={<IncorrectDataAlert />} />{' '}
-			<div className="flex flex-col gap-3">
-				<InputRef
-					{...register('email')}
-					error={errors.email}
-					label="Adres e-mail"
+		<Form {...form}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+				<InputShadcn 
+					control={form.control}
 					placeholder="Wpisz e-mail"
-					type="email"
+					label="Adres e-mail"
+					name="password"
 				/>
-				<InputPasswordRef
-					{...register('password')}
-					error={errors.password}
-					placeholder="Wpisz hasło"
-					label="Hasło"
-				/>
-			</div>
-			<div className="flex flex-col gap-2 pt-4">
 				<Button className="w-full">Zaloguj</Button>
 				<Link
 					href={routes.FORGOT_PASSWORD}
@@ -71,7 +75,7 @@ export default function LoginFormRef() {
 				>
 					<p>Zapomniałem hasło</p>
 				</Link>
-			</div>
-		</form>
+			</form>
+		</Form>
 	)
 }

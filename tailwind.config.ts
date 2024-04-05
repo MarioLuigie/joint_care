@@ -28,7 +28,8 @@ const config = {
 					text2: "#4F4F4F",
 					text3: "#9A9A9A",
 					text4: "#747678",
-					gray8: "#808080"
+					gray8: "#808080",
+					blue: "#0092FD"
 				},
 				gray: {
 					DEFAULT: colors.gray[500]
