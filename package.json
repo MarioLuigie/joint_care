@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
@@ -24,8 +25,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.2",
-    "react-svg": "^16.1.33",
     "react-redux": "^9.1.0",
+    "react-svg": "^16.1.33",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
     "require-hook": "0.1.2",

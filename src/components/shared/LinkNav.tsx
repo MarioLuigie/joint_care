@@ -9,11 +9,12 @@ interface Item {
 }
 
 export default function LinkNav({ item }: { item: Item}) {
-
   return (
-    <Link href={item.route} className='flex-center gap-4 cursor-pointer'>
-      <ReactSVG src={item.icon} className='text-jc-gray8 hover:text-[#048AED]'/>
-      <p className='text-jc-gray8'>{item.label}</p>
+    <Link href={item.route}>
+      <div className='flex-center gap-4 cursor-pointer text-jc-gray8 hover:text-[#048AED] transition-all'>
+        <ReactSVG src={item.icon} className='w-[25px]'/>
+        <p>{item.label}</p>
+      </div>
     </Link>
   )
 }

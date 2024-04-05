@@ -38,7 +38,6 @@ export default function LoginFormRef() {
 
 	console.log(inputRef);
 	
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
 			<div className="flex flex-col gap-3">
