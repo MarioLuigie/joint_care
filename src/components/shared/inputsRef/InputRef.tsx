@@ -8,15 +8,13 @@ interface InputProps {
 }
 
 const InputRef = forwardRef<HTMLInputElement, InputProps>(
-	({ type, placeholder, label, error, ...rest }, ref) => {
+	({ label, error, ...rest }, ref) => {
 		return (
 			<>
 				<div className="flex flex-col justify-center items-stretch relative">
 					<input
 						{...rest}
 						ref={ref}
-						type={type}
-						placeholder={placeholder}
 						className={error ? 'jc-input-err' : 'jc-input'}
 					/>
 					<p className="jc-inputLabel">

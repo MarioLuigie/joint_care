@@ -6,7 +6,7 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 
-import LangImage from '@/components/layout/common/partials/LangImage'
+import LangImage from '@/components/layout/partials/LangImage'
 import { Language } from '@/lib/types'
 import { languages } from '@/lib/constants/footer'
 import { topbar } from '@/lib/constants/topbar'

@@ -1,6 +1,6 @@
-import AuthHeader from '@/components/layout/common/AuthHeader'
+import AuthHeader from '@/components/layout/AuthHeader'
 import Main from '@/components/layout/Main'
-import Footer from '@/components/layout/common/Footer'
+import Footer from '@/components/layout/Footer'
 
 export default function AuthLayout({
 	children,
