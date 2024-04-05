@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 // library
 import { loginSchema } from '@/lib/utils/zod'
-import { loginUser } from '@/lib/api/auth-api'
+import { apiLoginUser } from '@/lib/api/auth-api'
 import { routes } from '@/lib/constants'
 
 export default function LoginFormRef() {
@@ -26,7 +26,7 @@ export default function LoginFormRef() {
 
 
 	const onSubmit = async (data: any) => {
-		const res = await loginUser(data)
+		const res = await apiLoginUser(data)
 		if (res.success) {
 			router.push(routes.DASHBOARD)
 		} else {
