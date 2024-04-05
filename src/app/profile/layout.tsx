@@ -1,5 +1,5 @@
 import Header from '@/components/layout/Header'
-import ProfileMain from '@/components/layout/Main'
+import Main from '@/components/layout/Main'
 import Footer from '@/components/layout/Footer'
 
 export default function ProfileLayout({
@@ -10,7 +10,7 @@ export default function ProfileLayout({
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
-			<ProfileMain>{children}</ProfileMain>
+			<Main className="grow p-8 bg-jc-bg">{children}</Main>
 			<Footer />
 		</div>
 	)
