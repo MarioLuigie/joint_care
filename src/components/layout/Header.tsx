@@ -1,15 +1,13 @@
+'use client'
 import Navbar from '@/components/content/common/Navbar'
 import Topbar from '@/components/content/common/Topbar'
-import Image from 'next/image'
+import { ReactSVG } from 'react-svg'
 
 export default function Header() {
 	return (
 		<header className="flex-between pl-[30px] pr-[30px] h-[80px] bg-white">
-			<Image
-				src="/assets/logo/jointCare-logo.svg"
-				width={115}
-				height={35}
-				alt="Joint Care Logo"
+			<ReactSVG
+				src="/assets/logo/jointCare-logo-min.svg"
 				aria-label="Logo Joint Care"
 			/>
 			<Navbar />

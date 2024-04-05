@@ -1,4 +1,5 @@
-import Image from 'next/image'
+'use client'
+import { ReactSVG} from 'react-svg'
 
 import { socials } from '@/lib/constants/footer'
 
@@ -14,11 +15,8 @@ export default function Socials() {
 					style={{ width: `${social.size}px` }}
 					key={social.alt}
 				>
-					<Image
+					<ReactSVG
 						src={social.src}
-						width={social.size}
-						height={social.size}
-						alt={social.alt}
 					/>
 				</a>
 			))}

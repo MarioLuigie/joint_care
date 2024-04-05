@@ -1,13 +1,11 @@
-import Image from 'next/image'
+'use client'
+import { ReactSVG } from 'react-svg'
 
 export default function AuthHeader() {
 	return (
 		<header className="flex-center h-[80px] bg-white">
-			<Image
+			<ReactSVG
 				src="/assets/logo/jointCare-logo.svg"
-				width={163}
-				height={32}
-				alt="Joint Care Logo"
 				aria-label="Logo Joint Care"
 			/>
 		</header>

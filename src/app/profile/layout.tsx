@@ -1,5 +1,5 @@
 import Header from '@/components/layout/common/Header'
-import ProfileMain from '@/components/layout/common/Main'
+import ProfileMain from '@/components/layout/Main'
 import Footer from '@/components/layout/common/Footer'
 
 export default function ProfileLayout({
