@@ -6,7 +6,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card'
 
-import LoginForm from '@/components/content/auth/forms/LoginForm'
+import LoginFormRef from '@/components/content/auth/forms/LoginFormRef'
 
 export default function Login() {
 
@@ -17,7 +17,7 @@ export default function Login() {
 				<CardDescription>Chcę się zalogować</CardDescription>
 			</CardHeader>
 			<CardContent>
-				<LoginForm />
+				<LoginFormRef />
 			</CardContent>
 		</Card>
 	)
