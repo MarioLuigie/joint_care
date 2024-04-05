@@ -27,7 +27,8 @@ const config = {
 					text1: "#030303",
 					text2: "#4F4F4F",
 					text3: "#9A9A9A",
-					text4: "#747678"
+					text4: "#747678",
+					gray8: "#808080"
 				},
 				gray: {
 					DEFAULT: colors.gray[500]

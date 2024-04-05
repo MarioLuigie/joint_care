@@ -8,7 +8,7 @@ import {
 
 import LangImage from './LangImage'
 import { Language } from '@/lib/types'
-import { languages } from '@/lib/constants/icons'
+import { languages } from '@/lib/constants/footer'
 
 export default function Languages() {
 	return (

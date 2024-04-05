@@ -23,6 +23,31 @@ export interface Errors {
 	[key: string]: string[]
 }
 
+//Data returned before logged in success
+interface UserData {
+	avatar: string | null
+	birth_date: string | null
+	city: string | null
+	created_at: string
+	email: string
+	email_verified_at: string | null
+	height: number | null
+	id: number
+	last_name: string | null
+	name: string
+	sex: string | null
+	updated_at: string
+	weight: number | null
+}
+export interface User {
+	success: boolean
+	message: string
+	data: {
+			token: string
+			user: UserData
+	}
+}
+
 // ForgotPassword
 export interface ForgotPasswordFormData {
 	email: string

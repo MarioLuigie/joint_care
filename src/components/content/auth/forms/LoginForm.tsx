@@ -1,41 +1,42 @@
 'use client'
-import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
+import { Button } from '@/components/ui/button'
+import { LoginFormData } from '@/lib/types'
+import { LoginFormErrors as LoginFormErrors } from '@/lib/types'
+import { apiLoginUser } from '@/lib/api/auth-api'
+import { validateLogin } from '@/lib/utils/validators'
+import { errorMsg } from '@/lib/constants'
+import { checkErrors } from '@/lib/utils'
+import { routes } from '@/lib/constants'
 import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
-import { LoginFormData } from '@/lib/types'
-import { LoginFormErrors } from '@/lib/types'
-import { loginUser } from '@/lib/api/auth-api'
-import { validateLogin } from '@/lib/utils/validators'
-import { errorMsg } from '@/lib/constants'
-import { checkErrors } from '@/lib/utils'
-import IncorrectDataAlert from '@/components/content/auth/partials/notifs/IncorrectDataAlert'
-import { routes } from '@/lib/constants'
+import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
+import { setUserProfile } from '@/lib/utils'
 
 export default function LoginForm() {
 	const initFormData: LoginFormData = {
 		email: '',
-		password: '',
+		password: ''
 	}
 
 	const initFormErrors: LoginFormErrors = {
 		email: [errorMsg.EMPTY],
-		password: [errorMsg.EMPTY],
+		password: [errorMsg.EMPTY]
 	}
 
 	const router = useRouter()
 
 	const [formData, setFormData] = useState<LoginFormData>(initFormData)
 	const [formErrors, setFormErrors] = useState<LoginFormErrors>(initFormErrors)
+	const [rememberMe, setRememberMe] = useState<boolean>(false)
 
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const [isClientError, setIsClientError] = useState<boolean>(false)
-	const [loginFailedCount, setLoginFailedCount] = useState(0);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
@@ -48,30 +49,41 @@ export default function LoginForm() {
 		setIsServerError(false)
 	}
 
+	const handleCheck = () => (isChecked: boolean) => {
+		setRememberMe(isChecked)
+	}
+
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
 		if (checkErrors(formErrors)) {
-			const data = await loginUser(formData)
+			const data = await apiLoginUser(formData)
+			//success = true =>
+			// {success: true, message: 'User logged in.', data: {…}}
+			// data.data = {token, user}
+
+			//success = false =>
+			//{success: false, message: 'Too Many Requests'}
 
 			console.log('Login:', data)
 
 			if (data.errors) {
 				setIsServerError(true)
 				setIsClientError(false)
-				setLoginFailedCount(prev => prev + 1)
 			}
 
-			if(loginFailedCount === 12) {
+			if(!data.success && !data.errors) {
 				router.push(routes.ACCOUNT_BLOCKED)
 			}
 
 			if (data.success) {
-				setLoginFailedCount(0)
-				router.push(routes.DASHBOARD)
-			}
+				setUserProfile(data)
+				const profile = localStorage.getItem('profile')
 
-			console.log("***", loginFailedCount);
+				if (profile !== null) {
+						router.push(routes.DASHBOARD)
+				}
+			}
 		} else {
 			console.log('INVALID LOGINFORM')
 			setIsClientError(true)
@@ -107,10 +119,10 @@ export default function LoginForm() {
         </div>
         <div className='pt-4'>
           <InputCheckbox 
-            id="remember" 
-            name='remember' 
-            checked={false} 
-            handleCheck={() => () => {}} 
+            id="remember_me" 
+            name='remember_me' 
+            checked={rememberMe} 
+            handleCheck={handleCheck} 
             isError={isClientError} 
             errors={[]} 
             label='Zapamiętaj mnie'

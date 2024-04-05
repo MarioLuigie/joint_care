@@ -14,7 +14,12 @@ export const routes = {
 	REGISTER: '/auth/register',
 	LOGIN: '/auth/login',
 	FORGOT_PASSWORD: '/auth/forgot-password',
-	DASHBOARD: '/dasboard',
+	DASHBOARD: '/dashboard',
 	ACCOUNT_BLOCKED: '/auth/account-blocked',
 	REGISTER_SUCCESS: '/auth/register-success'
 }
+
+export const actions = {
+	LOGOUT: 'LOGOUT'
+}
+

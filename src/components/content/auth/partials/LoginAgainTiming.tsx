@@ -1,4 +1,4 @@
-export default function LoginAgain() {
+export default function LoginAgainTiming() {
 
   interface TimeChank {
     time: string
@@ -14,7 +14,7 @@ export default function LoginAgain() {
     <div className='flex items-center gap-3'>
       <p>Zaloguj się ponownie za</p>
       <div className='flex gap-2'>
-        <TimeChank time="4" />
+        <TimeChank time="2" />
         <p>:</p>
         <TimeChank time="46" />
       </div>

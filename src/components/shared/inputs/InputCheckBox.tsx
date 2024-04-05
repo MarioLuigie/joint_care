@@ -23,10 +23,10 @@ export default function InputCheckbox({
 }: InputCheckboxProps) {
 	return (
 		<>
-			<div className="flex items-center space-x-2">
-				<Checkbox
-					id={id}
-					name={name}
+			<div className="flex items-center space-x-2 pb-2">
+				<Checkbox 
+					id={id} 
+					name={name} 
 					checked={checked}
 					onCheckedChange={handleCheck(name, id)}
 				/>
