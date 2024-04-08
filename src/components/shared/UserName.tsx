@@ -4,6 +4,7 @@ import { ReactSVG } from 'react-svg'
 interface UserName {
   name: string
   icon: string
+  sentence?: string
 }
 
 export default function UserName({ item }: { item: UserName}) {
@@ -13,7 +14,10 @@ export default function UserName({ item }: { item: UserName}) {
       <div className='rounded-full ring-white ring-4 p-1'>
         <ReactSVG src={item.icon} />
       </div>
-      <p className='text-sm text-black text-semibold'>{item.name}</p>
+      <div>
+        {item.sentence && <p className='text-sm text-black text-semibold'>{item.sentence}</p>}
+        <p className='text-sm text-black text-semibold'>{item.name}</p>
+      </div>
     </div>
   )
 }

@@ -12,6 +12,7 @@ import InputRef from '@/components/shared/inputsRef/InputRef'
 import { loginSchema } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
 import { routes } from '@/lib/constants'
+import { LoginFormData } from '@/lib/types'
 
 export default function LoginFormRef() {
 	const router = useRouter()
@@ -20,10 +21,9 @@ export default function LoginFormRef() {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<LoginFormData>({
 		resolver: zodResolver(loginSchema),
 	})
-
 
 	const onSubmit = async (data: any) => {
 		const res = await apiLoginUser(data)
@@ -36,7 +36,7 @@ export default function LoginFormRef() {
 
 	const inputRef = useRef(null)
 
-	console.log(inputRef);
+	console.log(inputRef)
 	
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
