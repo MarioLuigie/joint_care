@@ -35,10 +35,7 @@ export const ContextProvider = ({ children }: { children: React.ReactNode }) => 
     }
 
     if (!storedUser) {
-      return () => {
-        console.log("LOGOUT")
-        router.push(routes.LOGIN)
-      }
+      router.push(routes.LOGIN)
     }
 
   }, [router])

@@ -28,7 +28,6 @@ export default function Dashboard() {
 				console.error("There was a problem with authorization:", err)
 			}
 		}
-		localStorage.clear()
 	}
 
 	return (
