@@ -40,12 +40,8 @@ interface UserData {
 	weight: number | null
 }
 export interface User {
-	success: boolean
-	message: string
-	data: {
-			token: string
-			user: UserData
-	}
+	token: string
+	user: UserData
 }
 
 // ForgotPassword

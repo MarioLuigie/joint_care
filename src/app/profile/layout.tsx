@@ -10,7 +10,7 @@ export default function ProfileLayout({
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
-			<Main className="grow p-8 bg-jc-bg">{children}</Main>
+			<Main className="flex grow p-8 bg-jc-bg">{children}</Main>
 			<Footer />
 		</div>
 	)

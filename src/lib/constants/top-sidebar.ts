@@ -2,13 +2,13 @@ export const topbar = [
   {
     label: "Mój profil",
     icon: "/assets/icons/user.svg",
-    route: "/",
+    route: "/profile/my-profile",
     id: "profile"
   },
   {
     label: "Ustawienia",
-    icon: "/assets/icons/setting.svg",
-    route: "/",
+    icon: "/assets/icons/settings.svg",
+    route: "/profile/settings",
     id: "settings"
   },
   {

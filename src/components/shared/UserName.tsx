@@ -10,7 +10,7 @@ interface UserName {
 export default function UserName({ item }: { item: UserName}) {
 
   return (
-    <div className='flex-start gap-4 cursor-pointer'>
+    <div className='flex-start gap-4'>
       <div className='rounded-full ring-white ring-4 p-1'>
         <ReactSVG src={item.icon} />
       </div>

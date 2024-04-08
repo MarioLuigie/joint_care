@@ -1,10 +1,10 @@
 'use client'
 // modules
+import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { useRef } from 'react'
 // components
 import { Button } from '@/components/ui/button'
 import InputRef from '@/components/shared/inputsRef/InputRef'
@@ -13,9 +13,17 @@ import { loginSchema } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
 import { routes } from '@/lib/constants'
 import { LoginFormData } from '@/lib/types'
+// import { setUserProfile, getUserProfile } from '@/lib/utils'
+import { useAppContext } from '@/context'
+import AlertNotif from '@/components/shared/notifs/AlertNotif'
+import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 
 export default function LoginFormRef() {
+	const [isServerError, setIsServerError] = useState<boolean>(false)
+	const [isRememberMe, setIsRememberMe] = useState<boolean>(false)
 	const router = useRouter()
+	const { setUser } = useAppContext()
 
 	const {
 		register,
@@ -25,22 +33,38 @@ export default function LoginFormRef() {
 		resolver: zodResolver(loginSchema),
 	})
 
+	const handleCheck = () => (isChecked: boolean) => {
+		setIsRememberMe(isChecked)
+	}
+
 	const onSubmit = async (data: any) => {
-		const res = await apiLoginUser(data)
-		if (res.success) {
-			router.push(routes.DASHBOARD)
-		} else {
-			console.log(res.errors)
+		try {
+			const res = await apiLoginUser(data)
+
+			if (res.errors) {
+				setIsServerError(true)
+			}
+
+			if (res.success) {
+				isRememberMe && localStorage.setItem('profile', JSON.stringify(res.data))
+				setUser(res.data)
+				router.push(routes.DASHBOARD)
+				// setUserProfile(data)
+			} else {
+				console.log(res.errors)
+			}
+			console.log(res);
+		} catch (err) {
+			console.log('There is a problem with login', err)
 		}
 	}
 
-	const inputRef = useRef(null)
-
-	console.log(inputRef)
-	
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
 			<div className="flex flex-col gap-3">
+				<AlertNotif isError={isServerError}>
+					<IncorrectDataAlert />
+				</AlertNotif>
 				<InputRef
 					{...register('email')}
 					error={errors.email}
@@ -56,7 +80,18 @@ export default function LoginFormRef() {
 					type="password"
 				/>
 			</div>
-			<div className="flex flex-col gap-2 pt-4">
+			<div className="pt-4">
+				<InputCheckbox
+					id="remember_me"
+					name="remember_me"
+					checked={isRememberMe}
+					handleCheck={handleCheck}
+					isError={false}
+					errors={[]}
+					label="Zapamiętaj mnie"
+				/>
+			</div>
+			<div className="flex flex-col gap-2">
 				<Button className="w-full">Zaloguj</Button>
 				<Link
 					href={routes.FORGOT_PASSWORD}

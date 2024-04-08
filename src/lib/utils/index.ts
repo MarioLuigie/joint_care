@@ -12,15 +12,4 @@ export function checkErrors(errors: Errors) {
 	)
 }
 
-export function setUserProfile(data: any) {
-	localStorage.setItem('profile', JSON.stringify(data))
-}
-
-export function getUserProfile() {
-  const storedUser = localStorage.getItem('profile')
-  if (storedUser !== null) {
-    return JSON.parse(storedUser)
-  }
-  return null
-}
 

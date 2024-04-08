@@ -3,18 +3,20 @@ import { Button } from '@/components/ui/button'
 import { routes } from '@/lib/constants'
 import { useRouter } from 'next/navigation'
 import { apiLogoutUser } from '@/lib/api/auth-api'
-import { getUserProfile } from '@/lib/utils'
+// import { getUserProfile } from '@/lib/utils'
+import { useAppContext } from '@/context'
 import { User } from '@/lib/types'
 
 export default function Dashboard() {
 
 	const router = useRouter()
-	const user: User = getUserProfile()
+	// const user: User = getUserProfile()
+	const { user } = useAppContext()
 
 	const handleLogout = async () => {
 		if (user !== null) {
 			try {
-				const data = await apiLogoutUser(user.data.token)
+				const data = await apiLogoutUser(user.token)
 	
 				if (data.success) {
 					router.push(routes.LOGIN)
@@ -26,6 +28,7 @@ export default function Dashboard() {
 				console.error("There was a problem with authorization:", err)
 			}
 		}
+		localStorage.clear()
 	}
 
 	return (
@@ -33,9 +36,8 @@ export default function Dashboard() {
 			<p className="text-black text-2xl">DASHBOARD</p>
 			<p className="text-black text-2xl">|</p>
 			<div>
-				<p>{user?.data?.user?.name}</p>
-				<p>{user?.data?.user?.email}</p>
-				<p>{user?.message}</p>
+				<p>{user?.user?.name}</p>
+				<p>{user?.user?.email}</p>
 			</div>
 			<p className="text-black text-2xl">|</p>
 			<Button onClick={handleLogout} className='pl-7 pr-7'>Logout</Button>

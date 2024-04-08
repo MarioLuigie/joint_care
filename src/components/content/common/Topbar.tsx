@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ReactSVG } from 'react-svg'
 
-import { topbar } from '@/lib/constants/topbar'
+import { topbar } from '@/lib/constants/top-sidebar'
 import LinkNav from '@/components/shared/LinkNav'
 import UserName from '@/components/shared/UserName'
 
