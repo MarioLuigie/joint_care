@@ -42,10 +42,9 @@ export default function ForgotPasswordForm() {
 
 	return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <AlertNotif 
-        isError={isServerError}
-        content={<AccountNotExistAlert />}
-      />
+      <AlertNotif isError={isServerError}>
+        <AccountNotExistAlert/>
+      </AlertNotif>
       <Input
         handleChange={handleChange}
         label="Adres e-mail"
