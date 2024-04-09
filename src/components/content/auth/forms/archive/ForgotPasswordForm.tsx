@@ -7,7 +7,7 @@ import Input from '@/components/shared/inputs/Input'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import { ForgotPasswordFormData, ForgotPasswordFormErrors } from '@/lib/types'
 import { validateForgotPassword } from '@/lib/utils/validators'
-import { errorMsg, routes } from '@/lib/constants'
+import { msg, routes } from '@/lib/constants'
 import AccountNotExistAlert from '@/components/content/auth/notifs/AccountNotExistAlert'
 
 export default function ForgotPasswordForm() {
@@ -15,7 +15,7 @@ export default function ForgotPasswordForm() {
 		email: '',
 	}
 	const initFormErrors: ForgotPasswordFormErrors = {
-		email: [errorMsg.EMPTY],
+		email: [msg.EMPTY],
 	}
 
 	const [formData, setFormData] = useState<ForgotPasswordFormData>(initFormData)

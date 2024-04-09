@@ -4,10 +4,10 @@ import warningIcon from '/public/assets/icons/warning.svg'
 
 interface WarningProps {
 	isError: boolean
-	content: React.ReactNode
+	children: React.ReactNode
 }
 
-export default function WarningNotif({ isError, content }: WarningProps) {
+export default function WarningNotif({ isError, children }: WarningProps) {
 	if (isError) {
 		return (
 			<div className="flex-start gap-3 bg-[#FBF4DD] p-4 mb-2 rounded-lg">
@@ -15,7 +15,7 @@ export default function WarningNotif({ isError, content }: WarningProps) {
 					<Image src={warningIcon} alt="Ikona ostrzeżenia" />
 				</div>
 				<div className="text-[13px] text-[#C78523]">
-					{content}
+					{children}
 				</div>
 			</div>) 
 		} else {

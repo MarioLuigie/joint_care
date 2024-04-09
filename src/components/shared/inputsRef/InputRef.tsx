@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 
 interface IProps {
-	type: string
+	type?: string
 	placeholder: string
 	label: string
 	error: any

@@ -1,5 +1,3 @@
-import { Validator } from "react"
-
 export interface Children {
 	children: React.ReactNode
 }
@@ -50,11 +48,6 @@ export interface ForgotPasswordFormErrors extends Errors{
 }
 export interface ForgotPasswordFormData {
 	email: string
-}
-// Login
-export interface LoginFormData {
-	email: string
-	password: string
 }
 
 // Registration

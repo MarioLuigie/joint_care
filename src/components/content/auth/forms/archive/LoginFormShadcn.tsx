@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 // components
-import InputShadcn from '@/components/shared/inputsRef/InputShadcn'
+import InputShadcn from '@/components/shared/inputsRef/archive/InputShadcn'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import { Button } from '@/components/ui/button'
