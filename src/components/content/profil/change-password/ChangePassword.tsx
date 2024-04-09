@@ -1,4 +1,4 @@
-import ChangePasswordFormRef from "./ChangePasswordFormRef";
+import ChangePasswordFormRef from "@/components/content/profil/change-password/ChangePasswordFormRef";
 
 export default function ChangePassword() {
 
