@@ -47,7 +47,6 @@ jobs:
          path: build 
 
   deploy:
-    if: github.repository != 'arwcode/joint_care'
     runs-on: ubuntu-latest
     needs: build
     #environment:

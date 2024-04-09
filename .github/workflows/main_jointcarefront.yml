@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    if: github.repository != 'arwcode/joint_care'
     runs-on: ubuntu-latest
 
     steps:
