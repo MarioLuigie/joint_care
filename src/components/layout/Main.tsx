@@ -1,3 +1,3 @@
-export default function Main({ children }: { children: React.ReactNode }) {
-	return <main className="flex-center grow p-10 bg-jc-bg">{children}</main>
+export default function Main({ children, className }: { children: React.ReactNode, className?: string }) {
+	return <main className={className}>{children}</main>
 }

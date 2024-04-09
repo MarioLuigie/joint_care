@@ -8,7 +8,7 @@ interface InputProps {
 	error: any
 }
 
-const InputRef = forwardRef<HTMLInputElement, InputProps>(
+const InputPasswordRef = forwardRef<HTMLInputElement, InputProps>(
 	({ label, error, ...rest }, ref) => {
 
 		const [isPasswordHidden, setIsPasswordHidden] = useState(true)
@@ -52,4 +52,5 @@ const InputRef = forwardRef<HTMLInputElement, InputProps>(
 	}
 )
 
-export default InputRef
+InputPasswordRef.displayName = 'InputPasswordRef'
+export default InputPasswordRef

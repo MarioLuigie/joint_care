@@ -3,45 +3,59 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 // components
 import { Button } from '@/components/ui/button'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 import InputPasswordRef from '@/components/shared/inputsRef/InputPasswordRef'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 // lib
 import { loginSchema } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
-import { setUserProfile } from '@/lib/utils'
 import { routes } from '@/lib/constants'
+import { LoginFormData } from '@/lib/types'
+import { useAppContext } from '@/context'
 
 export default function LoginFormRef() {
 	const [isServerError, setIsServerError] = useState<boolean>(false)
+	const [isRememberMe, setIsRememberMe] = useState<boolean>(false)
 	const router = useRouter()
+	const { setUser } = useAppContext()
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm({
+	} = useForm<LoginFormData>({
 		resolver: zodResolver(loginSchema),
 	})
 
+	const handleCheck = () => (isChecked: boolean) => {
+		setIsRememberMe(isChecked)
+	}
+
 	const onSubmit = async (data: any) => {
-		const res = await apiLoginUser(data)
-		if (res.errors) {
-			setIsServerError(true)
-		}
+		try {
+			const res = await apiLoginUser(data)
 
-		if (res.success) {
-			setUserProfile(res)
-			const profile = localStorage.getItem('profile')
-
-			if (profile !== null) {
-				router.push(routes.DASHBOARD)
+			if (res.errors) {
+				setIsServerError(true)
 			}
+
+			if (res.success) {
+				isRememberMe &&
+					localStorage.setItem('profile', JSON.stringify(res.data))
+				setUser(res.data)
+				router.push(routes.DASHBOARD)
+			} else {
+				console.log(res.errors)
+			}
+			console.log(res)
+		} catch (err) {
+			console.log('There is a problem with login', err)
 		}
 	}
 
@@ -65,7 +79,18 @@ export default function LoginFormRef() {
 					label="Hasło"
 				/>
 			</div>
-			<div className="flex flex-col gap-2 pt-4">
+			<div className="pt-4">
+				<InputCheckbox
+					id="remember_me"
+					name="remember_me"
+					checked={isRememberMe}
+					handleCheck={handleCheck}
+					isError={false}
+					errors={[]}
+					label="Zapamiętaj mnie"
+				/>
+			</div>
+			<div className="flex flex-col gap-2">
 				<Button className="w-full">Zaloguj</Button>
 				<Link
 					href={routes.FORGOT_PASSWORD}

@@ -40,7 +40,7 @@ export default function AccountBlocked() {
 		
 		return () => clearInterval(interval)
 		
-	}, [remainingTime])
+	}, [remainingTime, initRemainingTime])
 	
 	const handleLogin = () => {
 		router.push(routes.LOGIN)

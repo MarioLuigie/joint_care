@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 // components
-import InputShadcn from '@/components/shared/inputsShadcn/InputShadcn'
+import InputShadcn from '@/components/shared/inputsRef/InputShadcn'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import { Button } from '@/components/ui/button'
@@ -15,7 +15,6 @@ import { Form } from '@/components/ui/form'
 // lib
 import { loginSchema } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
-import { setUserProfile } from '@/lib/utils'
 import { routes } from '@/lib/constants'
 
 export default function LoginFormRef() {
@@ -39,12 +38,7 @@ export default function LoginFormRef() {
 			setIsServerError(true)
 		}
 		if (data.success) {
-			setUserProfile(data)
-			const profile = localStorage.getItem('profile')
-
-			if (profile !== null) {
-				router.push(routes.DASHBOARD)
-			}
+			console.log("User logged in");
 		}
 	}
 

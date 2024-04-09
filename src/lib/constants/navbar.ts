@@ -26,7 +26,7 @@ export const navbar = [
   },
   {
     label: "Ustawienia",
-    icon: "/assets/icons/setting.svg",
+    icon: "/assets/icons/settings.svg",
     route: "/"
   }
 ]
