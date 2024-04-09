@@ -1,14 +1,14 @@
-import Image from 'next/image'
+'use client'
 import { useState, forwardRef } from 'react'
-import visibilityOff from '/public/assets/icons/visibility-off.svg'
+import { ReactSVG } from 'react-svg'
 
-interface InputProps {
+interface IProps {
 	placeholder: string
 	label: string
 	error: any
 }
 
-const InputPasswordRef = forwardRef<HTMLInputElement, InputProps>(
+const InputPasswordRef = forwardRef<HTMLInputElement, IProps>(
 	({ label, error, ...rest }, ref) => {
 
 		const [isPasswordHidden, setIsPasswordHidden] = useState(true)
@@ -34,11 +34,10 @@ const InputPasswordRef = forwardRef<HTMLInputElement, InputProps>(
 					className="absolute right-5 cursor-pointer"
 					onClick={handleShowPassword}
 				>
-					<Image
-						src={visibilityOff}
+					<ReactSVG
+						src='/assets/icons/visibility-off.svg'
 						width={20}
 						height={14}
-						alt="Ikona hasło ukryte"
 					/>
 				</div>
 				</div>

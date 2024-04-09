@@ -9,8 +9,8 @@ import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 import InputPasswordRef from '@/components/shared/inputsRef/InputPasswordRef'
+import InputCheckbox from '@/components/shared/inputs/InputCheckbox'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
-import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 // lib
 import { loginSchema } from '@/lib/utils/zod'
@@ -80,14 +80,12 @@ export default function LoginFormRef() {
 					label="Hasło"
 				/>
 			</div>
-			<div className="pt-4">
+			<div className="pt-3">
 				<InputCheckbox
 					id="remember_me"
 					name="remember_me"
 					checked={isRememberMe}
 					handleCheck={handleCheck}
-					isError={false}
-					errors={[]}
 					label="Zapamiętaj mnie"
 				/>
 			</div>

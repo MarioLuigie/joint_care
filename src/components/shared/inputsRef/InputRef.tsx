@@ -1,13 +1,13 @@
 import { forwardRef } from 'react'
 
-interface InputProps {
+interface IProps {
 	type: string
 	placeholder: string
 	label: string
 	error: any
 }
 
-const InputRef = forwardRef<HTMLInputElement, InputProps>(
+const InputRef = forwardRef<HTMLInputElement, IProps>(
 	({ label, error, ...rest }, ref) => {
 		return (
 			<>
