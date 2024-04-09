@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 import Input from '@/components/shared/inputs/Input'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
-import { ForgotPasswordFormErrors as ForgotPasswordFormErrors, ForgotPasswordFormData } from '@/lib/types'
+import { ForgotPasswordFormData, ForgotPasswordFormErrors } from '@/lib/types'
 import { validateForgotPassword } from '@/lib/utils/validators'
 import { errorMsg, routes } from '@/lib/constants'
 import AccountNotExistAlert from '@/components/content/auth/notifs/AccountNotExistAlert'

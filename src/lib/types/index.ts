@@ -45,21 +45,16 @@ export interface User {
 }
 
 // ForgotPassword
+export interface ForgotPasswordFormErrors extends Errors{
+	email: string[]
+}
 export interface ForgotPasswordFormData {
 	email: string
 }
-export interface ForgotPasswordFormErrors extends Errors {
-	email: string[]
-}
-
 // Login
 export interface LoginFormData {
 	email: string
 	password: string
-}
-export interface LoginFormErrors extends Errors {
-	email: string[]
-	password: string[]
 }
 
 // Registration

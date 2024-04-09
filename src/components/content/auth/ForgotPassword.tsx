@@ -6,7 +6,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card'
 
-import ForgotPasswordForm from '@/components/content/auth/forms/ForgotPasswordForm'
+import ForgotPasswordForm from '@/components/content/auth/forms/ForgotPasswordFormRef'
 
 export default function ForgotPassword() {
 

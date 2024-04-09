@@ -37,7 +37,7 @@ export default function LoginFormRef() {
 		setIsRememberMe(isChecked)
 	}
 
-	const onSubmit = async (data: any) => {
+	const onSubmit = async (data: LoginFormData) => {
 		try {
 			const res = await apiLoginUser(data)
 
@@ -80,7 +80,7 @@ export default function LoginFormRef() {
 					label="Hasło"
 				/>
 			</div>
-			<div className="pt-3">
+			<div className="pt-2">
 				<InputCheckbox
 					id="remember_me"
 					name="remember_me"
