@@ -36,21 +36,18 @@ export default function Topbar() {
 		}
 	}
 
-	function LogoutButton() {
-
-		return (
-			<div className="hover:bg-slate-100 rounded-lg w-full transition-all">
-				<button 
-					className='flex-start gap-4 text-jc-gray8 hover:text-jc-blue transition-all rounded-lg p-2 text-sm'
-					onClick={handleLogout}
-				>
-					<ReactSVG src={'/assets/icons/logout.svg'} className='w-[25px]'/>
-					<p>Wyloguj się</p>
-				</button>
-		</div>
-		)
-	}
-
+	const LogoutButton = () => (
+		<div className="hover:bg-slate-100 rounded-lg w-full transition-all">
+			<button 
+				className='flex-start gap-4 text-jc-gray8 hover:text-jc-blue transition-all rounded-lg p-2 text-sm'
+				onClick={handleLogout}
+			>
+				<ReactSVG src={'/assets/icons/logout.svg'} className='w-[25px]'/>
+				<p>Wyloguj się</p>
+			</button>
+	</div>
+	)
+	
 	return (
 		<div className='flex-center gap-8'>
 			<div>
