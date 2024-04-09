@@ -3,7 +3,7 @@ import { msg } from '@/lib/constants'
 
 // Login
 export const loginSchema = z.object({
-	email: z.string().email({ message: 'errorMsg.EMAIL' }),
+	email: z.string().email({ message: msg.EMAIL }),
 	password: z
 		.string()
 		.min(1, { message: msg.PASSWORD })

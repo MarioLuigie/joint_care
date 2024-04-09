@@ -33,8 +33,8 @@ export default function LoginFormRef() {
 		resolver: zodResolver(loginSchema),
 	})
 
-	const handleCheck = () => (isChecked: boolean) => {
-		setIsRememberMe(isChecked)
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setIsRememberMe(event.target.checked)
 	}
 
 	const onSubmit = async (data: z.infer<typeof loginSchema>) => {
@@ -85,7 +85,7 @@ export default function LoginFormRef() {
 					id="remember_me"
 					name="remember_me"
 					checked={isRememberMe}
-					handleCheck={handleCheck}
+					handleChange={handleChange}
 					label="Zapamiętaj mnie"
 				/>
 			</div>
