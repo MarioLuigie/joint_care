@@ -45,7 +45,7 @@ export default function InputPassword({
 				/>
 				<p className="jc-inputLabel">
 					{label}
-					<span className="text-[#0092FD]">*</span>
+					<span className="text-jc-blue">*</span>
 				</p>
 				<div
 					className="absolute right-5 cursor-pointer"

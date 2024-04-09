@@ -19,7 +19,7 @@ const InputRef = forwardRef<HTMLInputElement, InputProps>(
 					/>
 					<p className="jc-inputLabel">
 						{label}
-						<span className="text-[#0092FD]">*</span>
+						<span className="text-jc-blue">*</span>
 					</p>
 				</div>
 				{error && (
@@ -33,5 +33,4 @@ const InputRef = forwardRef<HTMLInputElement, InputProps>(
 )
 
 InputRef.displayName = 'InputRef'
-
 export default InputRef

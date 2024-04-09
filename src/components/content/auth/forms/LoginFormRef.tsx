@@ -1,23 +1,23 @@
 'use client'
 // modules
-import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 // components
 import { Button } from '@/components/ui/button'
 import InputRef from '@/components/shared/inputsRef/InputRef'
-// library
+import InputPasswordRef from '@/components/shared/inputsRef/InputPasswordRef'
+import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
+import AlertNotif from '@/components/shared/notifs/AlertNotif'
+// lib
 import { loginSchema } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
 import { routes } from '@/lib/constants'
 import { LoginFormData } from '@/lib/types'
-// import { setUserProfile, getUserProfile } from '@/lib/utils'
 import { useAppContext } from '@/context'
-import AlertNotif from '@/components/shared/notifs/AlertNotif'
-import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
-import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 
 export default function LoginFormRef() {
 	const [isServerError, setIsServerError] = useState<boolean>(false)
@@ -46,14 +46,14 @@ export default function LoginFormRef() {
 			}
 
 			if (res.success) {
-				isRememberMe && localStorage.setItem('profile', JSON.stringify(res.data))
+				isRememberMe &&
+					localStorage.setItem('profile', JSON.stringify(res.data))
 				setUser(res.data)
 				router.push(routes.DASHBOARD)
-				// setUserProfile(data)
 			} else {
 				console.log(res.errors)
 			}
-			console.log(res);
+			console.log(res)
 		} catch (err) {
 			console.log('There is a problem with login', err)
 		}
@@ -61,10 +61,10 @@ export default function LoginFormRef() {
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+			<AlertNotif isError={isServerError}>
+				<IncorrectDataAlert />
+			</AlertNotif>
 			<div className="flex flex-col gap-3">
-				<AlertNotif isError={isServerError}>
-					<IncorrectDataAlert />
-				</AlertNotif>
 				<InputRef
 					{...register('email')}
 					error={errors.email}
@@ -72,12 +72,11 @@ export default function LoginFormRef() {
 					placeholder="Wpisz e-mail"
 					type="email"
 				/>
-				<InputRef
+				<InputPasswordRef
 					{...register('password')}
 					error={errors.password}
-					label="Hasło"
 					placeholder="Wpisz hasło"
-					type="password"
+					label="Hasło"
 				/>
 			</div>
 			<div className="pt-4">

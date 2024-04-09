@@ -1,12 +1,13 @@
 import { z } from 'zod'
+import { errorMsg } from '../constants'
 
+// LOGIN FORM
 export const loginSchema = z.object({
 	email: z
-		.string()
-		.email({ message: 'Niepoprawny adres email' }),
+	.string()
+	.email({ message: errorMsg.EMAIL }),
 	password: z
-		.string()
-		.min(1, { message: 'Hasło jest wymagane' })
-		.min(3, { message: 'Hasło jest wymagane - minium 3' })
-		.min(5, { message: 'Hasło jest wymagane - minium 5' }),
+	.string()
+	.min(1, { message: errorMsg.PASSWORD })
+	.min(8, { message: errorMsg.PASSWORD_LENGTH }),
 })
