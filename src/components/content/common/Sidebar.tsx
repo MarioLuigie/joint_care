@@ -12,7 +12,7 @@ export default function Sidebar() {
       <div className="flex flex-col items-start gap-8 p-7">
         {
           topbar.map((item) => (
-            item.id !== 'logout' && <LinkNav item={item} key={item.id}/>
+            <LinkNav item={item} key={item.id}/>
           ))
         }
       </div>

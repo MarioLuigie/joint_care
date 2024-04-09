@@ -16,11 +16,5 @@ export const topbar = [
     icon: "/assets/icons/password.svg",
     route: "/",
     id: "change-password"
-  },
-  {
-    label: "Wyloguj się",
-    icon: "/assets/icons/logout.svg",
-    route: "/",
-    id: "logout"
   }
 ]

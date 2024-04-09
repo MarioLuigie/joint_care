@@ -9,8 +9,48 @@ import { ReactSVG } from 'react-svg'
 import { topbar } from '@/lib/constants/top-sidebar'
 import LinkNav from '@/components/shared/LinkNav'
 import UserName from '@/components/shared/UserName'
+import { useAppContext } from "@/context"
+import { apiLogoutUser } from "@/lib/api/auth-api"
+import { routes } from "@/lib/constants"
+import { useRouter } from 'next/navigation'
+
 
 export default function Topbar() {
+	const { user } = useAppContext()
+	const router = useRouter()
+
+	const handleLogout = async () => {
+		if (user !== null) {
+			try {
+				const data = await apiLogoutUser(user.token)
+	
+				if (data.success) {
+					router.push(routes.LOGIN)
+					localStorage.removeItem('profile')
+				}
+	
+				console.log('Logout:', data)
+			} catch (err: any) {
+				console.error("There was a problem with authorization:", err)
+			}
+		}
+	}
+
+	function LogoutButton() {
+
+		return (
+			<div className="hover:bg-slate-100 rounded-lg w-full transition-all">
+				<button 
+					className='flex-start gap-4 text-jc-gray8 hover:text-jc-blue transition-all rounded-lg p-2 text-sm'
+					onClick={handleLogout}
+				>
+					<ReactSVG src={'/assets/icons/logout.svg'} className='w-[25px]'/>
+					<p>Wyloguj się</p>
+				</button>
+		</div>
+		)
+	}
+
 	return (
 		<div className='flex-center gap-8'>
 			<div>
@@ -35,6 +75,7 @@ export default function Topbar() {
 								</DropdownMenuItem>
 							))
 						}
+						<LogoutButton />
 					</div>
 				</DropdownMenuContent>
 			</DropdownMenu>

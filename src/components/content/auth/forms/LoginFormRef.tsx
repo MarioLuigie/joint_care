@@ -49,7 +49,8 @@ export default function LoginFormRef() {
 				isRememberMe &&
 					localStorage.setItem('profile', JSON.stringify(res.data))
 				setUser(res.data)
-				router.push(routes.DASHBOARD)
+				router.push(routes.PROFILE)
+				// router.push(routes.DASHBOARD)
 			} else {
 				console.log(res.errors)
 			}

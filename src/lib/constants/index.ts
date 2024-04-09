@@ -16,7 +16,8 @@ export const routes = {
 	FORGOT_PASSWORD: '/auth/forgot-password',
 	DASHBOARD: '/dashboard',
 	ACCOUNT_BLOCKED: '/auth/account-blocked',
-	REGISTER_SUCCESS: '/auth/register-success'
+	REGISTER_SUCCESS: '/auth/register-success',
+	PROFILE: '/profile/my-profile',
 }
 
 export const actions = {
