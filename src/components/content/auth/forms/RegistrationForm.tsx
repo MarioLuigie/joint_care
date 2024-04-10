@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation'
 
 import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
-import PasswordRequierds from '@/components/content/auth/partials/PasswordRequierds'
-import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
+import PasswordRequierds from '@/components/content/auth/forms/PasswordRequirements'
+import InputCheckbox from '@/components/shared/inputs/InputCheckbox'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'
 import { apiRegisterUser } from '@/lib/api/auth-api'
 import { validateRegistration } from '@/lib/utils/validators'
-import { errorMsg } from '@/lib/constants'
+import { msg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
 import RegisteredAccountWarning from '@/components/content/auth/notifs/RegisteredAccountWarning'
 import AcceptStatute from '@/components/content/auth/partials/AcceptStatute'
@@ -28,20 +28,20 @@ export default function RegistrationForm() {
 
 	const initFormErrors: RegistrationFormErrors = {
 		email: [
-			errorMsg.EMPTY
+			msg.EMPTY
 		],
 		password: [
-			errorMsg.PASSWORD_LETTER_SIZE,
-			errorMsg.PASSWORD_DIGIT,
-			errorMsg.PASSWORD_SPECIAL_CHAR,
-			errorMsg.PASSWORD_LENGTH
+			msg.PASSWORD_LETTER_SIZE,
+			msg.PASSWORD_DIGIT,
+			msg.PASSWORD_SPECIAL_CHAR,
+			msg.PASSWORD_LENGTH
 			,
 		],
 		password_confirmation: [
-			errorMsg.EMPTY
+			msg.EMPTY
 		],
 		accept_statute: [
-			errorMsg.ACCEPT_STATUTE
+			msg.ACCEPT_STATUTE
 		]
 	}
 

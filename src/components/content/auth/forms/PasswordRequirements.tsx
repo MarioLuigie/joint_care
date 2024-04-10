@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import closeIcon from '/public/assets/icons/close-red.svg'
 import checkIcon from '/public/assets/icons/check.svg'
-import { errorMsg } from '@/lib/constants'
+import { msg } from '@/lib/constants'
 
 interface RequierdProps {
 	msg: string
@@ -25,10 +25,10 @@ const Requierd = ({ msg, error }: RequierdProps) => (
 export default function PasswordRequierds({ errors }: PasswordRequierdsProps) {
 
 	const passwordErrors = [
-		errorMsg.PASSWORD_LETTER_SIZE,
-		errorMsg.PASSWORD_DIGIT,
-		errorMsg.PASSWORD_SPECIAL_CHAR,
-		errorMsg.PASSWORD_LENGTH,
+		msg.PASSWORD_LETTER_SIZE,
+		msg.PASSWORD_DIGIT,
+		msg.PASSWORD_SPECIAL_CHAR,
+		msg.PASSWORD_LENGTH,
 	]
 
 	return (

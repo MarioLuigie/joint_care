@@ -5,18 +5,18 @@ import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 // components
 import { Button } from '@/components/ui/button'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 import InputPasswordRef from '@/components/shared/inputsRef/InputPasswordRef'
+import InputCheckbox from '@/components/shared/inputs/InputCheckbox'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
-import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 // lib
 import { loginSchema } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
 import { routes } from '@/lib/constants'
-import { LoginFormData } from '@/lib/types'
 import { useAppContext } from '@/context'
 
 export default function LoginFormRef() {
@@ -29,15 +29,15 @@ export default function LoginFormRef() {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<LoginFormData>({
+	} = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
 	})
 
-	const handleCheck = () => (isChecked: boolean) => {
-		setIsRememberMe(isChecked)
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setIsRememberMe(event.target.checked)
 	}
 
-	const onSubmit = async (data: any) => {
+	const onSubmit = async (data: z.infer<typeof loginSchema>) => {
 		try {
 			const res = await apiLoginUser(data)
 
@@ -80,14 +80,12 @@ export default function LoginFormRef() {
 					label="Hasło"
 				/>
 			</div>
-			<div className="pt-4">
+			<div className="pt-2">
 				<InputCheckbox
 					id="remember_me"
 					name="remember_me"
 					checked={isRememberMe}
-					handleCheck={handleCheck}
-					isError={false}
-					errors={[]}
+					handleChange={handleChange}
 					label="Zapamiętaj mnie"
 				/>
 			</div>

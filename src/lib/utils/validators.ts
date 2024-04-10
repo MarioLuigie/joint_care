@@ -6,7 +6,7 @@ import {
 	RegistrationFormErrors,
 	RegistrationFormData,
 } from '@/lib/types'
-import { errorMsg } from '@/lib/constants'
+import { msg } from '@/lib/constants'
 
 // Validators
 const V = {
@@ -26,19 +26,19 @@ const V = {
 export const validateRegistration = (data: RegistrationFormData) => {
 	const errors: RegistrationFormErrors = {
 		email: [
-			V.email(data.email, errorMsg.EMAIL)
+			V.email(data.email, errors.EMAIL)
 		],
 		password: [
-			V.lettersize(data.password, errorMsg.PASSWORD_LETTER_SIZE),
-			V.digit(data.password, errorMsg.PASSWORD_DIGIT),
-			V.specialChar(data.password, errorMsg.PASSWORD_SPECIAL_CHAR),
-			V.minLength(8, data.password, errorMsg.PASSWORD_LENGTH)
+			V.lettersize(data.password, errors.PASSWORD_LETTER_SIZE),
+			V.digit(data.password, errors.PASSWORD_DIGIT),
+			V.specialChar(data.password, errors.PASSWORD_SPECIAL_CHAR),
+			V.minLength(8, data.password, errors.PASSWORD_LENGTH)
 		],
 		password_confirmation: [
-			V.match(data.password, data.password_confirmation,	errorMsg.PASSWORD_CONFIRMATION)
+			V.match(data.password, data.password_confirmation,	errors.PASSWORD_CONFIRMATION)
 		],
 		accept_statute: [
-			V.checked(data.accept_statute, errorMsg.ACCEPT_STATUTE)
+			V.checked(data.accept_statute, errors.ACCEPT_STATUTE)
 		]
 	}
 	return errors
@@ -48,10 +48,10 @@ export const validateRegistration = (data: RegistrationFormData) => {
 export const validateLogin = (data: LoginFormData) => {
 	const errors: LoginFormErrors = {
 		email: [
-			V.email(data.email, errorMsg.EMAIL)
+			V.email(data.email, errors.EMAIL)
 		],
 		password: [
-			V.minLength(1, data.password, errorMsg.PASSWORD)
+			V.minLength(1, data.password, errors.PASSWORD)
 		]
 	}
 	return errors
@@ -61,7 +61,7 @@ export const validateLogin = (data: LoginFormData) => {
 export const validateForgotPassword = (data: ForgotPasswordFormData) => {
 	const errors: ForgotPasswordFormErrors = {
 		email: [
-			V.email(data.email, errorMsg.EMAIL)
+			V.email(data.email, errors.EMAIL)
 		]
 	}
 	return errors
