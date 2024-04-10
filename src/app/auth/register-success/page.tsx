@@ -1,4 +1,4 @@
-import RegisteredSuccess from '@/components/content/auth/RegisterSuccess'
+import RegisteredSuccess from '@/components/pages/auth/RegisterSuccess'
 
 export default function RegisterSuccessPage() {
 	return (

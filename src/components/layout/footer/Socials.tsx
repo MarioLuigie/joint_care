@@ -1,7 +1,6 @@
 'use client'
-import { ReactSVG} from 'react-svg'
-
-import { socials } from '@/lib/constants/footer'
+import { ReactSVG } from 'react-svg'
+import { socials } from '@/lib/constants/layout'
 
 export default function Socials() {
 	return (
@@ -15,9 +14,7 @@ export default function Socials() {
 					style={{ width: `${social.size}px` }}
 					key={social.alt}
 				>
-					<ReactSVG
-						src={social.src}
-					/>
+					<ReactSVG src={social.src} />
 				</a>
 			))}
 		</div>

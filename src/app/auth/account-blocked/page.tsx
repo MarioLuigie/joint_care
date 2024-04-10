@@ -1,5 +1,5 @@
-import AccountBlocked from '@/components/content/auth/AccountBlocked'
-import RegistrationTrigger from '@/components/content/auth/RegistrationTrigger'
+import AccountBlocked from '@/components/pages/auth/AccountBlocked'
+import RegistrationTrigger from '@/components/pages/auth/RegistrationTrigger'
 
 export default function AccountBlockedPage() {
 	return (
