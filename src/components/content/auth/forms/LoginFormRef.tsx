@@ -10,7 +10,7 @@ import { z } from 'zod'
 import { Button } from '@/components/ui/button'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 import InputPasswordRef from '@/components/shared/inputsRef/InputPasswordRef'
-import InputCheckbox from '@/components/shared/inputs/InputCheckbox'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 // lib
