@@ -14,7 +14,7 @@ export const topbar = [
   {
     label: "Zmiana hasła",
     icon: "/assets/icons/password.svg",
-    route: "/",
+    route: "/profile/change-password",
     id: "change-password"
   }
 ]

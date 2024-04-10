@@ -1,6 +1,5 @@
 'use client'
 import { useState } from 'react'
-import Sidebar from '@/components/content/common/Sidebar'
 import { Button } from '@/components/ui/button'
 
 export default function Settings() {
@@ -31,16 +30,11 @@ export default function Settings() {
   }
 
   return (
-    <div className='flex gap-6 w-full'>
-      <div>
-        <Sidebar />
-      </div>
-      <div className="flex flex-col items-center justify-start p-8 rounded-[25px] w-full bg-white">
-        <div className='flex flex-col items-start justify-start gap-10 w-[360px] p-2'>
-          <p className='text-3xl font-bold'>Ustawienia</p>
-          <Consent />
-          <Button className='px-8'>Zapisz zmiany</Button>
-        </div>
+    <div className="flex flex-col items-center justify-start p-8 rounded-[25px] w-full bg-white">
+      <div className='flex flex-col items-start justify-start gap-10 w-[400px] p-2'>
+        <p className='text-3xl font-bold'>Ustawienia</p>
+        <Consent />
+        <Button className='px-8'>Zapisz zmiany</Button>
       </div>
     </div>
   )
