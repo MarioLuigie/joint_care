@@ -31,7 +31,7 @@ export default function PasswordRequirements({
 				Silne hasło powinno zawierać:
 			</p>
 			{requirements.map((item, i) => (
-				<div className="flex gap-2 text-base font-normal pb-3 text-jc-text4">
+				<div className="flex gap-2 text-base font-normal pb-3 text-jc-text4" key={i}>
 					<Image
 						src={item.isOK ? checkIcon : closeIcon}
 						alt={

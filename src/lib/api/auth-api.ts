@@ -35,13 +35,13 @@ export const apiRegisterUser = async (data: RegistrationFormData) => {
 export const apiLoginUser = async (data: LoginFormData) => {
 
   const headers = {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
   }
 
   let body = {
-      "email": data.email,
-      "password": data.password
+    "email": data.email,
+    "password": data.password
   }
 
   try {
