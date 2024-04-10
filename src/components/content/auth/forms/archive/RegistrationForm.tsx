@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 
 import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
-import PasswordRequirements from '@/components/content/auth/forms/PasswordRequirements'
+import PasswordRequirements from '@/components/shared/common/PasswordRequirements'
 import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'

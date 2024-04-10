@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 import { Button } from '@/components/ui/button';
-import PasswordRequirements from '@/components/content/auth/forms/PasswordRequirements';
+import PasswordRequirements from '@/components/shared/common/PasswordRequirements';
 import { RegistrationFormErrors } from '@/lib/types';
 import { msg } from '@/lib/constants';
 import { useState } from 'react';

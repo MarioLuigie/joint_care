@@ -1,5 +1,5 @@
 import MyProfileFormRef from '@/components/content/profil/my-profile/MyProfileFormRef'
-import CollapseRequirements from "@/components/content/profil/my-profile/partials/CollapseRequirements"
+import CollapseRequirements from "@/components/shared/common/CollapseRequirements"
 
 
 export default function MyProfile() {

@@ -1,18 +1,23 @@
+'use client'
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { useState } from "react"
 
 export default function CollapseRequirements() {
+  const [ isCollapse, setIsCollapse] = useState<boolean>(false)
 
   return (
     <div className='w-[250px]'>
       <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>
-            <p className='text-[13px] underline text-jc-gray7'>Zwiń wymagania do plików</p>
+        <AccordionItem value="item-1" className="border-0">
+          <AccordionTrigger onClick={() => {setIsCollapse(prev => !prev)}}>
+            <p className='text-[13px] underline text-jc-gray7'>
+              {isCollapse ? "Zwiń" : "Rozwiń"} wymagania do plików
+            </p>
           </AccordionTrigger>
           <AccordionContent className='flex flex-col gap-1'>
             <div className='flex flex-between text-jc-gray7 text-[13px]'>
