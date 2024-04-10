@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
 import PasswordRequierds from '@/components/content/auth/forms/PasswordRequirements'
-import InputCheckbox from '@/components/shared/inputs/InputCheckbox'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'
 import { apiRegisterUser } from '@/lib/api/auth-api'
@@ -14,7 +14,6 @@ import { validateRegistration } from '@/lib/utils/validators'
 import { msg } from '@/lib/constants'
 import { checkErrors } from '@/lib/utils'
 import RegisteredAccountWarning from '@/components/content/auth/notifs/RegisteredAccountWarning'
-import AcceptStatute from '@/components/content/auth/partials/AcceptStatute'
 import WarningNotif from '@/components/shared/notifs/WarningNotif'
 import { routes } from '@/lib/constants'
 
@@ -23,26 +22,19 @@ export default function RegistrationForm() {
 		email: '',
 		password: '',
 		password_confirmation: '',
-		accept_statute: false
+		accept_statute: false,
 	}
 
 	const initFormErrors: RegistrationFormErrors = {
-		email: [
-			msg.EMPTY
-		],
+		email: [msg.EMPTY],
 		password: [
 			msg.PASSWORD_LETTER_SIZE,
 			msg.PASSWORD_DIGIT,
 			msg.PASSWORD_SPECIAL_CHAR,
-			msg.PASSWORD_LENGTH
-			,
+			msg.PASSWORD_LENGTH,
 		],
-		password_confirmation: [
-			msg.EMPTY
-		],
-		accept_statute: [
-			msg.ACCEPT_STATUTE
-		]
+		password_confirmation: [msg.EMPTY],
+		accept_statute: [msg.ACCEPT_STATUTE],
 	}
 
 	const router = useRouter()
@@ -63,17 +55,17 @@ export default function RegistrationForm() {
 		setFormData(updatedFormData)
 	}
 
-	const handleCheck = (name: string) => (isChecked: boolean) => {
+	const handleCheck = (isChecked: boolean) =>  {
 		const updatedFormData = {
 			...formData,
-			[name]: isChecked
+			accept_statute: isChecked,
 		}
 		setFormData(updatedFormData)
 		setFormErrors(validateRegistration(updatedFormData))
 	}
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+		e.preventDefault()
 
 		if (checkErrors(formErrors)) {
 			const data = await apiRegisterUser(formData)
@@ -95,57 +87,53 @@ export default function RegistrationForm() {
 
 	return (
 		<form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <WarningNotif 
-        isError={isServerError}
-        content={<RegisteredAccountWarning />}	
-      />
-      <div className="flex flex-col gap-3">
-        <Input
-          handleChange={handleChange}
-          label="Adres e-mail"
-          name="email"
-          placeholder="Wpisz e-mail"
-          type="email"
-          isError={isClientError}
-          errors={formErrors.email}
-          value={formData.email}
-        />
-        <InputPassword
-          handleChange={handleChange}
-          label="Hasło"
-          name="password"
-          placeholder="Wpisz hasło"
-          isError={isClientError}
-          errors={formErrors.password}
-          value={formData.password}
-        />
-        <InputPassword
-          handleChange={handleChange}
-          label="Powtórzenie hasła"
-          name="password_confirmation"
-          placeholder="Powtórz hasło"
-          isError={isClientError}
-          errors={formErrors.password_confirmation}
-          value={formData.password_confirmation}
-        />
-      </div>
-      <PasswordRequierds errors={formErrors.password} />
-      <div>
-        <InputCheckbox 
-          id="accept_statute" 
-          name='accept_statute' 
-          checked={formData.accept_statute}
-          handleCheck={handleCheck} 
-          isError={isClientError} 
-          errors={formErrors.accept_statute}
-          label={<AcceptStatute />}
-        />
-      </div>
-      <div className="flex flex-col pt-5">
-        <Button className="w-full">
-          Załóż konto
-        </Button>
-      </div>
+			<WarningNotif isError={isServerError}>
+				<RegisteredAccountWarning />
+			</WarningNotif>
+
+			<div className="flex flex-col gap-3">
+				<Input
+					handleChange={handleChange}
+					label="Adres e-mail"
+					name="email"
+					placeholder="Wpisz e-mail"
+					type="email"
+					isError={isClientError}
+					errors={formErrors.email}
+					value={formData.email}
+				/>
+				<InputPassword
+					handleChange={handleChange}
+					label="Hasło"
+					name="password"
+					placeholder="Wpisz hasło"
+					isError={isClientError}
+					errors={formErrors.password}
+					value={formData.password}
+				/>
+				<InputPassword
+					handleChange={handleChange}
+					label="Powtórzenie hasła"
+					name="password_confirmation"
+					placeholder="Powtórz hasło"
+					isError={isClientError}
+					errors={formErrors.password_confirmation}
+					value={formData.password_confirmation}
+				/>
+			</div>
+			<PasswordRequierds errors={formErrors.password} />
+			<div>
+				<InputCheckbox
+					id="accept_statute"
+					name="accept_statute"
+					checked={formData.accept_statute}
+					handleCheck={handleCheck}
+					label="Zakceptuj statut"
+				/>
+			</div>
+			<div className="flex flex-col pt-5">
+				<Button className="w-full">Załóż konto</Button>
+			</div>
 		</form>
 	)
 }

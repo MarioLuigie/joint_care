@@ -12,8 +12,7 @@ import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 // lib
 // import { apiForgotPassword } from '@/lib/api/auth-api'
-import { forgotPasswordSchema } from '@/lib/utils/zod'
-import { ForgotPasswordFormData } from '@/lib/types'
+import { forgotPasswordSchema, ForgotPasswordFormData } from '@/lib/utils/zod'
 import { routes } from '@/lib/constants'
 
 

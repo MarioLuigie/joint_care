@@ -2,29 +2,29 @@
 import { useForm } from 'react-hook-form'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 import { Button } from '@/components/ui/button';
-import PasswordRequierds from '@/components/content/auth/partials/PasswordRequierds';
+import PasswordRequirements from '@/components/content/auth/forms/PasswordRequirements';
 import { RegistrationFormErrors } from '@/lib/types';
-import { errorMsg } from '@/lib/constants';
+import { msg } from '@/lib/constants';
 import { useState } from 'react';
 
 export default function ChangePasswordFormRef() {
   
   const initFormErrors: RegistrationFormErrors = {
 		email: [
-			errorMsg.EMPTY
+			msg.EMPTY
 		],
 		password: [
-			errorMsg.PASSWORD_LETTER_SIZE,
-			errorMsg.PASSWORD_DIGIT,
-			errorMsg.PASSWORD_SPECIAL_CHAR,
-			errorMsg.PASSWORD_LENGTH
+			msg.PASSWORD_LETTER_SIZE,
+			msg.PASSWORD_DIGIT,
+			msg.PASSWORD_SPECIAL_CHAR,
+			msg.PASSWORD_LENGTH
 			,
 		],
 		password_confirmation: [
-			errorMsg.EMPTY
+			msg.EMPTY
 		],
 		accept_statute: [
-			errorMsg.ACCEPT_STATUTE
+			msg.ACCEPT_STATUTE
 		]
 	}
   const [formErrors, setFormErrors] =
@@ -62,7 +62,7 @@ export default function ChangePasswordFormRef() {
           error={errors.date}
         />
       </div>
-      <PasswordRequierds errors={formErrors.password} />
+      <PasswordRequirements password={"1!aA54567"} />
       <Button className='w-40'>Zmień hasło</Button>
     </form>
   )

@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 // components
-import InputShadcn from '@/components/shared/inputsRef/archive/InputShadcn'
+import InputForm from '@/components/shared/inputsShadcn/InputShadcn'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import { Button } from '@/components/ui/button'
@@ -48,13 +48,13 @@ export default function LoginFormRef() {
 				<IncorrectDataAlert />
 			</AlertNotif>
 			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-				<InputShadcn
+				<InputForm
 					name="email"
 					control={form.control}
 					placeholder="Wpisz e-mail"
 					label="Adres e-mail"
 				/>
-				<InputShadcn
+				<InputForm
 					name="password"
 					control={form.control}
 					placeholder="Wpisz hasło"
