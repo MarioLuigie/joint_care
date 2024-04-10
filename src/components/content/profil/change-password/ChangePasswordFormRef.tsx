@@ -2,7 +2,7 @@
 import { useForm } from 'react-hook-form'
 import InputRef from '@/components/shared/inputsRef/InputRef'
 import { Button } from '@/components/ui/button';
-import PasswordRequierds from '@/components/content/auth/forms/PasswordRequirements';
+import PasswordRequirements from '@/components/content/auth/forms/PasswordRequirements';
 import { RegistrationFormErrors } from '@/lib/types';
 import { msg } from '@/lib/constants';
 import { useState } from 'react';
@@ -62,7 +62,7 @@ export default function ChangePasswordFormRef() {
           error={errors.date}
         />
       </div>
-      <PasswordRequierds errors={formErrors.password} />
+      <PasswordRequirements password={"1!aA54567"} />
       <Button className='w-40'>Zmień hasło</Button>
     </form>
   )
