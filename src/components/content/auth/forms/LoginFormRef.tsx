@@ -14,7 +14,7 @@ import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import IncorrectDataAlert from '@/components/content/auth/notifs/IncorrectDataAlert'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
 // lib
-import { loginSchema } from '@/lib/utils/zod'
+import { loginSchema, LoginFormData } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
 import { routes } from '@/lib/constants'
 import { useAppContext } from '@/context'
@@ -29,15 +29,15 @@ export default function LoginFormRef() {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<z.infer<typeof loginSchema>>({
+	} = useForm<LoginFormData>({
 		resolver: zodResolver(loginSchema),
 	})
 
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setIsRememberMe(event.target.checked)
+	const handleCheck = (isChecked: boolean) => {
+		setIsRememberMe(isChecked)
 	}
 
-	const onSubmit = async (data: z.infer<typeof loginSchema>) => {
+	const onSubmit = async (data: LoginFormData) => {
 		try {
 			const res = await apiLoginUser(data)
 
@@ -85,7 +85,7 @@ export default function LoginFormRef() {
 					id="remember_me"
 					name="remember_me"
 					checked={isRememberMe}
-					handleCheck={handleChange}
+					handleCheck={handleCheck}
 					label="Zapamiętaj mnie"
 				/>
 			</div>

@@ -1,9 +1,12 @@
+import { Label } from '@/components/ui/label'
+import { Checkbox } from '@/components/ui/checkbox'
+
 interface IProps {
-	label: React.ReactNode
 	id: string
 	name: string
+	label: React.ReactNode
 	checked: boolean
-	handleCheck: (event: React.ChangeEvent<HTMLInputElement>) => void
+	handleCheck: (isChecked: boolean) => void
 }
 
 export default function InputCheckbox({
@@ -14,18 +17,14 @@ export default function InputCheckbox({
 	handleCheck,
 }: IProps) {
 	return (
-		<>
-			<div className="flex items-center space-x-2 pb-2">
-				<input
-					id={id}
-					name={name}
-					type="checkbox"
-					className="w-4 h-4"
-					checked={checked}
-					onChange={handleCheck}
-				/>
-				<label htmlFor={id}>{label}</label>
-			</div>
-		</>
+		<div className="flex items-center space-x-2 pb-2">
+			<Checkbox
+				id={id}
+				name={name}
+				checked={checked}
+				onCheckedChange={handleCheck}
+			/>
+			<Label htmlFor={id}>{label}</Label>
+		</div>
 	)
 }

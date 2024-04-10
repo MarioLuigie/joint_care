@@ -10,11 +10,11 @@ import {
 import { Input } from '@/components/ui/input'
 import { Control } from 'react-hook-form'
 
-interface InputProps {
+interface IProps {
 	control: Control<any>
-	label?: string
 	name: string
 	placeholder?: string
+	label?: string
 }
 
 export default function InputShadcn({
@@ -22,7 +22,7 @@ export default function InputShadcn({
 	label,
 	name,
 	placeholder,
-}: InputProps) {
+}: IProps) {
 	return (
 		<FormField
 			name={name}

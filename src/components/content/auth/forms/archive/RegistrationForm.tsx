@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import Input from '@/components/shared/inputs/Input'
 import InputPassword from '@/components/shared/inputs/InputPassword'
 import PasswordRequierds from '@/components/content/auth/forms/PasswordRequirements'
-import InputCheckbox from '@/components/shared/inputs/InputCheckbox'
+import InputCheckbox from '@/components/shared/inputs/InputCheckBox'
 import { RegistrationFormData } from '@/lib/types'
 import { RegistrationFormErrors } from '@/lib/types'
 import { apiRegisterUser } from '@/lib/api/auth-api'
@@ -55,10 +55,10 @@ export default function RegistrationForm() {
 		setFormData(updatedFormData)
 	}
 
-	const handleCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleCheck = (isChecked: boolean) =>  {
 		const updatedFormData = {
 			...formData,
-			[e.target.name]: e.target.checked,
+			accept_statute: isChecked,
 		}
 		setFormData(updatedFormData)
 		setFormErrors(validateRegistration(updatedFormData))
