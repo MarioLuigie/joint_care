@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <ul className='flex gap-9'>
       {navbar.map((item, index) => (
-        <li key={index}>
+        <li key={index} className='shrink-0'>
           <LinkNav item={item}/>
         </li>
       ))}
