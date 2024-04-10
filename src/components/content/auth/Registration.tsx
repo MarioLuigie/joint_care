@@ -6,7 +6,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card'
 
-import RegistrationForm from './forms/RegistrationFormRef'
+import RegistrationForm from '@/components/content/auth/forms/RegistrationFormRef'
 
 export default function Registration() {
 
