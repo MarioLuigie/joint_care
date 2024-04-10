@@ -62,7 +62,7 @@ export default function ChangePasswordFormRef() {
           error={errors.date}
         />
       </div>
-      <PasswordRequirements password={"1!aA54567"} />
+      <PasswordRequirements password={"7"} />
       <Button className='w-40'>Zmień hasło</Button>
     </form>
   )
