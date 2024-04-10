@@ -2,12 +2,12 @@ import Image from 'next/image'
 
 import warningIcon from '/public/assets/icons/warning.svg'
 
-interface WarningProps {
+interface WarningNotifProps {
 	isError: boolean
 	children: React.ReactNode
 }
 
-export default function WarningNotif({ isError, children }: WarningProps) {
+export default function WarningNotif({ isError, children }: WarningNotifProps) {
 	if (isError) {
 		return (
 			<div className="flex-start gap-3 bg-[#FBF4DD] p-4 mb-2 rounded-lg">

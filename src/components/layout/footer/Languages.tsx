@@ -1,3 +1,5 @@
+'use client'
+
 import {
 	Select,
 	SelectContent,
@@ -5,10 +7,15 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from '@/components/ui/select'
+import { ReactSVG } from 'react-svg'
+import { languages } from '@/lib/constants/layout'
+import { Language } from '@/lib/types/layout'
 
-import LangImage from './LangImage'
-import { Language } from '@/lib/types'
-import { languages } from '@/lib/constants/footer'
+const LangImage = ({ language }: { language: Language }) => (
+	<div aria-label={language.alt}>
+		<ReactSVG src={language.src} />
+	</div>
+)
 
 export default function Languages() {
 	return (

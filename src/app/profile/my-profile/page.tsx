@@ -1,5 +1,5 @@
 import Sidebar from '@/components/layout/main/Sidebar'
-import MyProfile from '@/components/content/profil/my-profile/MyProfile'
+import MyProfile from '@/components/pages/profil/MyProfile'
 
 export default function MyProfilePage() {
 	return (

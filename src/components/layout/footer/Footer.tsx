@@ -1,6 +1,11 @@
 import Languages from './Languages'
-import Copyrights from './Copyrights'
 import Socials from './Socials'
+
+const Copyrights = () => (
+	<p className="leading-[18.25px] text-xs text-jc-text4">
+		Copyright © 2024 Joint Care, Wszystkie prawa zastrzeżone.
+	</p>
+)
 
 export default function Footer() {
 	return (

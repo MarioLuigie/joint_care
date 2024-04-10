@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils/'
 import localFont from 'next/font/local'
 import './globals.css'
 
-import { ContextProvider } from '@/context'
+import { ContextProvider } from '@/lib/context'
 
 // fonts
 const titillium = localFont({

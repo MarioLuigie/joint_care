@@ -1,14 +1,16 @@
 'use client'
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-
+import { Button } from '@/components/ui/button'
 import { routes } from '@/lib/constants'
+import Link from 'next/link'
 
 export default function HomePage() {
-	const router = useRouter()
-	useEffect(() => {
-		router.push(routes.LOGIN)
-	}, [router])
-
-	return <div className="flex-center p-2">HOME PAGE</div>
+	return (
+		<div className="flex-center flex-col min-h-screen gap-3 bg-black">
+			{Object.values(routes).map((route, i) => (
+				<Link key={i} href={route}>
+					<Button className="bg-gray-900 hover:bg-gray-800">{route}</Button>
+				</Link>
+			))}
+		</div>
+	)
 }

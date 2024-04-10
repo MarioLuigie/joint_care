@@ -1,5 +1,5 @@
 import Sidebar from "@/components/layout/main/Sidebar"
-import ChangePassword from "@/components/content/profil/change-password/ChangePassword"
+import ChangePassword from "@/components/pages/profil/ChangePassword"
 
 export default function ChangePasswordPage() {
 

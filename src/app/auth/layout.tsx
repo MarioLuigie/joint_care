@@ -1,4 +1,4 @@
-import AuthHeader from '@/components/layout/header/AuthHeader'
+import AuthHeader from '@/components/layout/header/HeaderAuth'
 import Main from '@/components/layout/main/Main'
 import Footer from '@/components/layout/footer/Footer'
 
