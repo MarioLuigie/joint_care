@@ -4,10 +4,7 @@ import { msg } from '@/lib/constants'
 // Login
 export const loginSchema = z.object({
 	email: z.string().email({ message: msg.EMAIL }),
-	password: z
-		.string()
-		.min(1, { message: msg.PASSWORD })
-		.min(8, { message: msg.PASSWORD_LENGTH }),
+	password: z.string().min(8, { message: msg.PASSWORD_LENGTH }),
 })
 
 // Forgot Password

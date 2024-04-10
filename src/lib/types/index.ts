@@ -42,14 +42,6 @@ export interface User {
 	user: UserData
 }
 
-// ForgotPassword
-export interface ForgotPasswordFormErrors extends Errors{
-	email: string[]
-}
-export interface ForgotPasswordFormData {
-	email: string
-}
-
 // Registration
 export interface RegistrationFormData {
 	email: string

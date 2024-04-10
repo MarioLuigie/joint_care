@@ -1,7 +1,4 @@
 import { forwardRef } from 'react'
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import { Check } from 'lucide-react'
-import { cn } from '@/lib/utils'
 
 interface InputCheckboxProps {
 	label: React.ReactNode
@@ -17,11 +14,11 @@ const InputCheckboxRef = forwardRef<HTMLInputElement, InputCheckboxProps>(
 			<>
 				<div className="flex items-center space-x-2">
 					<input
+						type="checkbox"
 						className="w-4 h-4"
 						id={id}
-						type="checkbox"
-						{...rest}
 						ref={ref}
+						{...rest}
 					/>
 					<label htmlFor={id}>{label}</label>
 				</div>

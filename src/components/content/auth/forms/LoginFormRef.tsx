@@ -85,7 +85,7 @@ export default function LoginFormRef() {
 					id="remember_me"
 					name="remember_me"
 					checked={isRememberMe}
-					handleChange={handleChange}
+					handleCheck={handleChange}
 					label="Zapamiętaj mnie"
 				/>
 			</div>

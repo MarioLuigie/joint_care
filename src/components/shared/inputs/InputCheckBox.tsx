@@ -3,7 +3,7 @@ interface IProps {
 	id: string
 	name: string
 	checked: boolean
-	handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+	handleCheck: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function InputCheckbox({
@@ -11,7 +11,7 @@ export default function InputCheckbox({
 	name,
 	label,
 	checked,
-	handleChange,
+	handleCheck,
 }: IProps) {
 	return (
 		<>
@@ -22,7 +22,7 @@ export default function InputCheckbox({
 					type="checkbox"
 					className="w-4 h-4"
 					checked={checked}
-					onChange={handleChange}
+					onChange={handleCheck}
 				/>
 				<label htmlFor={id}>{label}</label>
 			</div>
