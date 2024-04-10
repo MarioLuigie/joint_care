@@ -1,4 +1,4 @@
-import Sidebar from "@/components/content/common/Sidebar"
+import Sidebar from "@/components/layout/main/Sidebar"
 import Settings from "@/components/content/profil/settings/Settings"
 
 export default function SettingsPage() {

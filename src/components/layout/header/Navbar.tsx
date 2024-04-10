@@ -1,5 +1,5 @@
 import { navbar } from '@/lib/constants/navbar'
-import LinkNav from '@/components/shared/LinkNav'
+import LinkNav from '@/components/shared/common/LinkNav'
 
 export default function Navbar() {
   return (

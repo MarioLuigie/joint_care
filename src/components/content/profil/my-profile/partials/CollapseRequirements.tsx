@@ -5,7 +5,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 
-
 export default function CollapseRequirements() {
 
   return (

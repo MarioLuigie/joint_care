@@ -7,8 +7,8 @@ import {
 import { ReactSVG } from 'react-svg'
 
 import { topbar } from '@/lib/constants/top-sidebar'
-import LinkNav from '@/components/shared/LinkNav'
-import UserName from '@/components/shared/UserName'
+import LinkNav from '@/components/shared/common/LinkNav'
+import UserName from '@/components/shared/common/UserName'
 import { useAppContext } from "@/context"
 import { apiLogoutUser } from "@/lib/api/auth-api"
 import { routes } from "@/lib/constants"

@@ -1,4 +1,4 @@
-import Sidebar from '@/components/content/common/Sidebar'
+import Sidebar from '@/components/layout/main/Sidebar'
 import MyProfile from '@/components/content/profil/my-profile/MyProfile'
 
 export default function MyProfilePage() {

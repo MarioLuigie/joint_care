@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 import visibilityOff from '/public/assets/icons/visibility-off.svg'
-import Errors from '../Errors'
+import Errors from './Errors'
 
 interface InputProps {
 	value: string

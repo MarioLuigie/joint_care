@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Errors from '@/components/shared/Errors'
+import Errors from '@/components/shared/inputs/Errors'
 
 interface InputProps {
 	value: string
