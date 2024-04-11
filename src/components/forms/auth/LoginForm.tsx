@@ -45,7 +45,7 @@ export default function LoginFormRef() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 				<AlertNotif isError={isServerError}>
 					<p>Niepoprawne dane do logowania!</p>
 					<p>Uzupełnij ponownie</p>
