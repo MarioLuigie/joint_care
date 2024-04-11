@@ -1,104 +1,81 @@
 'use client'
 // modules
-import { useForm } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 // components
-import { Button } from '@/components/ui/button'
+import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
+import InputPasswordShadcn from '@/components/shared/inputs/shadcn/InputPasswordShadcn'
+import InputCheckboxShadcn from '@/components/shared/inputs/shadcn/InputCheckboxShadcn'
 import AlertNotif from '@/components/shared/notifs/AlertNotif'
-import InputCheckbox from '@/components/shared/inputs/basic/InputCheckBox'
-import InputPasswordRef from '@/components/shared/inputs/reference/InputPasswordRef'
-import InputRef from '@/components/shared/inputs/reference/InputRef'
+import { Button } from '@/components/ui/button'
+import { Form } from '@/components/ui/form'
 // lib
-import { apiLoginUser } from '@/lib/api/auth-api'
 import { loginSchema, LoginFormData } from '@/lib/utils/zod'
+import { apiLoginUser } from '@/lib/api/auth-api'
 import { routes } from '@/lib/constants'
-import { useAppContext } from '@/lib/context'
 
 export default function LoginFormRef() {
 	const [isServerError, setIsServerError] = useState<boolean>(false)
-	const [isRememberMe, setIsRememberMe] = useState<boolean>(false)
 	const router = useRouter()
-	const { setUser } = useAppContext()
 
 	// Form
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<LoginFormData>({
+	const form = useForm<LoginFormData>({
 		resolver: zodResolver(loginSchema),
+		defaultValues: {
+			email: '',
+			password: '',
+			remember_me: false,
+		},
 	})
 
-	const handleCheck = (isChecked: boolean) => {
-		setIsRememberMe(isChecked)
-	}
-
 	// Action on submit
-	const onSubmit = async (data: LoginFormData) => {
-		try {
-			const res = await apiLoginUser(data)
-
-			if (res.errors) {
-				setIsServerError(true)
-			}
-
-			if (res.success) {
-				isRememberMe &&
-					localStorage.setItem('profile', JSON.stringify(res.data))
-				setUser(res.data)
-				router.push(routes.PROFILE_MY_PROFILE)
-				// router.push(routes.DASHBOARD)
-			} else {
-				console.log(res.errors)
-			}
-			console.log(res)
-		} catch (err) {
-			console.log('There is a problem with login', err)
+	const onSubmit = async (values: LoginFormData) => {
+		console.log(values)
+		const data = await apiLoginUser(values)
+		if (data.errors) {
+			setIsServerError(true)
+		}
+		if (data.success) {
+			console.log('User logged in')
 		}
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-			<AlertNotif isError={isServerError}>
-				<p>Niepoprawne dane do logowania!</p>
-				<p>Uzupełnij ponownie</p>
-			</AlertNotif>
-			<div className="flex flex-col gap-3">
-				<InputRef
-					{...register('email')}
-					error={errors.email}
-					label="Adres e-mail"
-					placeholder="Wpisz e-mail"
+		<Form {...form}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+				<AlertNotif isError={isServerError}>
+					<p>Niepoprawne dane do logowania!</p>
+					<p>Uzupełnij ponownie</p>
+				</AlertNotif>
+				<InputShadcn
+					control={form.control}
+					name="email"
 					type="email"
+					placeholder="Wpisz e-mail"
+					label="Adres e-mail"
 				/>
-				<InputPasswordRef
-					{...register('password')}
-					error={errors.password}
+				<InputPasswordShadcn
+					control={form.control}
+					name="password"
 					placeholder="Wpisz hasło"
 					label="Hasło"
 				/>
-			</div>
-			<div className="pt-2">
-				<InputCheckbox
-					id="remember_me"
-					name="remember_me"
-					checked={isRememberMe}
-					handleCheck={handleCheck}
+				<InputCheckboxShadcn
+					control={form.control}
 					label="Zapamiętaj mnie"
+					name="remember_me"
 				/>
-			</div>
-			<div className="flex flex-col gap-2">
 				<Button className="w-full">Zaloguj</Button>
-				<Link
-					href={routes.AUTH_FORGOT_PASSWORD}
-					className="flex-center underline text-sm text-jc-text4"
-				>
-					<p>Zapomniałem hasło</p>
-				</Link>
-			</div>
-		</form>
+			</form>
+			<Link
+				href={routes.AUTH_FORGOT_PASSWORD}
+				className="flex-center underline text-sm text-jc-text4 mt-2"
+			>
+				<p className="p-1">Zapomniałem hasło</p>
+			</Link>
+		</Form>
 	)
 }

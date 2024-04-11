@@ -7,20 +7,15 @@
 	.auth-card {
 		@apply min-w-[370px] w-full sm:w-[390px] lg:w-[460px] p-[50px];
 	}
-
-	.jc-input {
-		@apply p-3 pt-7 rounded-lg border border-slate-300 h-[60px] focus:outline-none placeholder:text-[#9a9a9a];
-	}
-
-	.jc-input-err {
-		@apply p-3 pt-7 rounded-lg border border-[#D97C7C] h-[60px] focus:outline-none placeholder:text-[#9a9a9a];
-	}
-
-	.jc-inputLabel {
-		@apply absolute top-2 left-3 text-[13px] text-[#000000];
-	}
-
-	.jc-warning-link {
+		.jc-warning-link {
 		@apply text-[13px] font-medium text-[#030303];
+	}
+
+	/* Inputs */
+	.jc-input {
+		@apply p-3 pt-8 text-[16px] rounded-lg border h-[60px] focus:outline-none placeholder:text-jc-text3;
+	}
+	.jc-inputLabel {
+		@apply absolute top-[3px] left-3 text-[13px] text-black;
 	}
 }

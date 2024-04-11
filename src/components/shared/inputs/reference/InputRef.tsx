@@ -15,18 +15,16 @@ const InputRef = forwardRef<HTMLInputElement, InputRefProps>(
 					<input
 						{...rest}
 						ref={ref}
-						className={error ? 'jc-input-err' : 'jc-input'}
+						className={`jc-input ${
+							error ? 'border-jc-red' : 'border-slate-300'
+						}`}
 					/>
 					<p className="jc-inputLabel">
 						{label}
 						<span className="text-jc-blue">*</span>
 					</p>
 				</div>
-				{error && (
-					<div className="text-red text-xs ml-3">
-						{error.message}
-					</div>
-				)}
+				{error && <div className="text-red text-xs ml-3">{error.message}</div>}
 			</>
 		)
 	}

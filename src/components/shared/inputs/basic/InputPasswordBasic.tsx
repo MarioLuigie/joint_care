@@ -31,7 +31,7 @@ export default function InputPassword({
 	const handleShowPassword = () => {
 		setIsPasswordHidden((prev) => !prev)
 	}
-	
+
 	return (
 		<>
 			<div className="flex flex-col justify-center items-stretch relative">
@@ -40,7 +40,11 @@ export default function InputPassword({
 					type={isPasswordHidden ? 'password' : 'text'}
 					value={value}
 					placeholder={placeholder}
-					className={isError && errors.every(err => err !== "") ? 'jc-input-err' : 'jc-input'}
+					className={`jc-input ${
+						isError && errors.every((err) => err !== '')
+							? 'border-jc-red'
+							: 'border-slate-300'
+					}`}
 					onChange={handleChange}
 				/>
 				<p className="jc-inputLabel">
