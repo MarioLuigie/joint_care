@@ -13,11 +13,13 @@ import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 // lib
-import { loginSchema, LoginFormData } from '@/lib/utils/zod'
 import { apiLoginUser } from '@/lib/api/auth-api'
+import { loginSchema, LoginFormData } from '@/lib/utils/zod'
+import { useAppContext } from '@/lib/context'
 import { routes } from '@/lib/constants'
 
 export default function LoginFormRef() {
+	const { setUser } = useAppContext()
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const router = useRouter()
 
@@ -32,14 +34,27 @@ export default function LoginFormRef() {
 	})
 
 	// Action on submit
-	const onSubmit = async (values: LoginFormData) => {
-		console.log(values)
-		const data = await apiLoginUser(values)
-		if (data.errors) {
-			setIsServerError(true)
-		}
-		if (data.success) {
-			console.log('User logged in')
+	const onSubmit = async (data: LoginFormData) => {
+		console.log(data)
+
+		try {
+			const res = await apiLoginUser(data)
+
+			if (res.errors) {
+				setIsServerError(true)
+			}
+
+			if (res.success) {
+				data.remember_me &&
+					localStorage.setItem('profile', JSON.stringify(res.data))
+				setUser(res.data)
+				router.push(routes.PROFILE_MY_PROFILE)
+			} else {
+				console.log(res.errors)
+			}
+			console.log(res)
+		} catch (err) {
+			console.log('There is a problem with login', err)
 		}
 	}
 
