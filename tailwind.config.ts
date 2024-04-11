@@ -32,6 +32,7 @@ const config = {
 					gray7: "#8C8C8C",
 					gray8: "#808080",
 					blue: "#048AED",
+					red: "#D97C7C",
 				},
 				gray: {
 					DEFAULT: colors.gray[500]

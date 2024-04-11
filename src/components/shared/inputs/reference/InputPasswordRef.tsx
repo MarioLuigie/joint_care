@@ -10,7 +10,6 @@ interface InputPasswordRefProps {
 
 const InputPasswordRef = forwardRef<HTMLInputElement, InputPasswordRefProps>(
 	({ label, error, ...rest }, ref) => {
-
 		const [isPasswordHidden, setIsPasswordHidden] = useState(true)
 
 		const handleShowPassword = () => {
@@ -24,28 +23,26 @@ const InputPasswordRef = forwardRef<HTMLInputElement, InputPasswordRefProps>(
 						{...rest}
 						ref={ref}
 						type={isPasswordHidden ? 'password' : 'text'}
-						className={error ? 'jc-input-err' : 'jc-input'}
+						className={`jc-input ${
+							error ? 'border-jc-red' : 'border-slate-300'
+						}`}
 					/>
 					<p className="jc-inputLabel">
 						{label}
 						<span className="text-[#0092FD]">*</span>
 					</p>
 					<div
-					className="absolute right-5 cursor-pointer"
-					onClick={handleShowPassword}
-				>
-					<ReactSVG
-						src='/assets/icons/visibility-off.svg'
-						width={20}
-						height={14}
-					/>
-				</div>
-				</div>
-				{error && (
-					<div className="text-red text-xs ml-3">
-						{error.message}
+						className="absolute right-5 cursor-pointer"
+						onClick={handleShowPassword}
+					>
+						<ReactSVG
+							src="/assets/icons/visibility-off.svg"
+							width={20}
+							height={14}
+						/>
 					</div>
-				)}
+				</div>
+				{error && <div className="text-red text-xs ml-3">{error.message}</div>}
 			</>
 		)
 	}
