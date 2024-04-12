@@ -66,8 +66,11 @@ const config = {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
 			width: {
-
-			}
+				jc_topbar: "230px",
+			},
+			height: {
+				jc_topbar: "56px",
+			},
 		},
 	},
 	plugins: [
@@ -99,7 +102,7 @@ const config = {
 				},
 			})
 		}),
-	],
+	]
 } satisfies Config
 
 export default config
