@@ -14,7 +14,7 @@ import AlertNotif from '@/components/shared/notifs/AlertNotif'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 // lib
-import { apiLoginUser } from '@/lib/api/auth'
+import { apiLoginUser } from '@/lib/services/auth'
 import { loginSchema, LoginFormData } from '@/lib/zod/auth'
 import { useAppContext } from '@/lib/context'
 import { routes } from '@/lib/constants'

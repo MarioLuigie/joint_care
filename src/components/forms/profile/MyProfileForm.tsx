@@ -1,77 +1,132 @@
 'use client'
+// modules
 import { useForm } from 'react-hook-form'
-import InputRef from '@/components/shared/inputs/reference/InputRef'
+import { zodResolver } from '@hookform/resolvers/zod'
+// components
+import { Form } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import InputRadioGroup from '@/components/shared/inputs/basic/InputRadioGroup'
+import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
+// lib
+import { profileSchema, ProfileFormData } from '@/lib/zod/profile'
+import { getUserProfile, updateUserProfile } from '@/lib/services/profile'
+import { useAppContext } from '@/lib/context'
+import { UserData } from '@/lib/types'
+import { useEffect } from 'react'
 
-export default function MyProfileFormRef() {
+export default function MyProfileForm() {
 	const radios = [
 		{ label: 'Kobieta', value: 'woman' },
 		{ label: 'Mężczyzna', value: 'man' },
 	]
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm()
+	const { user } = useAppContext()
 
-	const onSubmit = async (data: any) => {
+	useEffect(() => {
+		const fetchUserProfile = async () => {
+			if (user && user.token) {
+				const res = await getUserProfile(user.token)
+
+				if (res.success) {
+					const { user }: { user: UserData } = res.data
+					console.log(user)
+
+					const profileData: ProfileFormData = {
+						name: user.name,
+						date: user.birth_date || '',
+						weight: user.weight ? String(user.weight) : '' || '',
+						height: user.height ? String(user.height) : '' || '',
+						email: user.email || '',
+						address: user.city || '',
+						gender: user.sex || 'men',
+					}
+					form.reset(profileData)
+				}
+			}
+		}
+		fetchUserProfile()
+	}, [user])
+
+	const defaultValues = {
+		name: '',
+		date: '',
+		weight: '',
+		height: '',
+		email: '',
+		address: '',
+		gender: 'men',
+	}
+
+	const form = useForm({
+		resolver: zodResolver(profileSchema),
+		defaultValues,
+	})
+
+	const onSubmit = async (data: ProfileFormData) => {
 		try {
-			console.log('Zapisz dane usera')
+			if (user && user.token) {
+				console.log(data)
+				const res = await updateUserProfile(user?.token, data)
+				console.log(res)
+			}
+
+			console.log(data)
 		} catch (err) {
-			console.error('There is a problem with saving user data:', err)
+			console.error(err)
 		}
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
-			<div className="flex flex-col gap-4">
-				<InputRadioGroup radios={radios} />
-				<InputRef
-					{...register('name')}
-					type="text"
-					label="Imię i Nazwisko"
-					placeholder="Wpisz"
-					error={errors.name}
-				/>
-				<InputRef
-					{...register('date')}
-					type="text"
-					label="Data urodzenia"
-					placeholder="Wpisz"
-					error={errors.date}
-				/>
-				<InputRef
-					{...register('weight')}
-					type="number"
-					label="Waga"
-					placeholder="Wpisz"
-					error={errors.weight}
-				/>
-				<InputRef
-					{...register('height')}
-					type="number"
-					label="Wzrost"
-					placeholder="Wpisz"
-					error={errors.height}
-				/>
-				<InputRef
-					{...register('email')}
-					type="email"
-					label="Adres e-mail"
-					placeholder="Wpisz"
-					error={errors.email}
-				/>
-				<InputRef
-					{...register('address')}
-					type="text"
-					label="Adres zamieszkania"
-					placeholder="Wpisz"
-					error={errors.address}
-				/>
-			</div>
-			<Button className="w-40">Zapisz zmiany</Button>
-		</form>
+		<Form {...form}>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="flex flex-col gap-6"
+			>
+				<div className="flex flex-col gap-4">
+					<InputRadioGroup radios={radios} />
+					<InputShadcn
+						control={form.control}
+						name="name"
+						placeholder="Wpisz imię i nzwisko"
+						label="Imię i Nazwisko"
+					/>
+					<InputShadcn
+						control={form.control}
+						name="date"
+						type="date"
+						placeholder="Wpisz datę urodzenia"
+						label="Data urodzenia"
+					/>
+					<InputShadcn
+						control={form.control}
+						name="weight"
+						type="number"
+						placeholder="Wpisz wagę"
+						label="Waga"
+					/>
+					<InputShadcn
+						control={form.control}
+						name="height"
+						type="number"
+						placeholder="Wpisz wzrost"
+						label="Wzrost"
+					/>
+					<InputShadcn
+						control={form.control}
+						name="email"
+						type="email"
+						placeholder="Wpisz adres e-mail"
+						label="Adres e-mail"
+					/>
+					<InputShadcn
+						control={form.control}
+						name="address"
+						placeholder="Wpisz adres zamieszkania"
+						label="Adres zamieszkania"
+					/>
+				</div>
+				<Button className="w-40">Zapisz zmiany</Button>
+			</form>
+		</Form>
 	)
 }

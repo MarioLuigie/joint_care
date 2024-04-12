@@ -2,7 +2,7 @@ export interface Children {
 	children: React.ReactNode
 }
 
-interface UserData {
+export interface UserData {
 	avatar: string | null
 	birth_date: string | null
 	city: string | null

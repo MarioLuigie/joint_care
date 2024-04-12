@@ -1,5 +1,5 @@
 'use client'
-import { apiRegisterUser } from '@/lib/api/auth'
+import { apiRegisterUser } from '@/lib/services/auth'
 import { Button } from '@/components/ui/button'
 import { checkErrors } from '@/lib/utils/validators'
 import { msg } from '@/lib/constants'

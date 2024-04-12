@@ -16,7 +16,7 @@ import WarningNotif from '@/components/shared/notifs/WarningNotif'
 // lib
 import Group from '@/components/shared/containers/Group'
 import { registrationSchema, RegistrationFormData } from '@/lib/zod/auth'
-import { apiRegisterUser } from '@/lib/api/auth'
+import { apiRegisterUser } from '@/lib/services/auth'
 import { routes } from '@/lib/constants'
 
 export default function RegistrationFormRef() {

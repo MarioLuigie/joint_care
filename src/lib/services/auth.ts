@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { RegistrationFormData, LoginFormData } from '@/lib/utils/zod'
+import { RegistrationFormData, LoginFormData } from '@/lib/zod/auth'
 
 const baseUrl = 'https://jointcare.azurewebsites.net/api/v1/auth'
 const API = axios.create({ baseURL: baseUrl })
