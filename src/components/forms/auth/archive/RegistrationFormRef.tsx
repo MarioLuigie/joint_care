@@ -7,16 +7,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 // components
 import { Button } from '@/components/ui/button'
-import { Form } from '@/components/ui/form'
-import InputCheckboxShadcn from '@/components/shared/inputs/shadcn/InputCheckboxShadcn'
-import InputPasswordShadcn from '@/components/shared/inputs/shadcn/InputPasswordShadcn'
-import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
+import InputCheckboxRef from '@/components/shared/inputs/reference/InputCheckboxRef'
+import InputPasswordRef from '@/components/shared/inputs/reference/InputPasswordRef'
+import InputRef from '@/components/shared/inputs/reference/InputRef'
 import PasswordReq from '@/components/shared/common/PasswordReq'
 import WarningNotif from '@/components/shared/notifs/WarningNotif'
 // lib
-import Group from '@/components/shared/containers/Group'
-import { registrationSchema, RegistrationFormData } from '@/lib/utils/zod'
 import { apiRegisterUser } from '@/lib/api/auth-api'
+import { registrationSchema, RegistrationFormData } from '@/lib/utils/zod'
 import { routes } from '@/lib/constants'
 
 export default function RegistrationFormRef() {
@@ -24,14 +22,13 @@ export default function RegistrationFormRef() {
 	const router = useRouter()
 
 	// Form
-	const form = useForm<RegistrationFormData>({
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: { errors },
+	} = useForm<RegistrationFormData>({
 		resolver: zodResolver(registrationSchema),
-		defaultValues: {
-			email: '',
-			password: '',
-			password_confirmation: '',
-			accept_statute: false,
-		},
 	})
 
 	// Action on submit
@@ -57,13 +54,12 @@ export default function RegistrationFormRef() {
 	const AcceptStatute = () => (
 		<div className="flex items-center space-x-2">
 			<p>Akceptuję</p>
-			<Link href="#" className="underline text-sm font-medium text-jc-text1">
+			<Link href="#" className="underline text-sm font-medium text-[#030303]">
 				Regulamin serwisu
 			</Link>
 		</div>
 	)
 
-	// Existing Account Warning
 	const ExistingAccountWarning = () => (
 		<>
 			<p>Konto z tym adresem e-mail jest już zarejestrowane.</p>
@@ -83,43 +79,43 @@ export default function RegistrationFormRef() {
 	)
 
 	return (
-		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-col gap-6"
-			>
-				<WarningNotif isError={isServerError}>
-					<ExistingAccountWarning />
-				</WarningNotif>
-				<Group>
-					<InputShadcn
-						control={form.control}
-						name="email"
-						type="email"
-						placeholder="Wpisz e-mail"
-						label="Adres e-mail"
-					/>
-					<InputPasswordShadcn
-						control={form.control}
-						name="password"
-						label="Hasło"
-						placeholder="Wpisz hasło"
-					/>
-					<InputPasswordShadcn
-						control={form.control}
-						name="password_confirmation"
-						label="Powtórzenie hasła"
-						placeholder="Powtórz hasło"
-					/>
-				</Group>
-				<PasswordReq password={form.watch('password')} />
-				<InputCheckboxShadcn
-					control={form.control}
-					name="accept_statute"
-					label={<AcceptStatute />}
+		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+			<WarningNotif isError={isServerError}>
+				<ExistingAccountWarning />
+			</WarningNotif>
+			<div className="flex flex-col gap-3 pb-3">
+				<InputRef
+					{...register('email')}
+					error={errors.email}
+					label="Adres e-mail"
+					placeholder="Wpisz e-mail"
+					type="email"
 				/>
+				<InputPasswordRef
+					{...register('password')}
+					error={errors.password}
+					label="Hasło"
+					placeholder="Wpisz hasło"
+				/>
+				<InputPasswordRef
+					{...register('password_confirmation')}
+					error={errors.password_confirmation}
+					label="Powtórzenie hasła"
+					placeholder="Powtórz hasło"
+				/>
+			</div>
+			<PasswordReq password={watch('password')} />
+			<div className="pt-2">
+				<InputCheckboxRef
+					{...register('accept_statute')}
+					error={errors.accept_statute}
+					label={<AcceptStatute />}
+					id="accept_statute"
+				/>
+			</div>
+			<div className="flex flex-col pt-3">
 				<Button className="w-full">Załóż konto</Button>
-			</form>
-		</Form>
+			</div>
+		</form>
 	)
 }

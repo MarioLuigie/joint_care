@@ -1,6 +1,6 @@
 import {
 	Card,
-	CardContent,
+	CardFooter,
 	CardDescription,
 	CardHeader,
 	CardTitle,
@@ -15,9 +15,9 @@ export default function Login() {
 				<CardTitle>Zaloguj się</CardTitle>
 				<CardDescription>Chcę się zalogować</CardDescription>
 			</CardHeader>
-			<CardContent>
+			<CardFooter>
 				<LoginForm />
-			</CardContent>
+			</CardFooter>
 		</Card>
 	)
 }

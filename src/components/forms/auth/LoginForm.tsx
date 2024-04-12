@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 // components
+import Group from '@/components/shared/containers/Group'
 import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 import InputPasswordShadcn from '@/components/shared/inputs/shadcn/InputPasswordShadcn'
 import InputCheckboxShadcn from '@/components/shared/inputs/shadcn/InputCheckboxShadcn'
@@ -60,37 +61,44 @@ export default function LoginFormRef() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="flex flex-col gap-6"
+			>
 				<AlertNotif isError={isServerError}>
 					<p>Niepoprawne dane do logowania!</p>
 					<p>Uzupełnij ponownie</p>
 				</AlertNotif>
-				<InputShadcn
-					control={form.control}
-					name="email"
-					type="email"
-					placeholder="Wpisz e-mail"
-					label="Adres e-mail"
-				/>
-				<InputPasswordShadcn
-					control={form.control}
-					name="password"
-					placeholder="Wpisz hasło"
-					label="Hasło"
-				/>
+				<Group>
+					<InputShadcn
+						control={form.control}
+						name="email"
+						type="email"
+						placeholder="Wpisz e-mail"
+						label="Adres e-mail"
+					/>
+					<InputPasswordShadcn
+						control={form.control}
+						name="password"
+						placeholder="Wpisz hasło"
+						label="Hasło"
+					/>
+				</Group>
 				<InputCheckboxShadcn
 					control={form.control}
 					label="Zapamiętaj mnie"
 					name="remember_me"
 				/>
-				<Button className="w-full">Zaloguj</Button>
+				<Group gap="2">
+					<Button className="w-full">Zaloguj</Button>
+					<Link
+						href={routes.AUTH_FORGOT_PASSWORD}
+						className="flex-center underline text-sm text-jc-text4"
+					>
+						<p className="p-1">Zapomniałem hasło</p>
+					</Link>
+				</Group>
 			</form>
-			<Link
-				href={routes.AUTH_FORGOT_PASSWORD}
-				className="flex-center underline text-sm text-jc-text4 mt-2"
-			>
-				<p className="p-1">Zapomniałem hasło</p>
-			</Link>
 		</Form>
 	)
 }

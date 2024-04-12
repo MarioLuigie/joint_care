@@ -1,7 +1,7 @@
 import {
 	Card,
-	CardContent,
 	CardDescription,
+	CardFooter,
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card'
@@ -18,9 +18,9 @@ export default function ForgotPassword() {
 					dostępu do serwisu.
 				</CardDescription>
 			</CardHeader>
-			<CardContent className="flex flex-col gap-3">
+			<CardFooter>
 				<ForgotPasswordForm />
-			</CardContent>
+			</CardFooter>
 		</Card>
 	)
 }

@@ -1,6 +1,6 @@
 import {
 	Card,
-	CardContent,
+	CardFooter,
 	CardDescription,
 	CardHeader,
 	CardTitle,
@@ -17,9 +17,9 @@ export default function Registration() {
 					Utwórz konto i zacznij korzystać z serwisu
 				</CardDescription>
 			</CardHeader>
-			<CardContent className="flex flex-col gap-3">
+			<CardFooter>
 				<RegistrationForm />
-			</CardContent>
+			</CardFooter>
 		</Card>
 	)
 }
