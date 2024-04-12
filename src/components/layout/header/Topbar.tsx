@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation'
 import LinkNav from '@/components/shared/common/LinkNav'
 import UserName from '@/components/shared/common/UserName'
 
-export default function Topbar() {
+export default function Topbar({ width = 230, height = 56 }: { width: number, height: number }) {
 	const { user } = useAppContext()
 	const router = useRouter()
 
@@ -58,13 +58,13 @@ export default function Topbar() {
 				</div>
 			</div>
 			<DropdownMenu>
-				<DropdownMenuTrigger className="w-[230px] h-[56px] p-2 rounded-tl-[28px] rounded-bl-[28px] rounded-tr-[15px] rounded-br-[15px] focus:outline-none bg-jc-bg flex-start">
+				<DropdownMenuTrigger className={`w-[${width}px] h-[${height}px] p-2 rounded-tl-[28px] rounded-bl-[28px] rounded-tr-[15px] rounded-br-[15px] focus:outline-none bg-jc-bg flex-start`}>
 					<UserName
 						item={{ name: 'Joanna Kowalska', icon: '/assets/icons/avatar.svg' }}
 					/>
 				</DropdownMenuTrigger>
-				<DropdownMenuContent className="absolute top-[-59px] left-[-115px] w-[230px] rounded-[15px] rounded-tl-[28px] p-2 shadow-2xl border-none focus:outline-none outline-none transition-none">
-					<div className="h-[56px]">
+				<DropdownMenuContent className={`absolute top-[-59px] left-[-115px] w-[${width}px] rounded-[15px] rounded-tl-[28px] p-2 shadow-2xl border-none focus:outline-none outline-none transition-none`}>
+					<div className={`h-[${height}px]`}>
 						<UserName
 							item={{
 								name: 'Joanna Kowalska',
