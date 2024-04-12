@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { ReactSVG } from 'react-svg'
 
-import { apiLogoutUser } from '@/lib/api/auth-api'
+import { apiLogoutUser } from '@/lib/api/auth'
 import { routes } from '@/lib/constants'
 import { topbar } from '@/lib/constants/layout'
 import { useAppContext } from '@/lib/context'

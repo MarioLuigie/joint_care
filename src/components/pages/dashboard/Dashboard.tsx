@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button'
 import { routes } from '@/lib/constants'
 import { useRouter } from 'next/navigation'
-import { apiLogoutUser } from '@/lib/api/auth-api'
+import { apiLogoutUser } from '@/lib/api/auth'
 import { useAppContext } from '@/lib/context'
 
 export default function Dashboard() {
