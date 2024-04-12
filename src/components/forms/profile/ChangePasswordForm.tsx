@@ -1,17 +1,28 @@
 'use client'
+// modules
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+// components
+import { Form } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
+import InputPasswordShadcn from '@/components/shared/inputs/shadcn/InputPasswordShadcn'
 import PasswordReq from '@/components/shared/common/PasswordReq'
-import InputRef from '@/components/shared/inputs/reference/InputRef'
+import Group from '@/components/shared/containers/Group'
+// lib
+import { changePasswordSchema, ChangePasswordFormData } from '@/lib/utils/zod'
 
 export default function ChangePasswordFormRef() {
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm()
+	// Form
+	const form = useForm<ChangePasswordFormData>({
+		resolver: zodResolver(changePasswordSchema),
+		defaultValues: {
+			password: '',
+			confirm_password: '',
+		},
+	})
 
-	const onSubmit = async (data: any) => {
+	// Action on submit
+	const onSubmit = async (data: ChangePasswordFormData) => {
 		try {
 			console.log(data)
 		} catch (err) {
@@ -20,25 +31,28 @@ export default function ChangePasswordFormRef() {
 	}
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
-			<div className="flex flex-col gap-4">
-				<InputRef
-					{...register('password')}
-					type="text"
-					label="Nowe hasło"
-					placeholder="Wpisz"
-					error={errors.name}
-				/>
-				<InputRef
-					{...register('confirm_password')}
-					type="text"
-					label="Powtórz nowe hasło"
-					placeholder="Wpisz"
-					error={errors.date}
-				/>
-			</div>
-			<PasswordReq password={''} />
-			<Button className="w-40">Zmień hasło</Button>
-		</form>
+		<Form {...form}>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="flex flex-col gap-6"
+			>
+				<Group>
+					<InputPasswordShadcn
+						control={form.control}
+						name="password"
+						placeholder="Wpisz nowe hasło"
+						label="Nowe hasło"
+					/>
+					<InputPasswordShadcn
+						control={form.control}
+						name="confirm_password"
+						placeholder="Powtórz nowe hasło"
+						label="Powtórzenie nowego hasła"
+					/>
+				</Group>
+				<PasswordReq password={form.watch('password')} />
+				<Button className="w-40">Zmień hasło</Button>
+			</form>
+		</Form>
 	)
 }

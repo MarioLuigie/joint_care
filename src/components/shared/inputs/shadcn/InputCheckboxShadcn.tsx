@@ -16,7 +16,7 @@ export default function InputCheckboxShadcn({
 	name,
 }: {
 	control: Control<any>
-	label: string
+	label: string | JSX.Element
 	name: string
 }) {
 	return (

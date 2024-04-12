@@ -1,6 +1,6 @@
 import {
 	Card,
-	CardContent,
+	CardFooter,
 	CardDescription,
 	CardHeader,
 	CardTitle,
@@ -17,7 +17,7 @@ export default function AccountActivate() {
 					konto postępuj zgodnie z instrukcją.
 				</CardDescription>
 			</CardHeader>
-			<CardContent className="flex flex-col gap-3">
+			<CardFooter className="flex flex-col gap-3">
 				<div className="flex-start gap-3 bg-[#F5F8FC] p-4 mb-2 rounded-lg border-2 border-[#D1E1F6] border-dashed">
 					<div className="text-[14px] font-normal text-[#030303]">
 						<p className="pb-4">
@@ -29,7 +29,7 @@ export default function AccountActivate() {
 						</Link>
 					</div>
 				</div>
-			</CardContent>
+			</CardFooter>
 		</Card>
 	)
 }
