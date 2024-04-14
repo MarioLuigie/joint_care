@@ -1,5 +1,7 @@
 'use client'
+//modules
 import { ReactSVG } from 'react-svg'
+//components
 import Link from 'next/link'
 
 interface Item {

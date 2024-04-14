@@ -1,3 +1,4 @@
+//components
 import ChangePasswordFormRef from '@/components/forms/profile/ChangePasswordForm'
 
 export default function ChangePassword() {

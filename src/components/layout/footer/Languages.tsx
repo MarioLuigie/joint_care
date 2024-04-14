@@ -1,5 +1,5 @@
 'use client'
-
+//modules
 import {
 	Select,
 	SelectContent,
@@ -8,6 +8,7 @@ import {
 	SelectValue,
 } from '@/components/ui/select'
 import { ReactSVG } from 'react-svg'
+//components
 import { languages } from '@/lib/constants/layout'
 import { Language } from '@/lib/types/layout'
 

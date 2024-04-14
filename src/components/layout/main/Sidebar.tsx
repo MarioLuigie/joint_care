@@ -1,5 +1,7 @@
+//components
 import LinkNav from '@/components/shared/common/LinkNav'
 import UserName from '@/components/shared/common/UserName'
+//lib
 import { topbar } from '@/lib/constants/layout'
 
 export default function Sidebar() {

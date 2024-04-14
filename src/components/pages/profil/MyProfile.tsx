@@ -1,3 +1,4 @@
+//components
 import MyProfileFormRef from '@/components/forms/profile/MyProfileForm'
 import CollapseRequirements from '@/components/shared/common/CollapseReq'
 

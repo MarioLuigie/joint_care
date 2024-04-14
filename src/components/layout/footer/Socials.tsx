@@ -1,5 +1,7 @@
 'use client'
+//modules
 import { ReactSVG } from 'react-svg'
+//components
 import { socials } from '@/lib/constants/layout'
 
 export default function Socials() {

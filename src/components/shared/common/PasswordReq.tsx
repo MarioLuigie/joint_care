@@ -1,3 +1,4 @@
+//modules
 import { ReactSVG } from 'react-svg'
 
 export default function PasswordReq({ password }: { password: string }) {

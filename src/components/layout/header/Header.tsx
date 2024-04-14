@@ -1,7 +1,9 @@
 'use client'
+//modules
+import { ReactSVG } from 'react-svg'
+//components
 import Navbar from '@/components/layout/header/Navbar'
 import Topbar from '@/components/layout/header/Topbar'
-import { ReactSVG } from 'react-svg'
 
 export default function Header() {
 	return (

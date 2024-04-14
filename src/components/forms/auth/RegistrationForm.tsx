@@ -81,7 +81,6 @@ export default function RegistrationFormRef() {
 			</div>
 		</>
 	)
-
 	return (
 		<Form {...form}>
 			<form

@@ -9,6 +9,7 @@ interface InputRefProps {
 
 const InputRef = forwardRef<HTMLInputElement, InputRefProps>(
 	({ label, error, ...rest }, ref) => {
+		console.log("AAA",error)
 		return (
 			<>
 				<div className="flex flex-col justify-center items-stretch relative">

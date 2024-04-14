@@ -1,3 +1,4 @@
+//modules
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -6,14 +7,15 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { ReactSVG } from 'react-svg'
 import { useState } from 'react'
-
+import { useRouter } from 'next/navigation'
+//components
+import LinkNav from '@/components/shared/common/LinkNav'
+import UserName from '@/components/shared/common/UserName'
+//lib
 import { apiLogoutUser } from '@/lib/services/auth'
 import { routes } from '@/lib/constants'
 import { topbar } from '@/lib/constants/layout'
 import { useAppContext } from '@/lib/context'
-import { useRouter } from 'next/navigation'
-import LinkNav from '@/components/shared/common/LinkNav'
-import UserName from '@/components/shared/common/UserName'
 
 export default function Topbar() {
 	const [isActive, setIsActive ] = useState<boolean>(false)

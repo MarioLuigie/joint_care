@@ -1,3 +1,4 @@
+//components
 import { navbar } from '@/lib/constants/layout'
 import LinkNav from '@/components/shared/common/LinkNav'
 

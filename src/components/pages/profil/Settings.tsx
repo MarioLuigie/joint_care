@@ -1,5 +1,7 @@
 'use client'
+//modules
 import { useState } from 'react'
+//components
 import { Button } from '@/components/ui/button'
 
 export default function Settings() {
