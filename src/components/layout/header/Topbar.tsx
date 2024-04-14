@@ -73,7 +73,7 @@ export default function Topbar() {
 							item={{ name: 'Joanna Kowalska', icon: '/assets/icons/avatar.svg' }}
 						/>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent className={`absolute top-[-59px] left-[-115px] w-jc_topbar rounded-[15px] rounded-tl-[28px] p-2 shadow-2xl border-none focus:outline-none outline-none transition-none`}>
+					<DropdownMenuContent className={`absolute top-[-59px] left-jc_topbar w-jc_topbar rounded-[15px] rounded-tl-[28px] p-2 shadow-2xl border-none focus:outline-none outline-none transition-none`}>
 						<div className={`h-jc_topbar w-full cursor-pointer`} onClick={handleClick}>
 							<UserName
 								item={{

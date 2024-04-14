@@ -65,6 +65,10 @@ const config = {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
+			//position left, right, top, bottom
+			inset: {
+				jc_topbar: "-115px"
+			},
 			width: {
 				jc_topbar: "230px",
 			},
