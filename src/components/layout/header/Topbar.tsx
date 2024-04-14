@@ -7,7 +7,7 @@ import {
 import { ReactSVG } from 'react-svg'
 import { useState } from 'react'
 
-import { apiLogoutUser } from '@/lib/api/auth-api'
+import { apiLogoutUser } from '@/lib/services/auth'
 import { routes } from '@/lib/constants'
 import { topbar } from '@/lib/constants/layout'
 import { useAppContext } from '@/lib/context'

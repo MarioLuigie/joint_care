@@ -13,7 +13,7 @@ import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 import Group from '@/components/shared/containers/Group'
 // lib
 // import { apiForgotPassword } from '@/lib/api/auth-api'
-import { forgotPasswordSchema, ForgotPasswordFormData } from '@/lib/utils/zod'
+import { forgotPasswordSchema, ForgotPasswordFormData } from '@/lib/zod/auth'
 import { routes } from '@/lib/constants'
 
 export default function ForgotPasswordForm() {

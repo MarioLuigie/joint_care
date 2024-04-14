@@ -9,7 +9,7 @@ import InputPasswordShadcn from '@/components/shared/inputs/shadcn/InputPassword
 import PasswordReq from '@/components/shared/common/PasswordReq'
 import Group from '@/components/shared/containers/Group'
 // lib
-import { changePasswordSchema, ChangePasswordFormData } from '@/lib/utils/zod'
+import { changePasswordSchema, ChangePasswordFormData } from '@/lib/zod/auth'
 
 export default function ChangePasswordFormRef() {
 	// Form
@@ -17,7 +17,7 @@ export default function ChangePasswordFormRef() {
 		resolver: zodResolver(changePasswordSchema),
 		defaultValues: {
 			password: '',
-			confirm_password: '',
+			password_confirmation: '',
 		},
 	})
 
@@ -45,7 +45,7 @@ export default function ChangePasswordFormRef() {
 					/>
 					<InputPasswordShadcn
 						control={form.control}
-						name="confirm_password"
+						name="password_confirmation"
 						placeholder="Powtórz nowe hasło"
 						label="Powtórzenie nowego hasła"
 					/>
