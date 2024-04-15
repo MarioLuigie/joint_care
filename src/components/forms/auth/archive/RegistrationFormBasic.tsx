@@ -1,20 +1,23 @@
 'use client'
-import { apiRegisterUser } from '@/lib/services/auth'
+// modules
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+// components
+import Input from '@/components/shared/inputs/basic/InputBasic'
+import InputCheckbox from '@/components/shared/inputs/basic/InputCheckboxBasic'
+import InputPassword from '@/components/shared/inputs/basic/InputPasswordBasic'
+import PasswordRequirements from '@/components/shared/common/PasswordReq'
+import WarningNotif from '@/components/shared/notifs/WarningNotif'
 import { Button } from '@/components/ui/button'
+// lib
+import { apiRegisterUser } from '@/lib/services/auth'
 import { checkErrors } from '@/lib/utils/validators'
 import { msg } from '@/lib/constants'
 import { RegistrationFormData } from '@/lib/utils/validators'
 import { RegistrationFormErrors } from '@/lib/utils/validators'
 import { routes } from '@/lib/constants'
-import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 import { validateRegistration } from '@/lib/utils/validators'
-import Input from '@/components/shared/inputs/basic/InputBasic'
-import InputCheckbox from '@/components/shared/inputs/basic/InputCheckboxBasic'
-import InputPassword from '@/components/shared/inputs/basic/InputPasswordBasic'
-import Link from 'next/link'
-import PasswordRequirements from '@/components/shared/common/PasswordReq'
-import WarningNotif from '@/components/shared/notifs/WarningNotif'
 
 export default function RegistrationForm() {
 	const initFormData: RegistrationFormData = {
@@ -45,6 +48,7 @@ export default function RegistrationForm() {
 	const [isClientError, setIsClientError] = useState<boolean>(false)
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 
+	// Handlers
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const updatedFormData = {
 			...formData,
@@ -54,6 +58,7 @@ export default function RegistrationForm() {
 		setFormData(updatedFormData)
 	}
 
+	// Checkbox handler
 	const handleCheck = (isChecked: boolean) => {
 		const updatedFormData = {
 			...formData,
@@ -63,6 +68,7 @@ export default function RegistrationForm() {
 		setFormErrors(validateRegistration(updatedFormData))
 	}
 
+	// Submit handler
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
@@ -84,6 +90,7 @@ export default function RegistrationForm() {
 		}
 	}
 
+	// Render
 	return (
 		<form onSubmit={handleSubmit} className="flex flex-col gap-3">
 			<WarningNotif isError={isServerError}>

@@ -30,12 +30,13 @@ export default function MyProfileForm() {
 		gender: 'men',
 	}
 
-	const { user } = useAppContext()
 	const form = useForm({
 		resolver: zodResolver(profileSchema),
 		defaultValues,
 	})
-
+	
+	const { user } = useAppContext()
+	
 	useEffect(() => {
 		const fetchUserProfile = async () => {
 			if (user && user.token) {
