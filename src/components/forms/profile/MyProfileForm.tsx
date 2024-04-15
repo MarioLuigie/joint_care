@@ -20,7 +20,21 @@ export default function MyProfileForm() {
 		{ label: 'Mężczyzna', value: 'man' },
 	]
 
+	const defaultValues = {
+		name: '',
+		date: '',
+		weight: '',
+		height: '',
+		email: '',
+		address: '',
+		gender: 'men',
+	}
+
 	const { user } = useAppContext()
+	const form = useForm({
+		resolver: zodResolver(profileSchema),
+		defaultValues,
+	})
 
 	useEffect(() => {
 		const fetchUserProfile = async () => {
@@ -46,21 +60,6 @@ export default function MyProfileForm() {
 		}
 		fetchUserProfile()
 	}, [user])
-
-	const defaultValues = {
-		name: '',
-		date: '',
-		weight: '',
-		height: '',
-		email: '',
-		address: '',
-		gender: 'men',
-	}
-
-	const form = useForm({
-		resolver: zodResolver(profileSchema),
-		defaultValues,
-	})
 
 	const onSubmit = async (data: ProfileFormData) => {
 		try {

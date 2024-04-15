@@ -12,13 +12,15 @@ import Group from '@/components/shared/containers/Group'
 import { changePasswordSchema, ChangePasswordFormData } from '@/lib/zod/auth'
 
 export default function ChangePasswordFormRef() {
+	const defaultValues = {
+		password: '',
+		password_confirmation: '',
+	}
+	
 	// Form
 	const form = useForm<ChangePasswordFormData>({
 		resolver: zodResolver(changePasswordSchema),
-		defaultValues: {
-			password: '',
-			password_confirmation: '',
-		},
+		defaultValues,
 	})
 
 	// Action on submit
