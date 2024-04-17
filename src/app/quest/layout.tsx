@@ -3,7 +3,7 @@ import Main from '@/components/layout/main/Main'
 import Footer from '@/components/layout/footer/Footer'
 import Sidebar from '@/components/layout/main/ProfileSidebar'
 
-export default function ProfileLayout({
+export default function QuestLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode

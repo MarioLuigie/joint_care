@@ -55,6 +55,54 @@ export const topbar = [
 	},
 ]
 
+export const questSidebar = [
+	{
+		label: 'Warunki atmosferyczne',
+		route: "/",
+		id: '1',
+	},
+	{
+		label: 'Dane podstawowe',
+		route: "/",
+		id: '2',
+	},
+	{
+		label: 'Stawy bolesne: LSO',
+		route: "/",
+		id: '3',
+	},
+	{
+		label: 'Stawy obrzęknięte: LBO',
+		route: "/",
+		id: '4',
+	},
+	{
+		label: 'Zabiegi fizjoterapeutyczne',
+		route: "/",
+		id: '5',
+	},
+	{
+		label: 'Aktywność fizyczna',
+		route: "/",
+		id: '6',
+	},
+	{
+		label: 'Opaska monitorująca',
+		route: "/",
+		id: '7',
+	},
+	{
+		label: 'Styl życia',
+		route: "/",
+		id: '8',
+	},
+	{
+		label: 'Leki',
+		route: "/",
+		id: '9',
+	},
+]
+
 export const socials: Social[] = [
 	{
 		alt: 'Link do Facebook',
