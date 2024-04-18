@@ -11,7 +11,7 @@ import PasswordRequirements from '@/components/shared/common/PasswordReq'
 import WarningNotif from '@/components/shared/notifs/WarningNotif'
 import { Button } from '@/components/ui/button'
 // lib
-import { apiRegisterUser } from '@/lib/services/auth'
+import { apiRegisterUser } from '@/lib/api/auth'
 import { checkErrors } from '@/lib/utils/validators'
 import { msg } from '@/lib/constants'
 import { RegistrationFormData } from '@/lib/utils/validators'

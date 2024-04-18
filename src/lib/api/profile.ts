@@ -28,6 +28,7 @@ export const updateUserProfile = async (
 	token: string,
 	data: ProfileFormData
 ) => {
+	
 	const headers = {
 		Authorization: `Bearer ${token}`,
 		'Content-Type': 'application/json',
@@ -36,8 +37,8 @@ export const updateUserProfile = async (
 
 	const body = {
 		name: data.name,
-		last_name: "Nazwisko",
-		sex: "MALE",
+		last_name: data.surname,
+		sex: data.sex,
 		city: data.address,
 		birth_date: "2024-03-30T05:37:59",
 		weight: Number(data.weight),

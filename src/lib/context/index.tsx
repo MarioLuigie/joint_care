@@ -1,16 +1,21 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { User } from '@/lib/types'
+import { User, UserData } from '@/lib/types'
 import { useRouter } from 'next/navigation'
 import { routes } from '@/lib/constants'
+import { getUserProfile } from '../api/profile'
 
 interface AppContext {
 	user: User | null
+	userData: UserData | null
+	setUserData: React.Dispatch<React.SetStateAction<UserData | null>>
 	setUser: React.Dispatch<React.SetStateAction<User | null>>
 }
 
 const initUser: AppContext = {
 	user: null,
+	userData: null,
+	setUserData: () => {},
 	setUser: () => {},
 }
 
@@ -25,17 +30,25 @@ export const ContextProvider = ({
 }: {
 	children: React.ReactNode
 }) => {
-	const [user, setUser] = useState<User | null>(null)
-
 	const router = useRouter()
+	const [user, setUser] = useState<User | null>(null)
+	const [userData, setUserData] = useState<UserData | null>(null)
 
-	console.log('User from Context:', user)
+	console.log('UserData from Context:', userData)
 
 	useEffect(() => {
 		const storedUser = localStorage.getItem('profile')
 
 		if (storedUser) {
 			setUser(JSON.parse(storedUser))
+
+			const fetchUserProfile = async () => {
+				const res = await getUserProfile(JSON.parse(storedUser).token)
+				if (res.success) {
+					setUserData(res.data.user)
+				}
+			}
+			fetchUserProfile()
 		}
 
 		if (!storedUser) {
@@ -45,6 +58,8 @@ export const ContextProvider = ({
 
 	const contextValue: AppContext = {
 		user,
+		userData,
+		setUserData,
 		setUser,
 	}
 

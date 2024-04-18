@@ -13,7 +13,7 @@ import InputRef from '@/components/shared/inputs/reference/InputRef'
 import PasswordReq from '@/components/shared/common/PasswordReq'
 import WarningNotif from '@/components/shared/notifs/WarningNotif'
 // lib
-import { apiRegisterUser } from '@/lib/services/auth'
+import { apiRegisterUser } from '@/lib/api/auth'
 import { registrationSchema, RegistrationFormData } from '@/lib/zod/auth'
 import { routes } from '@/lib/constants'
 
