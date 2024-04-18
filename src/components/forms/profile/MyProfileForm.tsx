@@ -42,7 +42,7 @@ export default function MyProfileForm() {
 		const profileData: ProfileFormData = {
 			name: userData.name || '',
 			surname: userData.last_name || '',
-			date: userData.birth_date || '',
+			date: userData?.birth_date?.substring(0, 10) || '',
 			weight: userData.weight ? String(userData.weight) : '',
 			height: userData.height ? String(userData.height) : '',
 			email: userData.email || '',
