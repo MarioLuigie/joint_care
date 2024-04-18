@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation'
 import LinkNav from '@/components/shared/common/LinkNav'
 import UserName from '@/components/shared/common/UserName'
 //lib
-import { apiLogoutUser } from '@/lib/api/auth'
+import { apiLogoutUser } from '@/lib/services/auth'
 import { routes } from '@/lib/constants'
 import { topbar } from '@/lib/constants/layout'
 import { useAppContext } from '@/lib/context'

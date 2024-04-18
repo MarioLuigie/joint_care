@@ -16,7 +16,7 @@ import PasswordReq from '@/components/shared/common/PasswordReq'
 import WarningNotif from '@/components/shared/notifs/WarningNotif'
 // lib
 import { registrationSchema, RegistrationFormData } from '@/lib/zod/auth'
-import { apiRegisterUser } from '@/lib/api/auth'
+import { apiRegisterUser } from '@/lib/services/auth'
 import { routes } from '@/lib/constants'
 
 export default function RegistrationFormRef() {

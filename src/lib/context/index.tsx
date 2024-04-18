@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 import { User, UserData } from '@/lib/types'
 import { useRouter } from 'next/navigation'
 import { routes } from '@/lib/constants'
-import { getUserProfile } from '../api/profile'
+import { getUserProfile } from '../services/profile'
 
 interface AppContext {
 	user: User | null

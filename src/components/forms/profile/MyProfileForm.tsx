@@ -10,7 +10,7 @@ import InputRadioGroup from '@/components/shared/inputs/shadcn/InputRadioGroup'
 import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 // lib
 import { profileSchema, ProfileFormData } from '@/lib/zod/profile'
-import { updateUserProfile } from '@/lib/api/profile'
+import { updateUserProfile } from '@/lib/services/profile'
 import { useAppContext } from '@/lib/context'
 import { Gender } from '@/lib/types'
 
