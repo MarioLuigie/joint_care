@@ -1,6 +1,7 @@
 export const msg = {
 	EMAIL: 'Niepoprawny adres e-mail',
 	EMPTY: 'Uzupełnij pole formularza',
+	SAVED: 'Zmiany zostały zapisane',
 	ACCEPT_STATUTE: 'Zaakceptuj Regulamin serwisu',
 	PASSWORD_CONFIRMATION: 'Podane hasła nie pasują do siebie',
 	PASSWORD_DIGIT: 'Hasło powinno zawierać minimum jedną cyfrę',

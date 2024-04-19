@@ -6,9 +6,11 @@ import { useEffect, useState } from 'react'
 // components
 import { Form } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/ui/use-toast'
 import InputRadioGroup from '@/components/shared/inputs/shadcn/InputRadioGroup'
 import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 // lib
+import { msg } from '@/lib/constants'
 import { profileSchema, ProfileFormData } from '@/lib/zod/profile'
 import { updateUserProfile } from '@/lib/services/profile'
 import { useAppContext } from '@/lib/context'
@@ -20,8 +22,9 @@ export default function MyProfileForm() {
 		{ label: 'Mężczyzna', value: Gender.MALE },
 	]
 
-	const [isLoading, setIsLoading] = useState(true)
+	const { toast } = useToast()
 	const { user, userData, setUserData } = useAppContext()
+	const [isLoading, setIsLoading] = useState(true)
 
 	const form = useForm({
 		resolver: zodResolver(profileSchema),
@@ -60,6 +63,9 @@ export default function MyProfileForm() {
 
 				const res = await updateUserProfile(user.token, data)
 				setUserData(res.data.user)
+				toast({
+					description: msg.SAVED,
+				})
 			}
 		} catch (err) {
 			console.error(err)
