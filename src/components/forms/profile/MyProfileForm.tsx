@@ -4,19 +4,19 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
 // components
-import { Form } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
+import { Form } from '@/components/ui/form'
 import { useToast } from '@/components/ui/use-toast'
 import DataLoading from '@/components/shared/common/DataLoading'
 import InputRadioGroup from '@/components/shared/inputs/shadcn/InputRadioGroup'
 import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 // lib
+import { Gender } from '@/lib/types'
 import { msg } from '@/lib/constants'
 import { profileSchema, ProfileFormData } from '@/lib/zod/profile'
 import { sexRadios } from '@/lib/constants/profile'
 import { updateUserProfile } from '@/lib/services/profile'
 import { useAppContext } from '@/lib/context'
-import { Gender } from '@/lib/types'
 
 export default function MyProfileForm() {
 	const { toast } = useToast()
@@ -42,7 +42,7 @@ export default function MyProfileForm() {
 		const profileData: ProfileFormData = {
 			name: userData.name || '',
 			surname: userData.last_name || '',
-			date: userData?.birth_date?.substring(0, 10) || '',
+			date: userData.birth_date?.substring(0, 10) || '',
 			weight: userData.weight ? String(userData.weight) : '',
 			height: userData.height ? String(userData.height) : '',
 			email: userData.email || '',
@@ -61,6 +61,7 @@ export default function MyProfileForm() {
 				const res = await updateUserProfile(token, data)
 				setUserData(res.data.user)
 				toast({
+					variant: 'success',
 					description: msg.SAVED,
 				})
 			}

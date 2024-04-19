@@ -12,14 +12,14 @@ interface AppContext {
 	setToken: React.Dispatch<React.SetStateAction<string | null>>
 }
 
-const initUser: AppContext = {
+const initContext: AppContext = {
 	token: null,
 	userData: null,
 	setUserData: () => {},
 	setToken: () => {},
 }
 
-const AppContext = createContext<AppContext>(initUser)
+const AppContext = createContext<AppContext>(initContext)
 
 export const useAppContext = () => {
 	return useContext(AppContext)

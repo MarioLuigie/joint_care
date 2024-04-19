@@ -19,7 +19,7 @@ import { loginSchema, LoginFormData } from '@/lib/zod/auth'
 import { useAppContext } from '@/lib/context'
 import { routes } from '@/lib/constants'
 
-export default function LoginFormRef() {
+export default function LoginForm() {
 	const { setToken, setUserData } = useAppContext()
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const router = useRouter()
