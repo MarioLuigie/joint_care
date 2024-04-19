@@ -1,6 +1,6 @@
 //components
-import MyProfileFormRef from '@/components/forms/profile/MyProfileForm'
-import CollapseRequirements from '@/components/shared/common/CollapseReq'
+import MyProfileForm from '@/components/forms/profile/MyProfileForm'
+import CollapseReq from '@/components/shared/common/CollapseReq'
 
 export default function MyProfile() {
 	return (
@@ -9,10 +9,10 @@ export default function MyProfile() {
 				<p className="text-3xl font-bold">Twój profil</p>
 				<div className="flex gap-4">
 					<div className="rounded-lg border-2 border-dashed border-slate-200 aspect-square h-[150px]"></div>
-					<CollapseRequirements />
+					<CollapseReq />
 				</div>
 				<p className="text-base font-semibold">Twoje dane</p>
-				<MyProfileFormRef />
+				<MyProfileForm />
 			</div>
 		</div>
 	)

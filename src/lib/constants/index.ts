@@ -24,4 +24,6 @@ export const routes = {
 	PROFILE_CHANGE_PASSWORD: '/profile/change-password',
 	PROFILE_MY_PROFILE: '/profile/my-profile',
 	PROFILE_SETTINGS: '/profile/settings',
+	QUEST: '/quest',
+	QUEST1: '/quest/1',
 }

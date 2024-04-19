@@ -29,9 +29,11 @@ const config = {
 					text3: "#9A9A9A",
 					text4: "#747678",
 					gray0: "#F0F3F7",
+					gray6: "#666666",
 					gray7: "#8C8C8C",
 					gray8: "#808080",
 					blue: "#048AED",
+					blue2: "#E6F3FD",
 					red: "#D97C7C",
 				},
 				gray: {

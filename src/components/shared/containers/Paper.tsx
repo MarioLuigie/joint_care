@@ -4,5 +4,5 @@ interface PaperProps {
 }
 
 export default function Paper({ children, className }: PaperProps) {
-	return <div className={`bg-white rounded p-10 ${className}`}>{children}</div>
+	return <div className={`bg-white rounded-[25px] p-8 ${className}`}>{children}</div>
 }
