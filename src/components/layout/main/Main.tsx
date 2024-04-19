@@ -1,7 +1,4 @@
-export default function Main({
-	children,
-	className,
-}: {
+export default function Main({children, className,}: {
 	children: React.ReactNode
 	className?: string
 }) {

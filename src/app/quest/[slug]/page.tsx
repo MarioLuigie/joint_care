@@ -1,8 +1,8 @@
+import Quest from "@/components/pages/quest/Quest";
+
 export default function QuestPage({ params }: { params: any}) {
 
   return (
-    <div>
-      {params.slug}
-    </div>
+    <Quest slug={params.slug}/>
   )
 }

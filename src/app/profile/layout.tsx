@@ -1,7 +1,7 @@
 import Header from '@/components/layout/header/Header'
 import Main from '@/components/layout/main/Main'
 import Footer from '@/components/layout/footer/Footer'
-import Sidebar from '@/components/layout/main/ProfileSidebar'
+import ProfileSidebar from '@/components/layout/main/ProfileSidebar'
 
 export default function ProfileLayout({
 	children,
@@ -14,7 +14,7 @@ export default function ProfileLayout({
 			<Main className="flex grow p-8 bg-jc-bg">
 				<div className='flex gap-6 w-full'>
 					<div>
-						<Sidebar />
+						<ProfileSidebar />
 					</div>
 					{children}
 				</div>
