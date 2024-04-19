@@ -8,7 +8,6 @@ import Medicines from "@/components/forms/quest/Q9_Medicines"
 import MonitoringWristband from "@/components/forms/quest/Q7_MonitoringWristband"
 import PhysicalActivity from "@/components/forms/quest/Q6_PhysicalActivity"
 import PhysiotherapyTreatments from "@/components/forms/quest/Q5_PhysiotherapyTreatments"
-import Paper from "@/components/shared/containers/Paper"
 
 type QuestMap = {
   [key: string]: JSX.Element
@@ -29,8 +28,8 @@ export default function Quest({ slug }: { slug: string }) {
   }
   
   return (
-    <Paper className="w-full min-h-full flex flex-col items-center justify-start">
+    <div className="w-[720px] min-h-full flex flex-col items-center justify-start">
       {questMap[slug]}
-    </Paper>
+    </div>
   )
 }

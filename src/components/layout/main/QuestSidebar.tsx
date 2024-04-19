@@ -13,9 +13,9 @@ import Group from '@/components/shared/containers/Group'
 
 const Progress = () => {
 	return (
-		<Paper className="w-full h-[80px]">
-			<div></div>
-		</Paper>
+		<div className='h-[100px]'>
+
+		</div>
 	)
 }
 
@@ -62,11 +62,7 @@ const SidebarItem = ({
 	)
 }
 
-const Sidebar = ({
-	currentItem,
-}: {
-	currentItem: number
-}) => {
+const Sidebar = ({ currentItem }: { currentItem: number }) => {
 	return (
 		<div className="flex flex-col gap-8">
 			{questSidebar.map((item) => (
@@ -78,11 +74,11 @@ const Sidebar = ({
 
 export default function QuestSidebar() {
 	const [currentItem, setCurrentItem] = useState<number>(1)
-  const router = useRouter()
+	const router = useRouter()
 
-  useEffect(() => {
-    router.push(`${routes.QUEST}/${currentItem}`)
-  }, [currentItem])
+	useEffect(() => {
+		router.push(`${routes.QUEST}/${currentItem}`)
+	}, [currentItem])
 
 	const handleClick = (step: number) => () => {
 		setCurrentItem((prev) => prev + step)
@@ -90,17 +86,24 @@ export default function QuestSidebar() {
 
 	return (
 		<div className="flex flex-col gap-5 min-w-[350px]">
-			<Paper className='flex flex-col gap-8 pt-10'>
-				<Sidebar
-					currentItem={currentItem}
-				/>
-        <Group gap="1">
-          <Button onClick={handleClick(1)} disabled={currentItem > 9}>Następny krok</Button>
-          {currentItem > 1 && <p onClick={handleClick(-1)} className='flex-center underline cursor-pointer'>Wróć</p>}
-			  </Group>
-			</Paper>
-      <Paper>
+			<Paper>
 				<Progress />
+			</Paper>
+			<Paper className="flex flex-col gap-8 pt-10">
+				<Sidebar currentItem={currentItem} />
+				<Group gap="1">
+					<Button onClick={handleClick(1)} disabled={currentItem > 9}>
+						Następny krok
+					</Button>
+					{currentItem > 1 && (
+						<p
+							onClick={handleClick(-1)}
+							className="flex-center underline cursor-pointer"
+						>
+							Wróć
+						</p>
+					)}
+				</Group>
 			</Paper>
 		</div>
 	)
