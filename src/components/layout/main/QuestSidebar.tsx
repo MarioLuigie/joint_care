@@ -65,8 +65,8 @@ const SidebarItem = ({
 const Sidebar = ({ currentItem }: { currentItem: number }) => {
 	return (
 		<div className="flex flex-col gap-8">
-			{questSidebar.map((item) => (
-				<SidebarItem item={item} currentItem={currentItem} />
+			{questSidebar.map((item, i) => (
+				<SidebarItem item={item} key={i} currentItem={currentItem} />
 			))}
 		</div>
 	)
