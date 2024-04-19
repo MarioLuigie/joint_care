@@ -36,10 +36,10 @@ export const updateUserProfile = async (
 
 	const body = {
 		name: data.name,
-		last_name: "Nazwisko",
-		sex: "MALE",
+		last_name: data.surname,
+		sex: data.sex,
 		city: data.address,
-		birth_date: "2024-03-30T05:37:59",
+		birth_date: new Date(data.date).toISOString().split('.')[0],
 		weight: Number(data.weight),
 		height: Number(data.height),
 	}
@@ -49,6 +49,7 @@ export const updateUserProfile = async (
 		return data
 	} catch (err: any) {
 		if (err.response.data) {
+			console.log(err.response.data)
 			return err.response.data
 		} else {
 			console.error(err)

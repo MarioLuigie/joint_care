@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
-import { cn } from '@/lib/utils/'
 import localFont from 'next/font/local'
+import { Toaster } from '@/components/ui/toaster'
+import { cn } from '@/lib/utils/'
 import './globals.css'
 
 import { ContextProvider } from '@/lib/context'
@@ -36,6 +37,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={cn(titillium.className)}>
 				<ContextProvider>{children}</ContextProvider>
+				<Toaster />
 			</body>
 		</html>
 	)

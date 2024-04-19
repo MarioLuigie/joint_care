@@ -18,18 +18,22 @@ import { topbar } from '@/lib/constants/layout'
 import { useAppContext } from '@/lib/context'
 
 export default function Topbar() {
-	const [isActive, setIsActive ] = useState<boolean>(false)
-	const { user } = useAppContext()
+	const [isActive, setIsActive] = useState<boolean>(false)
+	const { token, userData, setToken } = useAppContext()
 	const router = useRouter()
 
 	const handleLogout = async () => {
-		if (user !== null) {
+
+		console.log(token);
+		
+		if (token) {
 			try {
-				const data = await apiLogoutUser(user.token)
+				const data = await apiLogoutUser(token)
 
 				if (data.success) {
 					router.push(routes.AUTH_LOGIN)
-					localStorage.removeItem('profile')
+					localStorage.removeItem('token')
+					setToken(null)
 				}
 
 				console.log('Logout:', data)
@@ -40,7 +44,7 @@ export default function Topbar() {
 	}
 
 	const handleClick = () => {
-		setIsActive(prev => !prev)
+		setIsActive((prev) => !prev)
 	}
 
 	const LogoutButton = () => (
@@ -55,8 +59,6 @@ export default function Topbar() {
 		</div>
 	)
 
-	console.log("isActive:", isActive);
-
 	return (
 		<div className="flex-center gap-8">
 			<div>
@@ -67,19 +69,25 @@ export default function Topbar() {
 					</div>
 				</div>
 			</div>
-			<div className='relative'>
-				<DropdownMenu open={isActive}	onOpenChange={handleClick}>
-					<DropdownMenuTrigger 
-						className={`w-jc_topbar h-jc_topbar p-2 rounded-tl-[28px] rounded-bl-[28px] rounded-tr-[15px] rounded-br-[15px] focus:outline-none bg-jc-bg flex-start`}>
+			<div className="relative">
+				<DropdownMenu open={isActive} onOpenChange={handleClick}>
+					<DropdownMenuTrigger
+						className={`w-jc_topbar h-jc_topbar p-2 rounded-tl-[28px] rounded-bl-[28px] rounded-tr-[15px] rounded-br-[15px] focus:outline-none bg-jc-bg flex-start`}
+					>
 						<UserName
-							item={{ name: 'Joanna Kowalska', icon: '/assets/icons/avatar.svg' }}
+							item={{ name: userData?.name || "", icon: '/assets/icons/avatar.svg' }}
 						/>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent className={`absolute top-[-59px] left-jc_topbar w-jc_topbar rounded-[15px] rounded-tl-[28px] p-2 shadow-2xl border-none focus:outline-none outline-none transition-none`}>
-						<div className={`h-jc_topbar w-full cursor-pointer`} onClick={handleClick}>
+					<DropdownMenuContent
+						className={`absolute top-[-59px] left-jc_topbar w-jc_topbar rounded-[15px] rounded-tl-[28px] p-2 shadow-2xl border-none focus:outline-none outline-none transition-none`}
+					>
+						<div
+							className={`h-jc_topbar w-full cursor-pointer`}
+							onClick={handleClick}
+						>
 							<UserName
 								item={{
-									name: 'Joanna Kowalska',
+									name: userData?.name || "",
 									icon: '/assets/icons/avatar.svg',
 								}}
 							/>
