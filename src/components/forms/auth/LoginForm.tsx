@@ -20,7 +20,7 @@ import { useAppContext } from '@/lib/context'
 import { routes } from '@/lib/constants'
 
 export default function LoginFormRef() {
-	const { setUser } = useAppContext()
+	const { setUser, setUserData } = useAppContext()
 	const [isServerError, setIsServerError] = useState<boolean>(false)
 	const router = useRouter()
 
@@ -49,6 +49,7 @@ export default function LoginFormRef() {
 				data.remember_me &&
 					localStorage.setItem('profile', JSON.stringify(res.data))
 				setUser(res.data)
+				setUserData(res.data.user)
 				router.push(routes.PROFILE_MY_PROFILE)
 			} else {
 				console.log(res.errors)
