@@ -74,9 +74,7 @@ export default function Topbar() {
 					<DropdownMenuTrigger
 						className={`w-jc_topbar h-jc_topbar p-2 rounded-tl-[28px] rounded-bl-[28px] rounded-tr-[15px] rounded-br-[15px] focus:outline-none bg-jc-bg flex-start`}
 					>
-						<UserName
-							item={{ name: userData?.name || "", icon: '/assets/icons/avatar.svg' }}
-						/>
+						<UserName userData={userData}/>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent
 						className={`absolute top-[-59px] left-jc_topbar w-jc_topbar rounded-[15px] rounded-tl-[28px] p-2 shadow-2xl border-none focus:outline-none outline-none transition-none`}
@@ -85,12 +83,7 @@ export default function Topbar() {
 							className={`h-jc_topbar w-full cursor-pointer`}
 							onClick={handleClick}
 						>
-							<UserName
-								item={{
-									name: userData?.name || "",
-									icon: '/assets/icons/avatar.svg',
-								}}
-							/>
+							<UserName userData={userData}/>
 						</div>
 						<div className="p-0 pb-4 flex flex-col gap-4">
 							{topbar.map((item) => (
