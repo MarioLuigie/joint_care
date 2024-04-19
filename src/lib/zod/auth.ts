@@ -12,7 +12,7 @@ export const loginSchema = z.object({
 	password: z.string().min(8, { message: msg.PASSWORD_LENGTH }),
 	remember_me: z
 		.boolean()
-		.refine((value) => value === true, { message: 'Zapamiętaj mnie' }),
+		// .refine((value) => value === true, { message: 'Zapamiętaj mnie' }),
 })
 
 // Forgot Password

@@ -21,7 +21,4 @@ export interface UserData {
 	updated_at: string
 	weight: number | null
 }
-export interface User {
-	token: string
-	user: UserData
-}
+

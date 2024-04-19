@@ -1,22 +1,22 @@
 'use client'
 import React, { createContext, useContext, useState, useEffect } from 'react'
-import { User, UserData } from '@/lib/types'
+import { UserData } from '@/lib/types'
 import { useRouter } from 'next/navigation'
 import { routes } from '@/lib/constants'
 import { getUserProfile } from '../services/profile'
 
 interface AppContext {
-	user: User | null
+	token: string | null
 	userData: UserData | null
 	setUserData: React.Dispatch<React.SetStateAction<UserData | null>>
-	setUser: React.Dispatch<React.SetStateAction<User | null>>
+	setToken: React.Dispatch<React.SetStateAction<string | null>>
 }
 
 const initUser: AppContext = {
-	user: null,
+	token: null,
 	userData: null,
 	setUserData: () => {},
-	setUser: () => {},
+	setToken: () => {},
 }
 
 const AppContext = createContext<AppContext>(initUser)
@@ -31,19 +31,19 @@ export const ContextProvider = ({
 	children: React.ReactNode
 }) => {
 	const router = useRouter()
-	const [user, setUser] = useState<User | null>(null)
+	const [token, setToken] = useState<string | null>(null)
 	const [userData, setUserData] = useState<UserData | null>(null)
 
 	console.log(userData)
 
 	useEffect(() => {
-		const storedUser = localStorage.getItem('profile')
+		const storedToken = localStorage.getItem('token')
 
-		if (storedUser) {
-			setUser(JSON.parse(storedUser))
+		if (storedToken) {
+			setToken(JSON.parse(storedToken))
 
 			const fetchUserProfile = async () => {
-				const res = await getUserProfile(JSON.parse(storedUser).token)
+				const res = await getUserProfile(JSON.parse(storedToken))
 				if (res.success) {
 					setUserData(res.data.user)
 				}
@@ -51,16 +51,16 @@ export const ContextProvider = ({
 			fetchUserProfile()
 		}
 
-		if (!storedUser) {
+		if (!storedToken) {
 			router.push(routes.HOME)
 		}
 	}, [router])
 
 	const contextValue: AppContext = {
-		user,
+		token,
 		userData,
 		setUserData,
-		setUser,
+		setToken
 	}
 
 	return (

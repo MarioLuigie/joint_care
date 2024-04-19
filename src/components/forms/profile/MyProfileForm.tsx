@@ -20,7 +20,7 @@ import { Gender } from '@/lib/types'
 
 export default function MyProfileForm() {
 	const { toast } = useToast()
-	const { user, userData, setUserData } = useAppContext()
+	const { token, userData, setUserData } = useAppContext()
 	const [isLoading, setIsLoading] = useState(true)
 
 	const form = useForm({
@@ -55,10 +55,10 @@ export default function MyProfileForm() {
 
 	const onSubmit = async (data: ProfileFormData) => {
 		try {
-			if (user) {
+			if (token) {
 				console.log(data)
 
-				const res = await updateUserProfile(user.token, data)
+				const res = await updateUserProfile(token, data)
 				setUserData(res.data.user)
 				toast({
 					description: msg.SAVED,

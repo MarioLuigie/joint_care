@@ -19,17 +19,21 @@ import { useAppContext } from '@/lib/context'
 
 export default function Topbar() {
 	const [isActive, setIsActive] = useState<boolean>(false)
-	const { user, userData } = useAppContext()
+	const { token, userData, setToken } = useAppContext()
 	const router = useRouter()
 
 	const handleLogout = async () => {
-		if (user !== null) {
+
+		console.log(token);
+		
+		if (token) {
 			try {
-				const data = await apiLogoutUser(user.token)
+				const data = await apiLogoutUser(token)
 
 				if (data.success) {
 					router.push(routes.AUTH_LOGIN)
-					localStorage.removeItem('profile')
+					localStorage.removeItem('token')
+					setToken(null)
 				}
 
 				console.log('Logout:', data)
