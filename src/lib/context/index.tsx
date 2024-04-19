@@ -34,8 +34,6 @@ export const ContextProvider = ({
 	const [user, setUser] = useState<User | null>(null)
 	const [userData, setUserData] = useState<UserData | null>(null)
 
-	console.log('UserData from Context:', userData)
-
 	useEffect(() => {
 		const storedUser = localStorage.getItem('profile')
 

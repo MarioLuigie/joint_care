@@ -7,21 +7,18 @@ import { useEffect, useState } from 'react'
 import { Form } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
+import DataLoading from '@/components/shared/common/DataLoading'
 import InputRadioGroup from '@/components/shared/inputs/shadcn/InputRadioGroup'
 import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 // lib
 import { msg } from '@/lib/constants'
 import { profileSchema, ProfileFormData } from '@/lib/zod/profile'
+import { sexRadios } from '@/lib/constants/profile'
 import { updateUserProfile } from '@/lib/services/profile'
 import { useAppContext } from '@/lib/context'
 import { Gender } from '@/lib/types'
 
 export default function MyProfileForm() {
-	const sexRadios = [
-		{ label: 'Kobieta', value: Gender.FEMALE },
-		{ label: 'Mężczyzna', value: Gender.MALE },
-	]
-
 	const { toast } = useToast()
 	const { user, userData, setUserData } = useAppContext()
 	const [isLoading, setIsLoading] = useState(true)
@@ -73,7 +70,7 @@ export default function MyProfileForm() {
 	}
 
 	if (isLoading) {
-		return <div>Trwa ładowanie...</div>
+		return <DataLoading />
 	} else {
 		return (
 			<Form {...form}>
