@@ -11,9 +11,9 @@ export default function AtmosphericConditions() {
 				<div className="flex flex-col items-start h-[100px]">
 					<div className="flex-center gap-8">
 						<p className="text-[26px] font-bold">Dodaj odczyt</p>
-						<div className='flex-center gap-2'>
+						<div className='flex-center gap-2 text-jc-blue'>
               <Icon path='/assets/icons/calendar.svg'/>
-							<p className="text-sm">{date}</p>
+							<p className="text-sm text-black">{date}</p>
 						</div>
 					</div>
 				</div>
