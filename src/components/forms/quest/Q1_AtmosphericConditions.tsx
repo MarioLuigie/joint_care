@@ -116,6 +116,13 @@ const WeatherTable = () => {
 
 //Table for dust
 const DustTable = () => {
+	const DustPropertiesData = [
+		{ allergen: 'Leszczyna', concetration: '|||', trend: 55 },
+		{ allergen: 'Platan', concetration: '|||', trend: 20 },
+		{ allergen: 'Brzoza', concetration: '|||', trend: 10 },
+		{ allergen: 'Klon', concetration: '|||', trend: 70 },
+	]
+
 	const DustProperty = ({
 		allergen,
 		concetration,
@@ -129,17 +136,14 @@ const DustTable = () => {
 			<p className="w-5/12 text-[15px]">{allergen}</p>
 			<div className="w-4/12 font-semibold">{concetration}</div>
 			<div className="w-3/12 font-semibold flex-center">
-				{trend > 50 ? <Icon path='/assets/icons/up-arrow.svg' /> : <Icon path='/assets/icons/down-arrow.svg' />}
+				{trend > 50 ? (
+					<Icon path="/assets/icons/up-arrow.svg" />
+				) : (
+					<Icon path="/assets/icons/down-arrow.svg" />
+				)}
 			</div>
 		</div>
 	)
-
-	const DustPropertiesData = [
-		{ allergen: 'Leszczyna', concetration: '|||', trend: 55 },
-		{ allergen: 'Platan', concetration: '|||', trend: 20 },
-		{ allergen: 'Brzoza', concetration: '|||', trend: 10 },
-		{ allergen: 'Klon', concetration: '|||', trend: 70 },
-	]
 
 	return (
 		<div className="flex flex-col gap-6">
@@ -163,16 +167,16 @@ const DustTable = () => {
 //Table for air condition
 const AirTable = () => {
 	const airConditionProperties = [
-		{ label: 'PM 10[µg/m3] -', value: 0},
-		{ label: 'O3[µg/m3] -', value: 0},
-		{ label: 'SO2[µg/m3] -', value: 0},
-		{ label: 'PM 2,5[µg/m3] -', value: 0},
-		{ label: 'NO2[µg/m3] -', value: 0},
+		{ label: 'PM 10[µg/m3] -', value: 0 },
+		{ label: 'O3[µg/m3] -', value: 0 },
+		{ label: 'SO2[µg/m3] -', value: 0 },
+		{ label: 'PM 2,5[µg/m3] -', value: 0 },
+		{ label: 'NO2[µg/m3] -', value: 0 },
 	]
 	return (
-		<div className='grid grid-cols-3 gap-y-4'>
+		<div className="grid grid-cols-3 gap-y-4">
 			{airConditionProperties.map((item, i) => (
-				<div key={i} className='flex gap-2'>
+				<div key={i} className="flex gap-2">
 					<p>{item.label}</p>
 					<p>{item.value}</p>
 				</div>

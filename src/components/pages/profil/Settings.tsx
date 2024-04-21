@@ -1,11 +1,8 @@
-'use client'
-//modules
-import { useState } from 'react'
 //components
 import { Button } from '@/components/ui/button'
+import ToggleButtons from "@/components/shared/common/ToggleButtons"
 
 export default function Settings() {
-	const [isConsent, setIsConsent] = useState<boolean>(false)
 
 	function Consent() {
 		return (
@@ -14,35 +11,9 @@ export default function Settings() {
 					Czy chcesz włączyć powiadomienia?
 				</p>
 				<div className="flex-center gap-2 p-2 bg-jc-gray0 rounded-[12px]">
-					<ConsentButton isActive={isConsent} text="Tak" />
-					<ConsentButton isActive={!isConsent} text="Nie" />
+					<ToggleButtons />
 				</div>
 			</div>
-		)
-	}
-
-	function ConsentButton({
-		text,
-		isActive,
-	}: {
-		text: string
-		isActive: boolean
-	}) {
-		const handleSwitch = () => {
-			setIsConsent((prev) => !prev)
-		}
-
-		return (
-			<button
-				onClick={handleSwitch}
-				className={`flex-center p-[5px] w-[50px] font-semibold text-[15px] rounded-[10px] ${
-					isActive
-						? 'bg-white shadow-lg text-black'
-						: 'text-jc-text4 bg-transparent'
-				}`}
-			>
-				{text}
-			</button>
 		)
 	}
 
