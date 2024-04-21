@@ -34,6 +34,7 @@ const config = {
 					gray8: "#808080",
 					blue: "#048AED",
 					blue2: "#E6F3FD",
+					blue3: "#E6ECF4",
 					red: "#D97C7C",
 				},
 				gray: {
