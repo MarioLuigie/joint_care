@@ -2,7 +2,7 @@
 //modules
 import { useState, useEffect } from 'react'
 //components
-import { questSidebar } from '@/lib/constants/layout'
+import { questSections } from '@/lib/constants/layout'
 import Paper from '@/components/shared/containers/Paper'
 import { Button } from '@/components/ui/button'
 import Icon from '@/components/shared/common/Icon'
@@ -65,8 +65,8 @@ const SidebarItem = ({
 const Sidebar = ({ currentItem }: { currentItem: number }) => {
 	return (
 		<div className="flex flex-col gap-8">
-			{questSidebar.map((item, i) => (
-				<SidebarItem item={item} key={i} currentItem={currentItem} />
+			{Object.values(questSections).map((value, i) => (
+				<SidebarItem item={value} key={i} currentItem={currentItem} />
 			))}
 		</div>
 	)

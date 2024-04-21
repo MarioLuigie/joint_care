@@ -1,17 +1,20 @@
 //components
 import { Button } from '@/components/ui/button'
-import ToggleButtons from "@/components/shared/common/ToggleButtons"
+import ToggleButtons from '@/components/shared/common/ToggleButtons'
 
 export default function Settings() {
-
 	function Consent() {
 		return (
 			<div className="flex-center gap-6 p-2 border-2 border-slate-200 rounded-[15px] h-[77px] w-[440px]">
 				<p className="font-semibold text-base [text-shadow:_0_4px_4px_rgb(0_0_0_/_25%)]">
 					Czy chcesz włączyć powiadomienia?
 				</p>
-				<div className="flex-center gap-2 p-2 bg-jc-gray0 rounded-[12px]">
-					<ToggleButtons />
+				<div className="flex-center w-[130px] gap-2 p-2 bg-jc-gray0 rounded-[12px]">
+					<ToggleButtons
+						className="text-[15px] rounded-[10px]"
+						activClassName="bg-white shadow-lg text-black"
+						disactiveClassName="text-jc-text4 bg-transparent"
+					/>
 				</div>
 			</div>
 		)

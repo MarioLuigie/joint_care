@@ -3,7 +3,15 @@
 //modules
 import { useState } from 'react'
 
-export default function ToggleButtons({ classes }: { classes?: string }) {
+export default function ToggleButtons({
+	className,
+	activClassName,
+	disactiveClassName,
+}: {
+	className?: string
+	activClassName: string
+	disactiveClassName: string
+}) {
 	const [isChecked, setIsChecked] = useState<boolean>(false)
 
 	const handleSwitch = () => {
@@ -19,10 +27,8 @@ export default function ToggleButtons({ classes }: { classes?: string }) {
 	}) => (
 		<button
 			onClick={handleSwitch}
-			className={`flex-center p-[5px] w-[50px] font-semibold text-[15px] rounded-[10px] ${
-				isActive
-					? 'bg-white shadow-lg text-black'
-					: 'text-jc-text4 bg-transparent'
+			className={`flex-center p-[5px] w-full h-full font-semibold ${className} ${
+				isActive ? activClassName : disactiveClassName
 			}`}
 		>
 			{children}

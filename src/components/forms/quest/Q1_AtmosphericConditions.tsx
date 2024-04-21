@@ -2,6 +2,8 @@
 import Group from '@/components/shared/containers/Group'
 import Icon from '@/components/shared/common/Icon'
 import Paper from '@/components/shared/containers/Paper'
+//lib
+import { questSections } from '@/lib/constants/layout'
 
 //Reading option component
 const AddReadingOption = () => {
@@ -209,7 +211,7 @@ export default function AtmosphericConditions() {
 			</Paper>
 			<Paper className="grow">
 				<Group gap="6">
-					<p className="text-[26px] font-bold">Warunki atmosferyczne</p>
+					<p className="text-[26px] font-bold">{questSections.atmosphericConditions.label}</p>
 					<AtmosphericCondition
 						title="Pogoda"
 						condition={temp.condition}
