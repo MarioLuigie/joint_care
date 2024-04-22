@@ -9,7 +9,7 @@ export default function MyProfile() {
 				<p className="text-3xl font-bold">Twój profil</p>
 				<div className="flex gap-4">
 					<div className="rounded-lg border-2 border-dashed border-slate-200 aspect-square h-[150px]"></div>
-					<CollapseReq />
+					<CollapseReq minRes='3000' maxWeight='10' ext='JPEG, PNG'/>
 				</div>
 				<p className="text-base font-semibold">Twoje dane</p>
 				<MyProfileForm />

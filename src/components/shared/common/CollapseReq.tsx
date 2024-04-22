@@ -8,7 +8,15 @@ import {
 } from '@/components/ui/accordion'
 import { useState } from 'react'
 
-export default function CollapseRequirements() {
+export default function CollapseReq({
+	minRes,
+	maxWeight,
+	ext,
+}: {
+	minRes: string
+	maxWeight: string
+	ext: string
+}) {
 	const [isCollapse, setIsCollapse] = useState<boolean>(false)
 
 	return (
@@ -27,15 +35,15 @@ export default function CollapseRequirements() {
 					<AccordionContent className="flex flex-col gap-1">
 						<div className="flex flex-between text-jc-gray7 text-[13px]">
 							<p>Min. rozmiar:</p>
-							<p>3000 x 3000px</p>
+							<p>{`${minRes} x ${minRes} px`}</p>
 						</div>
 						<div className="flex flex-between text-jc-gray7 text-[13px]">
 							<p>Max. waga pliku:</p>
-							<p>10MB</p>
+							<p>{`${maxWeight} MB`}</p>
 						</div>
 						<div className="flex flex-between text-jc-gray7 text-[13px]">
 							<p>Akceptowalne formaty:</p>
-							<p>JPEG, PNG</p>
+							<p>{`${ext}`}</p>
 						</div>
 					</AccordionContent>
 				</AccordionItem>
