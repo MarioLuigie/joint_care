@@ -14,19 +14,10 @@ import { questSchema } from '@/lib/zod/quest'
 import { questSections } from '@/lib/constants/layout'
 import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 
-const emojis = [
-	{ path: '/assets/icons/emoji-00.svg', value: 0 },
-	{ path: '/assets/icons/emoji-01.svg', value: 1 },
-	{ path: '/assets/icons/emoji-02.svg', value: 2 },
-	{ path: '/assets/icons/emoji-03.svg', value: 3 },
-	{ path: '/assets/icons/emoji-04.svg', value: 4 },
-	{ path: '/assets/icons/emoji-05.svg', value: 5 },
-	{ path: '/assets/icons/emoji-06.svg', value: 6 },
-	{ path: '/assets/icons/emoji-07.svg', value: 7 },
-	{ path: '/assets/icons/emoji-08.svg', value: 8 },
-	{ path: '/assets/icons/emoji-09.svg', value: 9 },
-	{ path: '/assets/icons/emoji-10.svg', value: 10 },
-]
+const emojis = Array.from({ length: 11 }, (_, i) => ({
+	path: `/assets/icons/emoji-${i < 10 ? '0' + i : i}.svg`,
+	value: i,
+}))
 
 const EmojiInput = () => {
 	const [value, setValue] = useState<number | null>(null)
@@ -57,7 +48,9 @@ export default function BasicDatas() {
 	const form = useForm<QuestFormData>({
 		resolver: zodResolver(questSchema),
 		defaultValues: {
-			name: '',
+			stiff: false,
+			vas: 0,
+			was_pga: 0,
 		},
 	})
 

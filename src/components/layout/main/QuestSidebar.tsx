@@ -1,6 +1,7 @@
 'use client'
 //modules
 import { useState, useEffect } from 'react'
+import { useParams } from 'next/navigation'
 //components
 import { questSections } from '@/lib/constants/layout'
 import Paper from '@/components/shared/containers/Paper'
@@ -73,7 +74,8 @@ const Sidebar = ({ currentItem }: { currentItem: number }) => {
 }
 
 export default function QuestSidebar() {
-	const [currentItem, setCurrentItem] = useState<number>(1)
+	const params = useParams()
+	const [currentItem, setCurrentItem] = useState<number>(Number(params.slug))
 	const router = useRouter()
 
 	useEffect(() => {
