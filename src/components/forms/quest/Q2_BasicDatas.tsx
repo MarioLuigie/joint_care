@@ -11,41 +11,41 @@ import ToggleButtons from '@/components/shared/common/ToggleButtons'
 //lib
 import { QuestFormData } from '@/lib/zod/quest'
 import { questSchema } from '@/lib/zod/quest'
-import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 import { questSections } from '@/lib/constants/layout'
+import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 
-const emoji = [
-	'/assets/icons/emoji-00.svg',
-	'/assets/icons/emoji-01.svg',
-	'/assets/icons/emoji-02.svg',
-	'/assets/icons/emoji-03.svg',
-	'/assets/icons/emoji-04.svg',
-	'/assets/icons/emoji-05.svg',
-	'/assets/icons/emoji-06.svg',
-	'/assets/icons/emoji-07.svg',
-	'/assets/icons/emoji-08.svg',
-	'/assets/icons/emoji-09.svg',
-	'/assets/icons/emoji-10.svg',
+const emojis = [
+	{ path: '/assets/icons/emoji-00.svg', value: 0 },
+	{ path: '/assets/icons/emoji-01.svg', value: 1 },
+	{ path: '/assets/icons/emoji-02.svg', value: 2 },
+	{ path: '/assets/icons/emoji-03.svg', value: 3 },
+	{ path: '/assets/icons/emoji-04.svg', value: 4 },
+	{ path: '/assets/icons/emoji-05.svg', value: 5 },
+	{ path: '/assets/icons/emoji-06.svg', value: 6 },
+	{ path: '/assets/icons/emoji-07.svg', value: 7 },
+	{ path: '/assets/icons/emoji-08.svg', value: 8 },
+	{ path: '/assets/icons/emoji-09.svg', value: 9 },
+	{ path: '/assets/icons/emoji-10.svg', value: 10 },
 ]
 
 const EmojiInput = () => {
-	const [rank, setRank] = useState<number | null>(null)
+	const [value, setValue] = useState<number | null>(null)
 
 	const handleClick = (numb: number) => () => {
-		setRank(numb)
+		setValue(numb)
 	}
 
 	return (
 		<div className="flex justify-between bg-jc-bg rounded-lg h-[60px] px-2 py-2">
-			{emoji.map((item, i) => (
+			{emojis.map((emoji, i) => (
 				<div
 					key={i}
 					className={`flex-center gap-1 cursor-pointer px-3 ${
-						rank === i ? 'bg-white rounded-[4px] h-full' : ''
+						value === emoji.value && 'bg-white rounded-[4px] h-full'
 					}`}
-					onClick={handleClick(i)}
+					onClick={handleClick(emoji.value)}
 				>
-					<Icon path={item} />
+					<Icon path={emoji.path} />
 					<p className="text-jc-text4">{i}</p>
 				</div>
 			))}
@@ -64,7 +64,9 @@ export default function BasicDatas() {
 	return (
 		<Group className="flex flex-col gap-[3px] w-full h-full">
 			<div className="flex flex-col gap-6 bg-white rounded-t-[25px] p-8">
-				<p className="text-[26px] font-bold">{questSections.basicDatas.label}</p>
+				<p className="text-[26px] font-bold">
+					{questSections.basicDatas.label}
+				</p>
 				<div className="flex flex-col gap-4">
 					<p>Czy była sztywność poranna?</p>
 					<div className="flex-center h-[60px] gap-2 p-1 bg-jc-gray0 rounded-[5px]">
@@ -76,19 +78,19 @@ export default function BasicDatas() {
 					</div>
 				</div>
 			</div>
-      {/* VAS */}
+			{/* VAS */}
 			<div className="flex flex-col gap-6 bg-white p-8">
 				<p className="font-semibold text-lg">VAS</p>
 				<p className="text-jc-text4 text-sm">Wybierz stopień nasilenia</p>
 				<EmojiInput />
 			</div>
-      {/* WAS PGA */}
+			{/* WAS PGA */}
 			<div className="flex flex-col gap-6 bg-white p-8">
 				<p className="font-semibold text-lg">WAS PGA</p>
 				<p className="text-jc-text4 text-sm">Wybierz stopień nasilenia</p>
 				<EmojiInput />
 			</div>
-      {/* Pomiar */}
+			{/* Pomiar */}
 			<div className="flex flex-col gap-6 bg-white p-8">
 				<p className="font-semibold text-lg">Pomiar</p>
 			</div>
