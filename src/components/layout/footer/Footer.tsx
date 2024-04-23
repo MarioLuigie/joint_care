@@ -9,7 +9,7 @@ const Copyrights = () => (
 
 export default function Footer() {
 	return (
-		<footer className="flex-between p-3 bg-jc-bg">
+		<footer className="flex-between p-3 bg-jc-bg sticky bottom-0 left-0">
 			<div className="flex-center gap-5">
 				<Languages />
 				<Copyrights />

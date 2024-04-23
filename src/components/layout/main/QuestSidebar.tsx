@@ -87,7 +87,7 @@ export default function QuestSidebar() {
 	}
 
 	return (
-		<div className="flex flex-col gap-5 min-w-[350px]">
+		<div className="flex flex-col gap-5 min-w-[350px] sticky top-[112px]">
 			<Paper>
 				<Progress />
 			</Paper>
