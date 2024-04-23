@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={cn(titillium.className)}>
+			<body className={cn(titillium.className, 'overflow-y-scroll')}>
 				<ContextProvider>{children}</ContextProvider>
 				<Toaster />
 			</body>

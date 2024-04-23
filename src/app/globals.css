@@ -7,7 +7,7 @@
 	.auth-card {
 		@apply min-w-[370px] w-full sm:w-[390px] lg:w-[460px] p-[50px];
 	}
-		.jc-warning-link {
+	.jc-warning-link {
 		@apply text-[13px] font-medium text-[#030303];
 	}
 
@@ -18,4 +18,21 @@
 	.jc-inputLabel {
 		@apply absolute top-[3px] left-3 text-[13px] text-black;
 	}
+}
+
+::-webkit-scrollbar {
+	width: 2px;
+	height: 2px;
+}
+
+::-webkit-scrollbar-track {
+	background: #222;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #111;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #333;
 }

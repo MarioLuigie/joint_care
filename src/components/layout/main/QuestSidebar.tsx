@@ -1,23 +1,19 @@
 'use client'
 //modules
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 //components
-import { questSections } from '@/lib/constants/layout'
-import Paper from '@/components/shared/containers/Paper'
 import { Button } from '@/components/ui/button'
-import Icon from '@/components/shared/common/Icon'
-import { useRouter } from 'next/navigation'
-//lib
-import { routes } from '@/lib/constants'
 import Group from '@/components/shared/containers/Group'
+import Icon from '@/components/shared/common/Icon'
+import Paper from '@/components/shared/containers/Paper'
+//lib
+import { questSections } from '@/lib/constants/layout'
+import { routes } from '@/lib/constants'
 
 const Progress = () => {
-	return (
-		<div className='h-[100px]'>
-
-		</div>
-	)
+	return <div className="h-[100px]"></div>
 }
 
 const SidebarItem = ({
@@ -31,35 +27,37 @@ const SidebarItem = ({
 	const isItemActive = item.id === currentItem
 
 	return (
-		<div className="flex gap-5 whitespace-nowrap">
-			{isItemDone ? (
-				<div
-					className={`flex-center bg-jc-blue2 rounded-full w-7 aspect-square text-sm`}
-				>
-					<Icon path="/assets/icons/check.svg" />
-				</div>
-			) : isItemActive ? (
-				<div
-					className={`flex-center bg-jc-blue text-white rounded-full w-7 aspect-square text-sm`}
-				>
-					<p>{item.id}</p>
-				</div>
-			) : (
-				<div
-					className={`flex-center border-2 border-jc-gray6 text-jc-gray6 rounded-full w-7 aspect-square text-sm`}
-				>
-					<p>{item.id}</p>
-				</div>
-			)}
+		<Link href={`${routes.QUEST}/${item.id}`} className="cursor-pointer">
+			<div className="flex gap-5 whitespace-nowrap">
+				{isItemDone ? (
+					<div
+						className={`flex-center bg-jc-blue2 rounded-full w-7 aspect-square text-sm`}
+					>
+						<Icon path="/assets/icons/check.svg" />
+					</div>
+				) : isItemActive ? (
+					<div
+						className={`flex-center bg-jc-blue text-white rounded-full w-7 aspect-square text-sm`}
+					>
+						<p>{item.id}</p>
+					</div>
+				) : (
+					<div
+						className={`flex-center border-2 border-jc-gray6 text-jc-gray6 rounded-full w-7 aspect-square text-sm`}
+					>
+						<p>{item.id}</p>
+					</div>
+				)}
 
-			<p
-				className={`text-lg ${
-					isItemActive ? 'font-bold text-black' : 'text-jc-gray6'
-				}`}
-			>
-				{item.label}
-			</p>
-		</div>
+				<p
+					className={`text-lg ${
+						isItemActive ? 'font-bold text-black' : 'text-jc-gray6'
+					}`}
+				>
+					{item.label}
+				</p>
+			</div>
+		</Link>
 	)
 }
 
@@ -75,15 +73,17 @@ const Sidebar = ({ currentItem }: { currentItem: number }) => {
 
 export default function QuestSidebar() {
 	const params = useParams()
-	const [currentItem, setCurrentItem] = useState<number>(Number(params.slug))
+	const slug = Number(params.slug)
+	const [currentItem, setCurrentItem] = useState<number>(slug || 1)
 	const router = useRouter()
 
 	useEffect(() => {
-		router.push(`${routes.QUEST}/${currentItem}`)
-	}, [currentItem])
+		setCurrentItem(slug)
+	}, [slug])
 
 	const handleClick = (step: number) => () => {
-		setCurrentItem((prev) => prev + step)
+		const newCurrentItem = currentItem + step
+		router.push(`${routes.QUEST}/${newCurrentItem}`)
 	}
 
 	return (

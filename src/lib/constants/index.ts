@@ -25,5 +25,4 @@ export const routes = {
 	PROFILE_MY_PROFILE: '/profile/my-profile',
 	PROFILE_SETTINGS: '/profile/settings',
 	QUEST: '/quest',
-	QUEST1: '/quest/1',
 }

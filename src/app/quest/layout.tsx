@@ -12,7 +12,7 @@ export default function QuestLayout({
 		<div className="flex flex-col min-h-screen">
 			<Header />
 			<Main className="flex grow p-8 bg-jc-bg">
-				<div className='flex justify-center gap-20 w-full'>
+				<div className="flex justify-center gap-20 w-full">
 					<div>
 						<QuestSidebar />
 					</div>
