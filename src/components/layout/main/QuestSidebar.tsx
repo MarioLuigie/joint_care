@@ -63,7 +63,7 @@ const SidebarItem = ({
 
 const Sidebar = ({ currentItem }: { currentItem: number }) => {
 	return (
-		<div className="flex flex-col gap-8">
+		<div className="flex flex-col gap-5">
 			{Object.values(questSections).map((value, i) => (
 				<SidebarItem item={value} key={i} currentItem={currentItem} />
 			))}
@@ -73,9 +73,9 @@ const Sidebar = ({ currentItem }: { currentItem: number }) => {
 
 export default function QuestSidebar() {
 	const params = useParams()
+	const router = useRouter()
 	const slug = Number(params.slug)
 	const [currentItem, setCurrentItem] = useState<number>(slug || 1)
-	const router = useRouter()
 
 	useEffect(() => {
 		setCurrentItem(slug)
