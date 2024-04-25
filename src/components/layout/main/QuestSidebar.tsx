@@ -1,21 +1,57 @@
 'use client'
 //modules
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import { useState, useEffect, MouseEventHandler } from 'react'
 //components
 import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
 import Group from '@/components/shared/containers/Group'
-import Icon from '@/components/shared/common/Icon'
 import Paper from '@/components/shared/containers/Paper'
+import Icon from '@/components/shared/common/Icon'
 //lib
 import { questSections } from '@/lib/constants/layout'
 import { routes } from '@/lib/constants'
 
-const Progress = () => {
-	return <div className="h-[100px]"></div>
+// ProgressBar
+const ProgressBar = ({ currentItem }: { currentItem: number }) => {
+	const currentProgress = currentItem * 10
+	const progressCircleDiameter = 12
+	const progressHeight = 4
+	return (
+		<div className="h-[100px] flex flex-col justify-between">
+			<div className="font-bold mb-6">Jest już prawie gotowe</div>
+			<div className="relative">
+				<Progress
+					style={{ height: `${progressHeight}px` }}
+					value={currentProgress}
+				/>
+				<div
+					className={`absolute rounded-full border-[3px] border-black bg-white transition-all flex-center`}
+					style={{
+						width: `${progressCircleDiameter}px`,
+						height: `${progressCircleDiameter}px`,
+						left: `calc(${currentProgress}% - ${progressCircleDiameter / 2}px`,
+						bottom: `-${(progressCircleDiameter - progressHeight) / 2}px`,
+					}}
+				>
+					<span
+						className="absolute font-bold"
+						style={{ bottom: `${progressCircleDiameter - 4}px` }}
+					>
+						{currentProgress}%
+					</span>
+				</div>
+			</div>
+			<div className="flex justify-between text-gray-400">
+				<span>0%</span>
+				<span>100%</span>
+			</div>
+		</div>
+	)
 }
 
+// SidebarItem
 const SidebarItem = ({
 	item,
 	currentItem,
@@ -61,7 +97,8 @@ const SidebarItem = ({
 	)
 }
 
-const Sidebar = ({ currentItem }: { currentItem: number }) => {
+// SidebarItems
+const SidebarItems = ({ currentItem }: { currentItem: number }) => {
 	return (
 		<div className="flex flex-col gap-5">
 			{Object.values(questSections).map((value, i) => (
@@ -71,6 +108,30 @@ const Sidebar = ({ currentItem }: { currentItem: number }) => {
 	)
 }
 
+// Buttons
+const Buttons = ({
+	handleClick,
+	currentItem,
+}: {
+	handleClick: (step: number) => MouseEventHandler<HTMLElement>
+	currentItem: number
+}) => (
+	<div className="flex flex-col gap-1">
+		<Button onClick={handleClick(1)} disabled={currentItem > 9}>
+			Następny krok
+		</Button>
+		{currentItem > 1 && (
+			<p
+				onClick={handleClick(-1)}
+				className="flex-center underline cursor-pointer"
+			>
+				Wróć
+			</p>
+		)}
+	</div>
+)
+
+// QuestSidebar
 export default function QuestSidebar() {
 	const params = useParams()
 	const router = useRouter()
@@ -89,23 +150,11 @@ export default function QuestSidebar() {
 	return (
 		<div className="flex flex-col gap-5 min-w-[350px] sticky top-[112px]">
 			<Paper>
-				<Progress />
+				<ProgressBar currentItem={currentItem} />
 			</Paper>
 			<Paper className="flex flex-col gap-8 pt-10">
-				<Sidebar currentItem={currentItem} />
-				<Group gap="1">
-					<Button onClick={handleClick(1)} disabled={currentItem > 9}>
-						Następny krok
-					</Button>
-					{currentItem > 1 && (
-						<p
-							onClick={handleClick(-1)}
-							className="flex-center underline cursor-pointer"
-						>
-							Wróć
-						</p>
-					)}
-				</Group>
+				<SidebarItems currentItem={currentItem} />
+				<Buttons currentItem={currentItem} handleClick={handleClick} />
 			</Paper>
 		</div>
 	)
