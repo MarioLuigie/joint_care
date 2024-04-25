@@ -3,7 +3,7 @@ import Group from '@/components/shared/containers/Group'
 import Icon from '@/components/shared/common/Icon'
 import Paper from '@/components/shared/containers/Paper'
 //lib
-import { questSections } from '@/lib/constants/layout'
+import { questSections } from '@/lib/constants/quest'
 
 //Reading option component
 const AddReadingOption = () => {

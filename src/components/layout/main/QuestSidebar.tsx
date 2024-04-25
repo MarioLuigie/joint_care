@@ -9,13 +9,14 @@ import { Progress } from '@/components/ui/progress'
 import Paper from '@/components/shared/containers/Paper'
 import Icon from '@/components/shared/common/Icon'
 //lib
-import { questSections } from '@/lib/constants/layout'
+import { questSections } from '@/lib/constants/quest'
 import { routes } from '@/lib/constants'
 
 // ProgressBar
 const ProgressBar = ({ currentItem }: { currentItem: number }) => {
-	const currentProgress = currentItem * 10 || 10
-	const progressCircleDiameter = 12
+	const questItems = Object.values(questSections).length
+	const currentProgress = Number(currentItem == 1 ? 0 : ((currentItem - 1) / questItems * 100).toFixed(0))
+	const progressCircleDiameter = 12 
 	const progressHeight = 4
 
 	console.log(currentProgress);
@@ -35,7 +36,6 @@ const ProgressBar = ({ currentItem }: { currentItem: number }) => {
 						height: `${progressCircleDiameter}px`,
 						left: `${currentProgress}%`,
 						transform: `translateX(-${progressCircleDiameter / 2}px)`,
-						// left: `calc(${currentProgress}% - ${progressCircleDiameter / 2}px`,
 						bottom: `-${(progressCircleDiameter - progressHeight) / 2}px`,
 					}}
 				>

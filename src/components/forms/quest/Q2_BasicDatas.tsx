@@ -11,7 +11,7 @@ import ToggleButtons from '@/components/shared/common/ToggleButtons'
 //lib
 import { QuestFormData } from '@/lib/zod/quest'
 import { questSchema } from '@/lib/zod/quest'
-import { questSections } from '@/lib/constants/layout'
+import { questSections } from '@/lib/constants/quest'
 import InputShadcn from '@/components/shared/inputs/shadcn/InputShadcn'
 
 const emojis = Array.from({ length: 11 }, (_, i) => ({

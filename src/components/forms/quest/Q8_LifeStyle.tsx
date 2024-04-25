@@ -1,7 +1,7 @@
 import Group from '@/components/shared/containers/Group'
 import Paper from '@/components/shared/containers/Paper'
 //lib
-import { questSections } from '@/lib/constants/layout'
+import { questSections } from '@/lib/constants/quest'
 
 export default function LifeStyle() {
 

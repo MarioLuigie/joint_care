@@ -12,7 +12,7 @@ import Group from '@/components/shared/containers/Group'
 import Paper from '@/components/shared/containers/Paper'
 import Icon from '@/components/shared/common/Icon'
 //lib
-import { questSections } from '@/lib/constants/layout'
+import { questSections } from '@/lib/constants/quest'
 
 const CollapseInput = ({
 	titleIcon,
