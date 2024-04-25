@@ -14,9 +14,12 @@ import { routes } from '@/lib/constants'
 
 // ProgressBar
 const ProgressBar = ({ currentItem }: { currentItem: number }) => {
-	const currentProgress = currentItem * 10
+	const currentProgress = currentItem * 10 || 10
 	const progressCircleDiameter = 12
 	const progressHeight = 4
+
+	console.log(currentProgress);
+	
 	return (
 		<div className="h-[100px] flex flex-col justify-between">
 			<div className="font-bold mb-6">Jest już prawie gotowe</div>
@@ -30,7 +33,9 @@ const ProgressBar = ({ currentItem }: { currentItem: number }) => {
 					style={{
 						width: `${progressCircleDiameter}px`,
 						height: `${progressCircleDiameter}px`,
-						left: `calc(${currentProgress}% - ${progressCircleDiameter / 2}px`,
+						left: `${currentProgress}%`,
+						transform: `translateX(-${progressCircleDiameter / 2}px)`,
+						// left: `calc(${currentProgress}% - ${progressCircleDiameter / 2}px`,
 						bottom: `-${(progressCircleDiameter - progressHeight) / 2}px`,
 					}}
 				>
