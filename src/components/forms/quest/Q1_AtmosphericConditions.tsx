@@ -116,13 +116,25 @@ const WeatherTable = () => {
 	)
 }
 
+const Chart = ({ value }: { value: number }) => {
+
+	return (
+		<div className='flex items-end gap-[3px] w-[29px] h-[23px]'>
+			<div className={`h-[9px] w-[5px] ${value > 0 ? 'bg-red' : 'bg-jc-bg'} rounded-[2px]`}></div>
+			<div className={`h-[13px] w-[5px] ${value > 25 ? 'bg-red' : 'bg-jc-bg'} rounded-[2px]`}></div>
+			<div className={`h-[18px] w-[5px] ${value > 50 ? 'bg-red' : 'bg-jc-bg'} rounded-[2px]`}></div>
+			<div className={`h-full w-[5px] ${value > 75 ? 'bg-red' : 'bg-jc-bg'} rounded-[2px]`}></div>
+		</div>
+	)
+}
+
 //Table for dust
 const DustTable = () => {
 	const DustPropertiesData = [
-		{ allergen: 'Leszczyna', concetration: '|||', trend: 55 },
-		{ allergen: 'Platan', concetration: '|||', trend: 20 },
-		{ allergen: 'Brzoza', concetration: '|||', trend: 10 },
-		{ allergen: 'Klon', concetration: '|||', trend: 70 },
+		{ allergen: 'Leszczyna', concetration: <Chart value={2} />, trend: 55 },
+		{ allergen: 'Platan', concetration: <Chart value={34} />, trend: 20 },
+		{ allergen: 'Brzoza', concetration: <Chart value={45} />, trend: 10 },
+		{ allergen: 'Klon', concetration: <Chart value={89} />, trend: 70 },
 	]
 
 	const DustProperty = ({
@@ -131,7 +143,7 @@ const DustTable = () => {
 		trend,
 	}: {
 		allergen: string
-		concetration: string
+		concetration: JSX.Element
 		trend: number
 	}) => (
 		<div className="flex justify-between items-center gap-4">
