@@ -15,12 +15,14 @@ export default function InputShadcn({
 	name,
 	placeholder,
 	type = 'text',
+	optional = false,
 }: {
 	control: Control<any>
 	name: string
 	placeholder: string
 	label: string
 	type?: string
+	optional?: boolean
 }) {
 	return (
 		<FormField
@@ -40,7 +42,7 @@ export default function InputShadcn({
 							/>
 						</FormControl>
 						<FormLabel className="jc-inputLabel">
-							{label} <span className="text-jc-blue">*</span>
+							{label} {!optional && <span className="text-jc-blue">*</span>}
 						</FormLabel>
 					</FormItem>
 					<FormMessage className="text-xs ml-3" />
