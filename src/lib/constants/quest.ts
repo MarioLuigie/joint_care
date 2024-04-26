@@ -19,20 +19,20 @@ export const questSections = {
 		label: 'Zabiegi fizjoterapeutyczne',
 		id: 5,
 	},
-	// physicalActivity: {
-	// 	label: 'Aktywność fizyczna',
-	// 	id: 6,
-	// },
-	// monitoringWristband: {
-	// 	label: 'Opaska monitorująca',
-	// 	id: 7,
-	// },
-	// lifeStyle: {
-	// 	label: 'Styl życia',
-	// 	id: 8,
-	// },
-	// medicines: {
-	// 	label: 'Leki',
-	// 	id: 9,
-	// },
+	physicalActivity: {
+		label: 'Aktywność fizyczna',
+		id: 6,
+	},
+	monitoringWristband: {
+		label: 'Opaska monitorująca',
+		id: 7,
+	},
+	lifeStyle: {
+		label: 'Styl życia',
+		id: 8,
+	},
+	medicines: {
+		label: 'Leki',
+		id: 9,
+	},
 }

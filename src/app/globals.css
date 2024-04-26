@@ -18,6 +18,9 @@
 	.jc-inputLabel {
 		@apply absolute top-[3px] left-3 text-[13px] text-black;
 	}
+	.jc-textArea {
+		@apply p-3 pt-8 text-[16px] rounded-lg border min-h-[160px] max-h-[160px] focus:outline-none placeholder:text-jc-text3;
+	}
 }
 
 ::-webkit-scrollbar {

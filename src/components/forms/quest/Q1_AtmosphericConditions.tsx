@@ -108,7 +108,7 @@ const WeatherTable = () => {
 	)
 
 	return (
-		<div className="grid grid-cols-3 gap-y-8 gap-x-8">
+		<div className="grid grid-cols-[40%_30%_30%] gap-y-8 gap-x-8">
 			{weatherPropertiesData.map((item, i) => (
 				<WeatherProperty key={i} title={item.title} value={item.value} />
 			))}

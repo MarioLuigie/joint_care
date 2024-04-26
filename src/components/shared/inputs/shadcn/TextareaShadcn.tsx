@@ -6,21 +6,19 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { Control } from 'react-hook-form'
 
-export default function InputShadcn({
+export default function TextareaShadcn({
 	control,
 	label,
 	name,
 	placeholder,
-	type = 'text',
 }: {
 	control: Control<any>
 	name: string
-	placeholder: string
 	label: string
-	type?: string
+	placeholder: string
 }) {
 	return (
 		<FormField
@@ -30,17 +28,16 @@ export default function InputShadcn({
 				<FormItem>
 					<FormItem className="relative">
 						<FormControl>
-							<Input
-								className={`jc-input ${
+							<Textarea
+								className={`jc-textArea ${
 									error ? 'border-jc-red' : 'border-slate-300'
 								}`}
 								placeholder={placeholder}
-								type={type}
 								{...field}
 							/>
 						</FormControl>
 						<FormLabel className="jc-inputLabel">
-							{label} <span className="text-jc-blue">*</span>
+							{label}
 						</FormLabel>
 					</FormItem>
 					<FormMessage className="text-xs ml-3" />

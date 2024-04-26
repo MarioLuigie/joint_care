@@ -15,12 +15,13 @@ import { routes } from '@/lib/constants'
 // ProgressBar
 const ProgressBar = ({ currentItem }: { currentItem: number }) => {
 	const questItems = Object.values(questSections).length
-	const currentProgress = Number(currentItem == 1 ? 0 : ((currentItem - 1) / questItems * 100).toFixed(0))
-	const progressCircleDiameter = 12 
+	const currentProgress = currentItem
+		? Math.floor(((currentItem - 1) / questItems) * 100)
+		: 0
+
+	const progressCircleDiameter = 12
 	const progressHeight = 4
 
-	console.log(currentProgress);
-	
 	return (
 		<div className="h-[100px] flex flex-col justify-between">
 			<div className="font-bold mb-6">Jest już prawie gotowe</div>
