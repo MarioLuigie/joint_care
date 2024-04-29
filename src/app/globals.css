@@ -21,21 +21,24 @@
 	.jc-textArea {
 		@apply p-3 pt-8 text-[16px] rounded-lg border min-h-[160px] max-h-[160px] focus:outline-none placeholder:text-jc-text3;
 	}
-}
+
 
 ::-webkit-scrollbar {
-	width: 2px;
-	height: 2px;
+	width: 4px;
+	height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-	background: #222;
+	background: rgb(221, 221, 221);
+	border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #111;
+	background: #b1b1b1;
 }
 
 ::-webkit-scrollbar-thumb:hover {
 	background: #333;
+}
+
 }
