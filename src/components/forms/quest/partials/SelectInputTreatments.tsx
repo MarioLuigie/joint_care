@@ -6,39 +6,45 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/accordion'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 //components
 import { Input } from '@/components/ui/input'
 import Icon from '@/components/shared/common/Icon'
+//lib
+import { questTreatments } from '@/lib/constants/quest'
+import { QuestTreatment } from '@/lib/types/quest'
 
-const treatments = [
-	{ label: 'Artroskopia', id: 'treat01', value: 'Artroskopia' },
-	{ label: 'Jonofereza', id: 'treat02', value: 'Jonofereza' },
-	{ label: 'Ultradźwięk', id: 'treat03', value: 'Ultradźwięk' },
-	{ label: 'Krioterapia', id: 'treat04', value: 'Krioterapia' },
-	{
-		label: 'Prądy diadynamiczne',
-		id: 'treat05',
-		value: 'Prądy diadynamiczne',
-	},
-	{
-		label: 'Pola elektromagnetyczne',
-		id: 'treat06',
-		value: 'Pola elektromagnetyczne',
-	},
-	{ label: 'Fala uderzeniowa', id: 'treat07', value: 'Fala uderzeniowa' },
-	{ label: 'Lorem Ipsum', id: 'treat08', value: 'Lorem Ipsum1' },
-	{ label: 'Lorem Ipsum', id: 'treat09', value: 'Lorem Ipsum2' },
-	{ label: 'Lorem Ipsum', id: 'treat10', value: 'Lorem Ipsum3' },
-	{ label: 'Lorem Ipsum', id: 'treat11', value: 'Lorem Ipsum4' },
-]
-
-export default function SelectTreatments() {
+export default function SelectTreatments({
+	handleSetSelectedTreatment,
+}: {
+	handleSetSelectedTreatment: any
+}) {
+	const treatments = questTreatments
+	const [searchedItem, setSearchedItem] = useState<string>('')
 	const [selectedItem, setSelectedItem] = useState<string>('Wybierz z listy')
 	const triggerRef = useRef<HTMLButtonElement>(null)
 
+	useEffect(() => {
+		treatments.filter(treatment => {
+      const regex = new RegExp(searchedItem, 'i')
+      return regex.test(treatment.value);
+    })}
+	, [searchedItem])
+
+	const handleClick = (value: string) => () => {
+		setSelectedItem(value)
+		handleSetSelectedTreatment(value)
+		if (triggerRef.current) {
+			triggerRef.current.click()
+		}
+	}
+
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchedItem(e.target.value)
+	}
+
 	return (
-		<div className="pt-8">
+		<div className="flex-grow">
 			<Accordion
 				className="border-2 border-jc-gray9 rounded-lg"
 				type="single"
@@ -65,7 +71,8 @@ export default function SelectTreatments() {
 									className="pl-10"
 									type="text"
 									placeholder="Szukaj"
-									onChange={() => {}}
+									onChange={handleChange}
+									value={searchedItem}
 								/>
 								<div className="absolute pl-2 text-jc-text4">
 									<Icon path="/assets/icons/search.svg" />
@@ -77,12 +84,7 @@ export default function SelectTreatments() {
 								<div
 									className="transition-all hover:pl-4 rounded p-2 cursor-pointer text-base text-jc-text4 hover:bg-jc-bg hover:text-jc-blue hover:font-semibold"
 									key={i}
-									onClick={() => {
-										setSelectedItem(treatment.value)
-										if (triggerRef.current) {
-											triggerRef.current.click()
-										}
-									}}
+									onClick={handleClick(treatment.value)}
 								>
 									{treatment.label}
 								</div>

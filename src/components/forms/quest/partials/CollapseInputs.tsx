@@ -26,7 +26,7 @@ const CollapseInput = ({
 		<Accordion
 			type="single"
 			collapsible
-			className="border-2 border-jc-gray9 rounded-lg hover:no-underline no-underline"
+			className="border-2 border-jc-gray9 rounded-lg"
 		>
 			<AccordionItem value="item-1" className="border-0">
 				<AccordionTrigger
@@ -37,7 +37,7 @@ const CollapseInput = ({
 				>
 					<div className="flex-center gap-3">
 						<Icon path={titleIcon} />
-						<p className="text-lg text-jc-gray5 hover:no-underline">
+						<p className="text-lg text-jc-gray5">
 							{title}
 						</p>
 					</div>
@@ -52,7 +52,7 @@ const CollapseInput = ({
 
 export default function CollapseInputs() {
 	return (
-		<Group className="flex flex-col gap-5 w-full h-full pt-8">
+		<Group className="flex flex-col gap-5 w-full h-full">
 			{/* VAS */}
 			<CollapseInput
 				titleIcon={'/assets/icons/hand-pain.svg'}

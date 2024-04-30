@@ -9,12 +9,14 @@ export default function JointsPainfull() {
 	return (
 		<Paper className="w-full">
 			<Group className="flex flex-col gap-5 w-full h-full">
-				<div className="flex flex-col gap-6">
+				<div className="flex flex-col">
 					<p className="text-[26px] font-bold">
 						{questSections.jointsPainfull.label}
 					</p>
 				</div>
-				<CollapseInputs />
+				<div className="pt-12">
+					<CollapseInputs />
+				</div>
 			</Group>
 		</Paper>
 	)
