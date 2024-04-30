@@ -46,8 +46,4 @@ export const questTreatments = [
 	{	label: 'Prądy diadynamiczne',id: 'treat05',value: 'Prądy diadynamiczne'	},
 	{	label: 'Pola elektromagnetyczne',id: 'treat06',value: 'Pola elektromagnetyczne'	},
 	{ label: 'Fala uderzeniowa', id: 'treat07', value: 'Fala uderzeniowa' },
-	{ label: 'Lorem Ipsum', id: 'treat08', value: 'Lorem Ipsum1' },
-	{ label: 'Lorem Ipsum', id: 'treat09', value: 'Lorem Ipsum2' },
-	{ label: 'Lorem Ipsum', id: 'treat10', value: 'Lorem Ipsum3' },
-	{ label: 'Lorem Ipsum', id: 'treat11', value: 'Lorem Ipsum4' },
 ]

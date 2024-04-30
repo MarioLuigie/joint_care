@@ -19,17 +19,19 @@ export default function SelectTreatments({
 }: {
 	handleSetSelectedTreatment: any
 }) {
-	const treatments = questTreatments
+	const [filteredTreatments, setFilteredTreatments] = useState<QuestTreatment[]>(questTreatments)
 	const [searchedItem, setSearchedItem] = useState<string>('')
 	const [selectedItem, setSelectedItem] = useState<string>('Wybierz z listy')
 	const triggerRef = useRef<HTMLButtonElement>(null)
 
+
 	useEffect(() => {
-		treatments.filter(treatment => {
-      const regex = new RegExp(searchedItem, 'i')
-      return regex.test(treatment.value);
-    })}
-	, [searchedItem])
+		const filteredTreatments =	questTreatments.filter((treatment) => {
+			const regex = new RegExp(searchedItem, 'i')
+			return regex.test(treatment.value)
+		})
+		setFilteredTreatments(filteredTreatments)
+	}, [searchedItem])
 
 	const handleClick = (value: string) => () => {
 		setSelectedItem(value)
@@ -56,9 +58,7 @@ export default function SelectTreatments({
 						ref={triggerRef}
 					>
 						<div className="flex flex-col">
-							<p className="text-[13px] text-jc-gray5 text-left">
-								Zabieg
-							</p>
+							<p className="text-[13px] text-jc-gray5 text-left">Zabieg</p>
 							<p className="text-lg text-jc-text1 text-left min-h-[28px]">
 								{selectedItem}
 							</p>
@@ -80,11 +80,11 @@ export default function SelectTreatments({
 							</div>
 						</div>
 						<div className="flex flex-col gap-2 max-h-[300px] overflow-auto">
-							{treatments.map((treatment, i) => (
+							{filteredTreatments.map((treatment) => (
 								<div
 									className="transition-all hover:pl-4 rounded p-2 cursor-pointer text-base text-jc-text4 hover:bg-jc-bg hover:text-jc-blue hover:font-semibold"
-									key={i}
 									onClick={handleClick(treatment.value)}
+									key={treatment.id}
 								>
 									{treatment.label}
 								</div>
