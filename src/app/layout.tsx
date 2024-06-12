@@ -3,7 +3,7 @@ import localFont from 'next/font/local'
 import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils/'
 import './globals.css'
-
+//lib
 import { ContextProvider } from '@/lib/context'
 
 // fonts
