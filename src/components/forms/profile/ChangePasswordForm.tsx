@@ -26,7 +26,7 @@ export default function ChangePasswordFormRef() {
 	// Action on submit
 	const onSubmit = async (data: ChangePasswordFormData) => {
 		try {
-			console.log(data)
+			// console.log(data)
 		} catch (err) {
 			console.error(err)
 		}

@@ -37,7 +37,7 @@ export default function LoginForm() {
 
 	// Action on submit
 	const onSubmit = async (data: LoginFormData) => {
-		console.log(data)
+		// console.log(data)
 
 		try {
 			const res = await apiLoginUser(data)

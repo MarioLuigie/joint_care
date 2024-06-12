@@ -8,6 +8,6 @@ export default function QuestPage() {
 
 	useEffect(() => {
 		router.push(`${routes.QUEST}/1`)
-	}, [])
+	}, [router])
 	return <div className="w-[720px]">Ładowanie danych...</div>
 }

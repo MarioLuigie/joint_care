@@ -42,7 +42,7 @@ export default function PhysiotherapyTreatments() {
 		)
 	}
 
-	console.log('Selected Treatments:', selectedTreatments)
+	// console.log('Selected Treatments:', selectedTreatments)
 
 	return (
 		<Paper className="w-full">

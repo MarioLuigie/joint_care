@@ -24,7 +24,7 @@ export default function Topbar() {
 
 	const handleLogout = async () => {
 
-		console.log(token);
+		// console.log(token);
 		
 		if (token) {
 			try {
@@ -36,7 +36,7 @@ export default function Topbar() {
 					setToken(null)
 				}
 
-				console.log('Logout:', data)
+				// console.log('Logout:', data)
 			} catch (err: any) {
 				console.error('There was a problem with authorization:', err)
 			}

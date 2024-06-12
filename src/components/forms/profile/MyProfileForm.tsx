@@ -56,7 +56,7 @@ export default function MyProfileForm() {
 	const onSubmit = async (data: ProfileFormData) => {
 		try {
 			if (token) {
-				console.log(data)
+				// console.log(data)
 
 				const res = await updateUserProfile(token, data)
 				setUserData(res.data.user)

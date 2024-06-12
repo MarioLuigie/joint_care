@@ -29,7 +29,7 @@ export default function ForgotPasswordForm() {
 
 	// Action on submit
 	const onSubmit = async (data: ForgotPasswordFormData) => {
-		console.log(data)
+		// console.log(data)
 		setIsServerError(true)
 		// TODO: implement apiForgotPassword
 

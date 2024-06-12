@@ -36,7 +36,7 @@ export default function RegistrationFormRef() {
 
 	// Action on submit
 	const onSubmit = async (data: RegistrationFormData) => {
-		console.log(data)
+		// console.log(data)
 
 		try {
 			const res = await apiRegisterUser(data)

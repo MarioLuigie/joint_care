@@ -49,7 +49,7 @@ export const updateUserProfile = async (
 		return data
 	} catch (err: any) {
 		if (err.response.data) {
-			console.log(err.response.data)
+			// console.log(err.response.data)
 			return err.response.data
 		} else {
 			console.error(err)

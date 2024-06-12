@@ -34,7 +34,7 @@ export const ContextProvider = ({
 	const [token, setToken] = useState<string | null>(null)
 	const [userData, setUserData] = useState<UserData | null>(null)
 
-	console.log(userData)
+	// console.log(userData)
 
 	useEffect(() => {
 		const storedToken = localStorage.getItem('token')
